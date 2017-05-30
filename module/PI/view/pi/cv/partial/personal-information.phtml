@@ -1,4 +1,4 @@
-<?php if ($this->personalInformation): ?>
+<?php if ($this->personalInformation && ($this->personalInformation->getName() || $this->personalInformation->getLastname())): ?>
     <h4><?php echo $this->personalInformation->getName(); ?> <?php echo $this->personalInformation->getLastname(); ?></h4>
 
 <?php else: ?>
