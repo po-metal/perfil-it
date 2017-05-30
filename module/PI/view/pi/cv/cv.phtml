@@ -1,0 +1,103 @@
+<div class="row">
+
+    <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
+        <div class="panel panel-cv">
+            <div class="panel-body">
+                <?php echo $this->partial('pi/cv/picture', array("cv" => $this->cv)); ?>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+        <div class="panel panel-cv">
+            <div class="panel-heading">
+                <h4 class="panel-title">Información Personal</h4>
+            </div>
+            <div class="panel-body">
+                <?php echo $this->partial('pi/cv/personal-information', array("cv" => $this->cv)); ?>
+            </div>
+
+        </div>
+
+        <div class="panel panel-cv">
+            <div class="panel-heading">
+                <h4 class="panel-title">Datos de Contacto</h4>
+            </div>
+            <div class="panel-body">
+                <?php echo $this->partial('pi/cv/contact', array("cv" => $this->cv)); ?>
+            </div>
+
+        </div>
+
+    </div>    
+
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="panel panel-cv">
+            <div class="panel-heading">
+                <h4 class="panel-title">Educación</h4>
+            </div>
+            <div class="panel-body">
+                <?php echo $this->partial('pi/cv/education', array("cv" => $this->cv)); ?>
+            </div>
+        </div>
+
+        <div class="panel panel-cv">
+            <div class="panel-heading">
+                <h4 class="panel-title">Idioma</h4>
+            </div>
+            <div class="panel-body">
+                <?php echo $this->partial('pi/cv/language', array("cv" => $this->cv)); ?>
+            </div>
+        </div>
+
+    </div>    
+
+
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="panel panel-cv">
+            <div class="panel-heading">
+                <h4 class="panel-title">Roles</h4>
+            </div>
+            <div class="panel-body">
+                <?php echo $this->partial('pi/cv/roles', array("cv" => $this->cv)); ?>
+            </div>
+        </div>
+
+        <div class="panel panel-cv">
+            <div class="panel-heading">
+                <h4 class="panel-title">Habilidades Blandas</h4>
+            </div>
+            <div class="panel-body">
+                <?php echo $this->partial('pi/cv/soft-skill', array("cv" => $this->cv)); ?>
+            </div>
+        </div>
+
+    </div>    
+
+</div>
+
+<div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div class="panel panel-cv">
+            <div class="panel-heading">
+                <h4 class="panel-title">Habilidades</h4>
+            </div>
+            <div class="panel-body">
+            </div>
+
+        </div>
+
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <div class="panel panel-cv">
+            <div class="panel-heading">
+                <h4 class="panel-title">Experiencia</h4>
+            </div>
+            <div class="panel-body">
+            </div>
+
+        </div>
+
+    </div>
+</div>

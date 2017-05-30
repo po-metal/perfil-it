@@ -1,0 +1,97 @@
+<div id="<?php echo $this->grid->getId(); ?>" >
+    <?php $this->flashCurrent(); ?>
+
+    <div class="row">
+
+        <div class="main-box-header clearfix">
+            <?php if ($this->grid->getOptions()->getTitle()): ?>
+                <h2 class="pull-left"> <?php echo $this->grid->getOptions()->getTitle(); ?></h2>
+            <?php endif; ?>
+            <div class="filter-block pull-right" style="margin-top: 0px; margin-right: 10px">
+
+                <?php echo $this->partial($this->partialExports, array("grid" => $this->grid)); ?>
+
+                <?php if ($this->grid->getOptions()->getMultiSearchConfig()->getEnable()): ?>     
+                    <?php echo $this->partial($this->partialSearch, array("grid" => $this->grid)); ?>
+                <?php endif; ?>     
+
+
+                <?php if ($this->grid->getOptions()->getCrudConfig()->getAdd()->getEnable()): ?>
+                    <a <?php echo $this->grid->getCrudColumn()->getAdd()["action"]; ?>
+                        class="btn pull-right btn-primary" >
+                        <i class="fa fa-plus-circle fa-lg"></i> <?php echo $this->grid->getCrudColumn()->getAdd()["value"]; ?>
+                    </a>
+                <?php endif; ?>
+
+                <?php if ($this->grid->getOptions()->getMultiFilterConfig()->getEnable()): ?>
+                    <?php echo $this->partial($this->partialFilter, array("grid" => $this->grid)); ?>
+                <?php endif; ?>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="main-box-body clearfix">
+            <div class="table-responsive">
+                <table class="table table-hover dataTable no-footer <?php echo $this->grid->getTableClass(); ?>">
+                    <thead>
+                        <tr>
+                            <?php foreach ($this->grid->getColumns() as $column): ?>
+                                <?php if (!$column->getHidden()): ?>
+                                    <th class="<?php echo $column->getThClass(); ?>">                                    
+                                        <?php echo $this->translate((string) $column); ?>
+                                        <?php if ($column->getType() != "extra" && $column->getType() != "crud"): ?>
+
+                                            <!--SORT-->
+                                            <?php if ($this->grid->getSort() && $this->grid->getSort()->getBy() == $column->getName()): ?>
+                                                <?php if ($this->grid->getSort()->getDirection() == "DESC"): ?>
+                                                    <a class="sorting_desc" onclick="cdiOrder_<?php echo $this->grid->getId(); ?>('<?php echo $this->url($this->route, array(), array('query' => array('sortBy' => $column->getName(), "sortDirection" => "ASC") + $this->routeParams), true); ?>')"></a>
+                                                <?php elseif ($this->grid->getSort()->getDirection() == "ASC"): ?>
+                                                    <a class="sorting_asc" onclick="cdiOrder_<?php echo $this->grid->getId(); ?>('<?php echo $this->url($this->route, array(), array('query' => array('sortBy' => $column->getName(), "sortDirection" => "DESC") + $this->routeParams), true); ?>')"></a>
+                                                <?php endif; ?>
+                                            <?php else: ?>
+                                                <a class="sorting" onclick="cdiOrder_<?php echo $this->grid->getId(); ?>('<?php echo $this->url($this->route, array(), array('query' => array('sortBy' => $column->getName(), "sortDirection" => "DESC") + $this->routeParams), true); ?>')"></a>
+                                            <?php endif; ?>
+
+                                        <?php endif; ?>
+                                    </th>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php if (count($this->grid->getRow())): ?>
+                            <?php foreach ($this->grid->getRow() as $data): ?>
+                                <tr>
+                                    <?php foreach ($this->grid->getColumns() as $column): ?>
+                                        <?php if (!$column->getHidden()): ?>
+                                            <td class="<?php echo $column->getTdClass() ?>">
+                                                <?php echo $column->getHtmlBegin(); ?>
+
+                                                <?php echo $this->GridField($column, $data); ?>
+
+                                                <?php echo $column->getHtmlEnd(); ?>
+
+                                            </td>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                </tr>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <?php
+        echo $this->paginationControl($this->grid->getPaginator(), 'Sliding', $this->partialPagination, array("routeParams" => $this->routeParams,
+            'route' => $this->route, 'gridId' => $this->grid->getId()));
+        ?>
+
+
+        <?php echo $this->GridCrudAjax($this->grid->getId(), $this->url($this->route, array(), array(), true)); ?>
+    </div>
+</div>

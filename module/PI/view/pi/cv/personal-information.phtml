@@ -1,0 +1,33 @@
+<a href="#" id="cv-img-modal" data-toggle="modal" data-target="#cv-personal-information-modal">
+    <div id="cv-personal-information">
+        <?php echo $this->partial("pi/cv/partial/personal-information",["personalInformation" => $this->cv->getPersonalInformation()]); ?> 
+    </div>
+
+</a>
+
+<!--Modal-->
+<div id="cv-personal-information-modal" class="modal fade " tabindex="-1" role="dialog" >
+    <div class="modal-dialog modal-sm" role="document">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Información Personal</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="row">
+
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <!--FORM-->
+                        <div id="form-cv-personal-information"></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

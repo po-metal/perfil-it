@@ -1,0 +1,122 @@
+/*PADDING*/
+.nopadding{
+    padding: 0;  
+}
+.padding2{
+    padding:2px ! important;
+
+}
+
+.padding5{
+    padding:5px ! important;
+}
+
+.paddingRight5{
+    padding-right:5px;
+}
+
+/*MARGIN*/
+.nomargin{
+    margin: 0;  
+}
+
+.margin2{
+    margin:2px;
+}
+
+.margin5{
+    margin:5px;
+}
+
+.margin6{
+    margin:6px;
+}
+
+
+/*CURSOR*/
+.cursor-pointer{
+    cursor: pointer;   
+}
+
+
+/*HEXA FONTAWESOME*/
+.fasave:before{
+    content: '\f0c7';
+    font-family: FontAwesome;
+}
+
+
+
+/* BOOTSTRAP PANELS*/
+.panel-heading-min{
+    padding: 5px 15px 5px 15px;
+}
+
+.panel-heading.active {
+    background-color: #dee7fa;
+}
+
+.huge {
+    font-size: 40px;
+}
+
+/*PANEL CV*/
+.panel-cv>.panel-heading {
+    color: #FFFFFF;
+    background-color: #0178a5;
+    border-color: #ddd;
+    font-size: 10px;
+    padding: 2px 5px;
+}
+
+.panel-cv>.panel-heading >.panel-title {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 10px;
+    color: inherit;
+}
+
+/*PANEL*/
+.panel-green {
+    border-color: #5cb85c;
+}
+.panel-green > .panel-heading {
+    border-color: #5cb85c;
+    color: white;
+    background-color: #5cb85c;
+}
+.panel-green > a {
+    color: #5cb85c;
+}
+.panel-green > a:hover {
+    color: #3d8b3d;
+}
+.panel-red {
+    border-color: #d9534f;
+}
+.panel-red > .panel-heading {
+    border-color: #d9534f;
+    color: white;
+    background-color: #d9534f;
+}
+.panel-red > a {
+    color: #d9534f;
+}
+.panel-red > a:hover {
+    color: #b52b27;
+}
+.panel-yellow {
+    border-color: #f0ad4e;
+}
+.panel-yellow > .panel-heading {
+    border-color: #f0ad4e;
+    color: white;
+    background-color: #f0ad4e;
+}
+.panel-yellow > a {
+    color: #f0ad4e;
+}
+.panel-yellow > a:hover {
+    color: #df8a13;
+}
+
