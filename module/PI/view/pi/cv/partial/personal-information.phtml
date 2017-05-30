@@ -1,1 +1,6 @@
-<h4><?php echo $this->personalInformation->getName(); ?> <?php echo $this->personalInformation->getLastname(); ?></h4>
+<?php if ($this->personalInformation): ?>
+    <h4><?php echo $this->personalInformation->getName(); ?> <?php echo $this->personalInformation->getLastname(); ?></h4>
+
+<?php else: ?>
+    <h4>Nombre Apellido</h4>
+<?php endif; ?>
