@@ -13,7 +13,8 @@ use Zend\Mvc\Controller\AbstractActionController;
  * @license -
  * @link -
  */
-class CvPersonalInformationController extends AbstractActionController {
+class CvPersonalInformationController extends AbstractActionController
+{
 
     const ENTITY = '\\PI\\Entity\\CvPersonalInformation';
 
@@ -22,23 +23,28 @@ class CvPersonalInformationController extends AbstractActionController {
      */
     public $em = null;
 
-    public function getEm() {
+    public function getEm()
+    {
         return $this->em;
     }
 
-    public function setEm(\Doctrine\ORM\EntityManager $em) {
+    public function setEm(\Doctrine\ORM\EntityManager $em)
+    {
         $this->em = $em;
     }
 
-    public function getEntityRepository() {
+    public function getEntityRepository()
+    {
         return $this->getEm()->getRepository(self::ENTITY);
     }
 
-    public function __construct(\Doctrine\ORM\EntityManager $em) {
+    public function __construct(\Doctrine\ORM\EntityManager $em)
+    {
         $this->em = $em;
     }
 
-    protected function getPersonalInformation() {
+    protected function getPersonalInformation()
+    {
         //Get Object
         $CV = $this->pICv();
         $personalInformation = $CV->getPersonalInformation();
@@ -53,7 +59,8 @@ class CvPersonalInformationController extends AbstractActionController {
         return $personalInformation;
     }
 
-    public function mainAction() {
+    public function mainAction()
+    {
         $personalInformation = $this->getPersonalInformation();
 
         //Generate Form
@@ -73,7 +80,7 @@ class CvPersonalInformationController extends AbstractActionController {
         //Process Form
         $service = $this->formProcess($this->getEm(), $form);
         if ($service->getStatus()) {
-            return $this->forward()->dispatch(\PI\Controller\CvPersonalInformationController::class, ["action" => "personal-information", "personalInformation" => $personalInformation]);
+            return $this->forward()->dispatch(\PI\Controller\CvPersonalInformationController::class, ["action" => "view", "personalInformation" => $personalInformation]);
         }
 
         $view = new \Zend\View\Model\ViewModel(array('form' => $form));
@@ -81,11 +88,14 @@ class CvPersonalInformationController extends AbstractActionController {
         return $view;
     }
 
-    public function personalInformationAction() {
+    public function viewAction()
+    {
         $personalInformation = $this->params("personalInformation");
         $view = new \Zend\View\Model\ViewModel(array("personalInformation" => $personalInformation));
         $view->setTerminal(true);
         return $view;
     }
 
+
 }
+

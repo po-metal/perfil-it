@@ -1,9 +1,16 @@
-<a href="#" id="cv-img-modal" data-toggle="modal" data-target="#cv-personal-information-modal">
-    <div id="cv-personal-information">
-        <?php echo $this->partial("pi/cv/partial/personal-information",["personalInformation" => $this->cv->getPersonalInformation()]); ?> 
+
+<div class="panel panel-cv" data-toggle="modal" data-target="#cv-personal-information-modal">
+    <div class="panel-heading">
+        <h4 class="panel-title">Información Personal</h4>
+    </div>
+    <div class="panel-body padding5">
+        <div id="cv-personal-information">
+            <?php echo $this->partial("pi/cv/partial/personal-information", ["personalInformation" => $this->cv->getPersonalInformation()]); ?> 
+        </div>
+
     </div>
 
-</a>
+</div>
 
 <!--Modal-->
 <div id="cv-personal-information-modal" class="modal fade " tabindex="-1" role="dialog" >

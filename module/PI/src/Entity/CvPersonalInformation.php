@@ -44,7 +44,8 @@ class CvPersonalInformation
     /**
      * @Annotation\Type("Zend\Form\Element\Text")
      * @Annotation\Attributes({"type":"text"})
-     * @Annotation\Options({"label":"Nombre", "description":"", "addon":""})
+     * @Annotation\Options({"label":"Nombre", "description":"", "addon":"fa
+     * fa-id-card-o"})
      * @ORM\Column(type="string", length=50, unique=false, nullable=true, name="name")
      */
     public $name = null;
@@ -52,7 +53,8 @@ class CvPersonalInformation
     /**
      * @Annotation\Type("Zend\Form\Element\Text")
      * @Annotation\Attributes({"type":"text"})
-     * @Annotation\Options({"label":"lastname", "description":"", "addon":""})
+     * @Annotation\Options({"label":"Apellido", "description":"", "addon":"fa
+     * fa-id-card"})
      * @ORM\Column(type="string", length=50, unique=false, nullable=true,
      * name="lastname")
      */
@@ -62,7 +64,7 @@ class CvPersonalInformation
      * @Annotation\Type("Zend\Form\Element\Date")
      * @Annotation\Attributes({"type":"date"})
      * @Annotation\Options({"label":"Fecha de Nacimiento", "description":"",
-     * "addon":""})
+     * "addon":"fa fa-birthday-cake"})
      * @ORM\Column(type="date", unique=false, nullable=true, name="birthdate")
      */
     public $birthdate = null;
@@ -115,6 +117,13 @@ class CvPersonalInformation
     public function setBirthdate($birthdate)
     {
         $this->birthdate = $birthdate;
+    }
+
+    public function getYears()
+    {
+        $now = new \DateTime();
+        $diff = $this->getBirthdate()->diff($now);
+        return $diff->y;
     }
 
     public function __toString()

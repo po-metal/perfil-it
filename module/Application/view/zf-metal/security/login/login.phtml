@@ -1,0 +1,116 @@
+<?php echo $this->flashCurrent(); ?>
+
+<div class="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12">
+    <div class="block block-transparent">
+
+        <div class="head">
+            <div class="user">
+                <div class="text-center" style="opacity: 1;">                                                                                
+                    <img src="/img/user.jpg" class="img-circle img-thumbnail">
+
+                </div>                            
+            </div>
+        </div>
+        <?php
+        $form = $this->form;
+        $form->prepare();
+        ?>
+
+        <?php echo $this->form()->openTag($form) ?>
+
+        <!--User-->
+
+        <?php $element = $form->get('_username')->setAttribute('placeholder', 'usuario o email') ?>
+
+        <div style="" class="form-group <?php if ($this->formElementErrors($element)) echo "has-error" ?>">
+
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <span class="glyphicon glyphicon-user"></span>
+                </div>
+                <?php $element->setAttribute('class', "form-control"); ?>
+                <?php echo $this->formElement($element); ?>
+
+
+                <?php if ($this->formElementErrors($element)) :
+                    ?>
+                    <?php
+                    echo $this->formElementErrors()
+                            ->setMessageOpenFormat('<p class="help-block">')
+                            ->setMessageSeparatorString('</p><p class="help-block">')
+                            ->setMessageCloseString('</p>')
+                            ->render($element);
+                    ?>
+                <?php endif; ?>
+            </div>
+
+        </div>
+
+        <!--Password-->
+        <?php $element = $form->get('_password')->setAttribute('placeholder', 'password') ?>
+
+        <div style="" class="form-group <?php if ($this->formElementErrors($element)) echo "has-error" ?>">
+
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <span class="glyphicon glyphicon-lock"></span>
+                </div>
+                <?php $element->setAttribute('class', "form-control"); ?>
+                <?php echo $this->formElement($element); ?>
+
+
+                <?php if ($this->formElementErrors($element)) :
+                    ?>
+                    <?php
+                    echo $this->formElementErrors()
+                            ->setMessageOpenFormat('<p class="help-block">')
+                            ->setMessageSeparatorString('</p><p class="help-block">')
+                            ->setMessageCloseString('</p>')
+                            ->render($element);
+                    ?>
+                <?php endif; ?>
+            </div>
+
+        </div>
+
+        <!--RememberMe-->
+
+        <?php if ($this->getSecurityOptions()->getRememberMe()) : ?>
+            <div class="col-xs-12 col-md-12 checkbox-inline form-group">
+                <?php $element = $form->get('_remember'); ?>
+
+                <?php
+                echo $this->formElement($element);
+                ?>
+                <label> <?php echo $element->getOption('label'); ?> </label>
+
+            </div>
+        <?php endif; ?>
+
+        <!--Submit-->
+
+        <?php $element = $form->get('submit')->setLabel('Iniciar Sesión')->setAttribute('class', 'btn btn-default btn-block btn-clean'); ?>
+        <div style="" class="form-group <?php if ($this->formElementErrors($element)) echo "has-error" ?>">
+
+            <?php echo $this->formElement($element); ?>
+
+        </div>
+        <?php echo $this->form()->closeTag(); ?>
+
+        <!--Registration-->
+        <?php if ($this->getSecurityOptions()->getPublicRegister()) : ?>
+          <div class='pull-left'>
+                <?php echo $this->translate(''); ?> <a href="<?php echo $this->basePath('/user/register'); ?>">
+                    <?php echo $this->translate('Registrarse'); ?>
+                </a>
+            </div>
+        <?php endif; ?>
+
+        <!--Recovery-->
+
+        <div class='text-center pull-right'>
+            <a href="<?php echo $this->basePath('/user/recovery'); ?>"><?php echo $this->translate('Recuperar Password'); ?></a>    
+
+        </div>
+    </div>
+</div>

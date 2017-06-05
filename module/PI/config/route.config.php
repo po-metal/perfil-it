@@ -67,7 +67,18 @@ return [
                                     'route' => '/picture',
                                     'defaults' => [
                                         'controller' => \PI\Controller\CvPictureController::CLASS,
-                                        'action' => 'picture',
+                                        'action' => 'view',
+                                    ],
+                                ],
+                            ],
+                            'View' => [
+                                'type' => 'Segment',
+                                'mayTerminate' => true,
+                                'options' => [
+                                    'route' => '/view',
+                                    'defaults' => [
+                                        'controller' => \PI\Controller\CvPictureController::CLASS,
+                                        'action' => 'view',
                                     ],
                                 ],
                             ],
@@ -102,7 +113,53 @@ return [
                                     'route' => '/personal-information',
                                     'defaults' => [
                                         'controller' => \PI\Controller\CvPersonalInformationController::CLASS,
-                                        'action' => 'personalInformation',
+                                        'action' => 'view',
+                                    ],
+                                ],
+                            ],
+                            'View' => [
+                                'type' => 'Segment',
+                                'mayTerminate' => true,
+                                'options' => [
+                                    'route' => '/view',
+                                    'defaults' => [
+                                        'controller' => \PI\Controller\CvPersonalInformationController::CLASS,
+                                        'action' => 'view',
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                    'CvContact' => [
+                        'type' => 'Literal',
+                        'mayTerminate' => false,
+                        'options' => [
+                            'route' => '/cv-contact',
+                            'defaults' => [
+                                'controller' => \PI\Controller\CvContactController::CLASS,
+                                'action' => 'main',
+                            ],
+                        ],
+                        'child_routes' => [
+                            'Main' => [
+                                'type' => 'Segment',
+                                'mayTerminate' => true,
+                                'options' => [
+                                    'route' => '/main',
+                                    'defaults' => [
+                                        'controller' => \PI\Controller\CvContactController::CLASS,
+                                        'action' => 'main',
+                                    ],
+                                ],
+                            ],
+                            'View' => [
+                                'type' => 'Segment',
+                                'mayTerminate' => true,
+                                'options' => [
+                                    'route' => '/view',
+                                    'defaults' => [
+                                        'controller' => \PI\Controller\CvContactController::CLASS,
+                                        'action' => 'view',
                                     ],
                                 ],
                             ],

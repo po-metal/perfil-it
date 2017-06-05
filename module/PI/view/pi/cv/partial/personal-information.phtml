@@ -1,6 +1,7 @@
 <?php if ($this->personalInformation && ($this->personalInformation->getName() || $this->personalInformation->getLastname())): ?>
-    <h4><?php echo $this->personalInformation->getName(); ?> <?php echo $this->personalInformation->getLastname(); ?></h4>
-
+<span><strong><?php echo $this->personalInformation->getName(); ?> <?php echo $this->personalInformation->getLastname(); ?></strong></span>
+    <br>
+    <span><?php echo $this->personalInformation->getYears(); ?> años</span>
 <?php else: ?>
     <h4>Nombre Apellido</h4>
 <?php endif; ?>

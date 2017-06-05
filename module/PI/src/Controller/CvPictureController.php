@@ -13,7 +13,8 @@ use Zend\Mvc\Controller\AbstractActionController;
  * @license -
  * @link -
  */
-class CvPictureController extends AbstractActionController {
+class CvPictureController extends AbstractActionController
+{
 
     const ENTITY = '\\PI\\Entity\\CvPicture';
 
@@ -22,30 +23,36 @@ class CvPictureController extends AbstractActionController {
      */
     public $em = null;
 
-    public function getEm() {
+    public function getEm()
+    {
         return $this->em;
     }
 
-    public function setEm(\Doctrine\ORM\EntityManager $em) {
+    public function setEm(\Doctrine\ORM\EntityManager $em)
+    {
         $this->em = $em;
     }
 
-    public function getCvPictureRepository() {
+    public function getCvPictureRepository()
+    {
         return $this->getEm()->getRepository(self::ENTITY);
     }
 
-    public function __construct(\Doctrine\ORM\EntityManager $em) {
+    public function __construct(\Doctrine\ORM\EntityManager $em)
+    {
         $this->em = $em;
     }
 
-    public function formAction() {
+    public function formAction()
+    {
         $form = new \PI\Form\CvPicture();
         $view = new \Zend\View\Model\ViewModel(array("form" => $form));
         $view->setTerminal(true);
         return $view;
     }
 
-    protected function getPicture() {
+    protected function getPicture()
+    {
         //Get Object
         $CV = $this->pICv();
         $picture = $CV->getPicture();
@@ -59,56 +66,60 @@ class CvPictureController extends AbstractActionController {
         return $picture;
     }
 
-    public function mainAction() {
-
+    public function mainAction()
+    {
         $picture = $this->getPicture();
 
-        $form = new \PI\Form\CvPicture();
-        $form->setHydrator(new \DoctrineModule\Stdlib\Hydrator\DoctrineObject($this->getEm()));
-        $form->bind($picture);
+                $form = new \PI\Form\CvPicture();
+                $form->setHydrator(new \DoctrineModule\Stdlib\Hydrator\DoctrineObject($this->getEm()));
+                $form->bind($picture);
 
-        $form->setAttribute('action', $this->url()->fromRoute("PI/CvPicture/Main"));
+                $form->setAttribute('action', $this->url()->fromRoute("PI/CvPicture/Main"));
 
-        //ImgPath
-        $path = __dir__ . "/../../../../public/cv/img/";
-        $form->setInputFilter(new \PI\Form\InputFilter\CvPicture($path));
+                //ImgPath
+                $path = __dir__ . "/../../../../public/cv/img/";
+                $form->setInputFilter(new \PI\Form\InputFilter\CvPicture($path));
 
 
-        if ($this->getRequest()->isPost()) {
+                if ($this->getRequest()->isPost()) {
 
-            $data = array_merge_recursive(
-                    $this->getRequest()->getPost()->toArray(), $this->getRequest()->getFiles()->toArray()
-            );
+                    $data = array_merge_recursive(
+                            $this->getRequest()->getPost()->toArray(), $this->getRequest()->getFiles()->toArray()
+                    );
 
-            $form->setData($data);
+                    $form->setData($data);
 
-            if ($form->isValid()) {
-                $this->getCvPictureRepository()->save($picture);
+                    if ($form->isValid()) {
+                        $this->getCvPictureRepository()->save($picture);
 
-                return $this->forward()->dispatch(\PI\Controller\CvPictureController::class, ["action" => "picture", "picture" => $picture]);
-            } else {
+                        return $this->forward()->dispatch(\PI\Controller\CvPictureController::class, ["action" => "view", "picture" => $picture]);
+                    } else {
 
-                $dataError = $form->getMessages();
-                $error = array();
-                foreach ($dataError as $key => $row) {
-                    $error[] = $row;
+                        $dataError = $form->getMessages();
+                        $error = array();
+                        foreach ($dataError as $key => $row) {
+                            $error[] = $row;
+                        }
+                    }
                 }
-            }
-        }
-        $view = new \Zend\View\Model\ViewModel(array("form" => $form));
-        $view->setTerminal(true);
-        return $view;
+                $view = new \Zend\View\Model\ViewModel(array("form" => $form));
+                $view->setTerminal(true);
+                return $view;
     }
 
-    public function pictureAction() {
+    public function viewAction()
+    {
         $picture = $this->params("picture");
         $view = new \Zend\View\Model\ViewModel(array("picture" => $picture));
         $view->setTerminal(true);
         return $view;
     }
 
-    public function getEntityRepository() {
+    public function getEntityRepository()
+    {
         return $this->getEm()->getRepository(self::ENTITY);
     }
 
+
 }
+

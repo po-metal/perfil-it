@@ -19,7 +19,8 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Table(name="pi_cv")
  * @ORM\Entity(repositoryClass="PI\Repository\CvRepository")
  */
-class Cv {
+class Cv
+{
 
     /**
      * @Annotation\Type("Zend\Form\Element\Text")
@@ -53,44 +54,72 @@ class Cv {
      * @Annotation\Options({"label":"personalInformation","empty_option": "",
      * "target_class":"\PI\Entity\CvPersonalInformation", "description":""})
      * @ORM\OneToOne(targetEntity="\PI\Entity\CvPersonalInformation", mappedBy="cv")
-     * nullable=true)
      */
     public $personalInformation = null;
 
-    public function getId() {
+    /**
+     * @Annotation\Type("DoctrineModule\Form\Element\ObjectSelect")
+     * @Annotation\Options({"label":"contact","empty_option": "",
+     * "target_class":"\PI\Entity\CvContact", "description":""})
+     * @ORM\OneToOne(targetEntity="\PI\Entity\CvContact", mappedBy="cv")
+     */
+    public $contact = null;
+
+    public function getId()
+    {
         return $this->id;
     }
 
-    public function setId($id) {
+    public function setId($id)
+    {
         $this->id = $id;
     }
 
-    public function getUser() {
+    public function getUser()
+    {
         return $this->user;
     }
 
-    public function setUser($user) {
+    public function setUser($user)
+    {
         $this->user = $user;
     }
 
-    public function getPicture() {
+    public function getPicture()
+    {
         return $this->picture;
     }
 
-    public function setPicture($picture) {
+    public function setPicture($picture)
+    {
         $this->picture = $picture;
     }
 
-    public function getPersonalInformation() {
+    public function getPersonalInformation()
+    {
         return $this->personalInformation;
     }
 
-    public function setPersonalInformation($personalInformation) {
+    public function setPersonalInformation($personalInformation)
+    {
         $this->personalInformation = $personalInformation;
     }
 
-    public function __toString() {
-        return "";
+    public function getContact()
+    {
+        return $this->contact;
     }
 
+    public function setContact($contact)
+    {
+        $this->contact = $contact;
+    }
+
+    public function __toString()
+    {
+return;
+    }
+
+
 }
+

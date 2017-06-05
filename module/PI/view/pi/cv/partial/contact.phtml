@@ -1,0 +1,21 @@
+
+<?php if ($this->contact): ?>
+    <ul class="list-unstyled nomargin">
+        <?php if ($this->contact->getEmail()): ?>
+        <li><i class="fa fa-at"></i> <?php echo $this->contact->getEmail(); ?></li>
+        <?php endif; ?>
+            
+            
+        <?php if ($this->contact->getPhone()): ?>
+            <li><i class="fa fa-phone"></i>  <?php echo $this->contact->getPhone(); ?></li>
+        <?php endif; ?>
+            
+            
+        <?php if ($this->contact->getSkype()): ?>
+            <li><i class="fa fa-skype"></i> <?php echo $this->contact->getSkype(); ?></li>
+        <?php endif; ?>
+        
+    </ul>
+<?php else: ?>
+    <h4>Datos de Contacto</h4>
+<?php endif; ?>

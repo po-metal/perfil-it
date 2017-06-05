@@ -4,30 +4,34 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "325f26c02709b9865785e4df8a74dd1d",
+    "hash": "5707b086969d0370278746818e0b8dbb",
     "content-hash": "1d928df112072e99b57ba5021129dfd5",
     "packages": [
         {
             "name": "behat/transliterator",
-            "version": "v1.1.0",
+            "version": "v1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Behat/Transliterator.git",
-                "reference": "868e05be3a9f25ba6424c2dd4849567f50715003"
+                "reference": "826ce7e9c2a6664c0d1f381cbb38b1fb80a7ee2c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Behat/Transliterator/zipball/868e05be3a9f25ba6424c2dd4849567f50715003",
-                "reference": "868e05be3a9f25ba6424c2dd4849567f50715003",
+                "url": "https://api.github.com/repos/Behat/Transliterator/zipball/826ce7e9c2a6664c0d1f381cbb38b1fb80a7ee2c",
+                "reference": "826ce7e9c2a6664c0d1f381cbb38b1fb80a7ee2c",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
             },
+            "require-dev": {
+                "chuyskywalker/rolling-curl": "^3.1",
+                "php-yaoi/php-yaoi": "^1.0"
+            },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.1-dev"
+                    "dev-master": "1.2-dev"
                 }
             },
             "autoload": {
@@ -45,7 +49,7 @@
                 "slug",
                 "transliterator"
             ],
-            "time": "2015-09-28 16:26:35"
+            "time": "2017-04-04 11:38:05"
         },
         {
             "name": "cdi/cdidatagrid",
@@ -986,20 +990,20 @@
         },
         {
             "name": "gedmo/doctrine-extensions",
-            "version": "v2.4.28",
+            "version": "v2.4.29",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Atlantic18/DoctrineExtensions.git",
-                "reference": "58038d5d217b6ba2c75de90cb2f6d424d86fab56"
+                "reference": "f65c02eae3bff1aa57709ea4c8ca26947df95b9c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Atlantic18/DoctrineExtensions/zipball/58038d5d217b6ba2c75de90cb2f6d424d86fab56",
-                "reference": "58038d5d217b6ba2c75de90cb2f6d424d86fab56",
+                "url": "https://api.github.com/repos/Atlantic18/DoctrineExtensions/zipball/f65c02eae3bff1aa57709ea4c8ca26947df95b9c",
+                "reference": "f65c02eae3bff1aa57709ea4c8ca26947df95b9c",
                 "shasum": ""
             },
             "require": {
-                "behat/transliterator": "1.1",
+                "behat/transliterator": "~1.2",
                 "doctrine/common": "~2.4",
                 "php": ">=5.3.2"
             },
@@ -1060,7 +1064,7 @@
                 "tree",
                 "uploadable"
             ],
-            "time": "2017-04-23 08:59:41"
+            "time": "2017-05-29 17:33:48"
         },
         {
             "name": "mk-j/php_xlsxwriter",
@@ -1290,16 +1294,16 @@
         },
         {
             "name": "symfony/console",
-            "version": "v3.2.8",
+            "version": "v3.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "a7a17e0c6c3c4d70a211f80782e4b90ddadeaa38"
+                "reference": "c80e63f3f5e3a331bfc25e6e9332b10422eb9b05"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/a7a17e0c6c3c4d70a211f80782e4b90ddadeaa38",
-                "reference": "a7a17e0c6c3c4d70a211f80782e4b90ddadeaa38",
+                "url": "https://api.github.com/repos/symfony/console/zipball/c80e63f3f5e3a331bfc25e6e9332b10422eb9b05",
+                "reference": "c80e63f3f5e3a331bfc25e6e9332b10422eb9b05",
                 "shasum": ""
             },
             "require": {
@@ -1307,10 +1311,15 @@
                 "symfony/debug": "~2.8|~3.0",
                 "symfony/polyfill-mbstring": "~1.0"
             },
+            "conflict": {
+                "symfony/dependency-injection": "<3.3"
+            },
             "require-dev": {
                 "psr/log": "~1.0",
+                "symfony/dependency-injection": "~3.3",
                 "symfony/event-dispatcher": "~2.8|~3.0",
                 "symfony/filesystem": "~2.8|~3.0",
+                "symfony/http-kernel": "~2.8|~3.0",
                 "symfony/process": "~2.8|~3.0"
             },
             "suggest": {
@@ -1322,7 +1331,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.2-dev"
+                    "dev-master": "3.3-dev"
                 }
             },
             "autoload": {
@@ -1349,20 +1358,20 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2017-04-26 01:39:17"
+            "time": "2017-05-28 14:08:56"
         },
         {
             "name": "symfony/debug",
-            "version": "v3.2.8",
+            "version": "v3.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/debug.git",
-                "reference": "fd6eeee656a5a7b384d56f1072243fe1c0e81686"
+                "reference": "ef5f19a7a68075a0bd05969a329ead3b0776fb7a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/debug/zipball/fd6eeee656a5a7b384d56f1072243fe1c0e81686",
-                "reference": "fd6eeee656a5a7b384d56f1072243fe1c0e81686",
+                "url": "https://api.github.com/repos/symfony/debug/zipball/ef5f19a7a68075a0bd05969a329ead3b0776fb7a",
+                "reference": "ef5f19a7a68075a0bd05969a329ead3b0776fb7a",
                 "shasum": ""
             },
             "require": {
@@ -1373,13 +1382,12 @@
                 "symfony/http-kernel": ">=2.3,<2.3.24|~2.4.0|>=2.5,<2.5.9|>=2.6,<2.6.2"
             },
             "require-dev": {
-                "symfony/class-loader": "~2.8|~3.0",
                 "symfony/http-kernel": "~2.8|~3.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.2-dev"
+                    "dev-master": "3.3-dev"
                 }
             },
             "autoload": {
@@ -1406,7 +1414,7 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
-            "time": "2017-04-19 20:17:50"
+            "time": "2017-05-27 16:02:27"
         },
         {
             "name": "symfony/polyfill-mbstring",
@@ -3613,12 +3621,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/zf-metal/generator.git",
-                "reference": "e28e9335e56cb00daf37961fe538f27a0bbe0959"
+                "reference": "e10ad6c6d8dd46f25681d09f1364504c9bf54234"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zf-metal/generator/zipball/e28e9335e56cb00daf37961fe538f27a0bbe0959",
-                "reference": "e28e9335e56cb00daf37961fe538f27a0bbe0959",
+                "url": "https://api.github.com/repos/zf-metal/generator/zipball/e10ad6c6d8dd46f25681d09f1364504c9bf54234",
+                "reference": "e10ad6c6d8dd46f25681d09f1364504c9bf54234",
                 "shasum": ""
             },
             "require": {
@@ -3665,7 +3673,7 @@
                 "routes",
                 "zf3"
             ],
-            "time": "2017-05-22 15:18:36"
+            "time": "2017-05-29 14:07:58"
         },
         {
             "name": "zf-metal/log",
@@ -3773,12 +3781,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/zf-metal/Security.git",
-                "reference": "6365cb7fe2170ef0a0a484be3c564bf02d04eacc"
+                "reference": "c7e1f1212858121dd2385ac9f6a36766671f4dc7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zf-metal/Security/zipball/6365cb7fe2170ef0a0a484be3c564bf02d04eacc",
-                "reference": "6365cb7fe2170ef0a0a484be3c564bf02d04eacc",
+                "url": "https://api.github.com/repos/zf-metal/Security/zipball/c7e1f1212858121dd2385ac9f6a36766671f4dc7",
+                "reference": "c7e1f1212858121dd2385ac9f6a36766671f4dc7",
                 "shasum": ""
             },
             "require": {
@@ -3823,7 +3831,7 @@
             "keywords": [
                 "zf3"
             ],
-            "time": "2017-05-28 04:26:18"
+            "time": "2017-06-02 02:43:50"
         },
         {
             "name": "zf-metal/security-social",

@@ -43,7 +43,7 @@ class CvContact
 
     /**
      * @Annotation\Type("\Zend\Form\Element\Email")
-     * @Annotation\Options({"label":"Email", "description":"", "addon":""})
+     * @Annotation\Options({"label":"Email", "description":"", "addon":"fa fa-at"})
      * @ORM\Column(type="string", length=100, unique=false, nullable=true,
      * name="email")
      */
@@ -52,10 +52,19 @@ class CvContact
     /**
      * @Annotation\Type("Zend\Form\Element\Text")
      * @Annotation\Attributes({"type":"text"})
-     * @Annotation\Options({"label":"Teléfono", "description":"", "addon":""})
+     * @Annotation\Options({"label":"Teléfono", "description":"", "addon":"fa
+     * fa-phone"})
      * @ORM\Column(type="string", length=20, unique=false, nullable=true, name="phone")
      */
     public $phone = null;
+
+    /**
+     * @Annotation\Type("Zend\Form\Element\Text")
+     * @Annotation\Attributes({"type":"text"})
+     * @Annotation\Options({"label":"skype", "description":"", "addon":"fa fa-skype"})
+     * @ORM\Column(type="string", length=30, unique=false, nullable=true, name="skype")
+     */
+    public $skype = null;
 
     public function getId()
     {
@@ -95,6 +104,16 @@ class CvContact
     public function setPhone($phone)
     {
         $this->phone = $phone;
+    }
+
+    public function getSkype()
+    {
+        return $this->skype;
+    }
+
+    public function setSkype($skype)
+    {
+        $this->skype = $skype;
     }
 
     public function __toString()
