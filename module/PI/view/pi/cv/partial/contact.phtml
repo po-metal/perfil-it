@@ -1,21 +1,48 @@
 
 <?php if ($this->contact): ?>
-    <ul class="list-unstyled nomargin">
+    <ul class="list-group list-group-unbordered" style="margin-bottom: 0;">
         <?php if ($this->contact->getEmail()): ?>
-        <li><i class="fa fa-at"></i> <?php echo $this->contact->getEmail(); ?></li>
+            <li class="list-group-item">
+                <i class="fa fa-at"></i><b> Email</b><a class="pull-right">
+                    <?php echo $this->contact->getEmail(); ?></a>
+            </li>
         <?php endif; ?>
-            
-            
+
+
         <?php if ($this->contact->getPhone()): ?>
-            <li><i class="fa fa-phone"></i>  <?php echo $this->contact->getPhone(); ?></li>
+            <li class="list-group-item">
+                <i class="fa fa-phone"></i><b> Tel</b>  <a class="pull-right">
+                    <?php echo $this->contact->getPhone(); ?></a>
+            </li>
         <?php endif; ?>
-            
-            
+
+
         <?php if ($this->contact->getSkype()): ?>
-            <li><i class="fa fa-skype"></i> <?php echo $this->contact->getSkype(); ?></li>
+            <li class="list-group-item">
+                <i class="fa fa-skype"></i> <b> Skype</b><a class="pull-right">
+                    <?php echo $this->contact->getSkype(); ?></a>
+            </li>
         <?php endif; ?>
-        
+
     </ul>
 <?php else: ?>
-    <h4>Datos de Contacto</h4>
+    <ul class="list-group list-group-unbordered" style="margin-bottom: 0;">
+
+        <li class="list-group-item">
+            <i class="fa fa-at"></i><b> Email</b><a class="pull-right">
+            </a>
+        </li>
+
+        <li class="list-group-item">
+            <i class="fa fa-phone"></i><b> Tel</b>  <a class="pull-right">
+            </a>
+        </li>
+
+        <li class="list-group-item">
+            <i class="fa fa-skype"></i> <b> Skype</b><a class="pull-right">
+            </a>
+        </li>
+
+
+    </ul>
 <?php endif; ?>

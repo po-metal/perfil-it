@@ -1,10 +1,10 @@
 <?php if ($this->picture && $this->picture->getPicture()): ?>
     <div style="text-align: center" >
-        <img src="<?php echo $this->picture->getPicture_fp(); ?>" class="img-responsive img-circle img-thumbnail"/>
+        <img src="<?php echo $this->picture->getPicture_fp(); ?>" style="width:100px" class="img-responsive img-circle img-thumbnail"/>
     </div>
 <?php else: ?>
     <div style="text-align: center" >
-        <img src="/img/user.jpg" class="img-responsive img-circle img-thumbnail"/>
+        <img src="/img/user.jpg" style="width:100px" class="img-responsive img-circle img-thumbnail"/>
     </div>
 <?php endif; ?>
 

@@ -44,6 +44,7 @@ class CvPicture
     /**
      * @Annotation\Type("Zend\Form\Element\File")
      * @Annotation\Attributes({"type":"file"})
+     * @Annotation\Attributes({"class":"hidden"})
      * @Annotation\Options({"label":"Foto","absolutepath":"/var/www/perfil-it/public/cv/img/","webpath":"/cv/img/",
      * "description":""})
      * @Annotation\Filter({"name":"filerenameupload",

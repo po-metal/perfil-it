@@ -65,7 +65,19 @@ class Cv
      */
     public $contact = null;
 
-    public function getId()
+    /**
+     * @Annotation\Type("DoctrineModule\Form\Element\ObjectMultiCheckbox")
+     * @Annotation\Options({"label":"skills","target_class":"\PI\Entity\CvSkill",
+     * "description":""})
+     * @ORM\OneToMany(targetEntity="\PI\Entity\CvSkill", mappedBy="cv")
+     */
+    public $skills = null;
+    
+    function __construct() {
+        $this->skills = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+        public function getId()
     {
         return $this->id;
     }
@@ -113,6 +125,16 @@ class Cv
     public function setContact($contact)
     {
         $this->contact = $contact;
+    }
+
+    public function getSkills()
+    {
+        return $this->skills;
+    }
+
+    public function setSkills($skills)
+    {
+        $this->skills = $skills;
     }
 
     public function __toString()

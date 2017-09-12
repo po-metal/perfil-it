@@ -1,9 +1,9 @@
-
 <?php
 $form = $this->form;
 $form->prepare();
 $elementsReady = array();
 ?>
+
 <?php echo $this->form()->openTag($form); ?>
 
 <!--GROUPS-->
@@ -15,7 +15,7 @@ $elementsReady = array();
             <div id="form-group-<?php echo $groupConfig->getId(); ?>">
 
                 <?php if ($groupConfig->getTitle()): ?>
-                    <legend style="font-weight: 300; border-bottom: none; margin-top: 20px;"><?php echo $this->translate($groupConfig->getTitle()); ?></legend>
+                    <legend><?php echo $this->translate($groupConfig->getTitle()); ?></legend>
                 <?php endif; ?>
 
                 <?php foreach ($groupConfig->getFields() as $item): ?>
@@ -39,7 +39,7 @@ $elementsReady = array();
                 <div id="form-group-<?php echo $groupConfig->getId(); ?>">
 
                     <?php if ($groupConfig->getTitle()): ?>
-                        <legend style="font-weight: 300; border-bottom: none; margin-top: 20px;"><?php echo $this->translate($groupConfig->getTitle()); ?></legend>
+                        <legend><?php echo $this->translate($groupConfig->getTitle()); ?></legend>
                     <?php endif; ?>
 
                     <?php foreach ($groupConfig->getFields() as $item): ?>
@@ -54,8 +54,7 @@ $elementsReady = array();
         <?php endif; ?>
 
     <?php endforeach; ?>
-<?php endif; ?>     
-
+<?php endif; ?>
 
 <!--OTHERS-->
 <?php foreach ($form as $element) : ?>
@@ -79,6 +78,8 @@ $elementsReady = array();
 
     <?php endforeach; ?>
 </div>
-
 <?php echo $this->form()->closeTag($form); ?>
 
+<br>
+<div class="clearfix"></div>
+<br>

@@ -81,9 +81,12 @@ class Skill
 
     public function __toString()
     {
-return;
+        return  $this->name;
     }
 
+    public function toArray(){
+        
+    }
 
 }
 

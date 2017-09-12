@@ -1,0 +1,15 @@
+<script type='text/javascript'>
+
+    $('#searchlist').btsListFilter('#searchinput', {resetOnBlur: false, initial: false,
+        sourceData: function (text, callback) {
+            return $.get('/pi/skill/search?q=' + text, callback);
+        },
+        sourceNode: function (data) {
+            var cont = <?php echo trim($this->partial("pi/cv-skill/list-item")); ?>;
+            return $(cont);
+        },
+        emptyNode: function (data) {
+            return $('<a class="list-group-item well" href="#"><span><?php echo $this->translate("No encontrado"); ?> <b>"' + data + '"</b> <btn class="btn btn-danger fa fa-plus" > <?php echo $this->translate("Crear"); ?></btn></a>');
+        }
+    });
+</script>

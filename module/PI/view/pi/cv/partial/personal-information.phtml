@@ -1,7 +1,14 @@
-<?php if ($this->personalInformation && ($this->personalInformation->getName() || $this->personalInformation->getLastname())): ?>
-<span><strong><?php echo $this->personalInformation->getName(); ?> <?php echo $this->personalInformation->getLastname(); ?></strong></span>
-    <br>
-    <span><?php echo $this->personalInformation->getYears(); ?> años</span>
-<?php else: ?>
-    <h4>Nombre Apellido</h4>
-<?php endif; ?>
+<h3 class="profile-username text-center">
+    <?php if ($this->personalInformation && ($this->personalInformation->getName() || $this->personalInformation->getLastname())): ?>
+
+        <?php echo $this->personalInformation->getName(); ?> <?php echo $this->personalInformation->getLastname(); ?>
+
+
+
+    <?php else: ?>
+        Nombre Apellido
+    <?php endif; ?>
+
+</h3>
+
+<div class="text-center"><?php echo $this->personalInformation->getYears(); ?> años</div>

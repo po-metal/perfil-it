@@ -41,6 +41,32 @@ class CvSkill
      */
     public $cv = null;
 
+    /**
+     * @Annotation\Type("DoctrineModule\Form\Element\ObjectSelect")
+     * @Annotation\Options({"label":"skill","empty_option": "",
+     * "target_class":"\PI\Entity\Skill", "description":""})
+     * @ORM\ManyToOne(targetEntity="\PI\Entity\Skill")
+     * @ORM\JoinColumn(name="skill_id", referencedColumnName="id", nullable=false)
+     */
+    public $skill = null;
+
+    /**
+     * @Annotation\Type("Zend\Form\Element\Text")
+     * @Annotation\Attributes({"type":"text"})
+     * @Annotation\Options({"label":"lvl", "description":"", "addon":""})
+     * @ORM\Column(type="integer", length=1, unique=false, nullable=true, name="lvl")
+     */
+    public $lvl = null;
+
+    /**
+     * @Annotation\Type("Zend\Form\Element\Text")
+     * @Annotation\Attributes({"type":"text"})
+     * @Annotation\Options({"label":"priority", "description":"", "addon":""})
+     * @ORM\Column(type="integer", length=4, unique=false, nullable=true,
+     * name="priority")
+     */
+    public $priority = null;
+
     public function getId()
     {
         return $this->id;
@@ -59,6 +85,36 @@ class CvSkill
     public function setCv($cv)
     {
         $this->cv = $cv;
+    }
+
+    public function getSkill()
+    {
+        return $this->skill;
+    }
+
+    public function setSkill($skill)
+    {
+        $this->skill = $skill;
+    }
+
+    public function getLvl()
+    {
+        return $this->lvl;
+    }
+
+    public function setLvl($lvl)
+    {
+        $this->lvl = $lvl;
+    }
+
+    public function getPriority()
+    {
+        return $this->priority;
+    }
+
+    public function setPriority($priority)
+    {
+        $this->priority = $priority;
     }
 
     public function __toString()

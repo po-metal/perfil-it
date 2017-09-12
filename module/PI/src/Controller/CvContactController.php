@@ -13,8 +13,7 @@ use Zend\Mvc\Controller\AbstractActionController;
  * @license -
  * @link -
  */
-class CvContactController extends AbstractActionController
-{
+class CvContactController extends AbstractActionController {
 
     const ENTITY = '\\PI\\Entity\\CvContact';
 
@@ -22,34 +21,30 @@ class CvContactController extends AbstractActionController
      * @var \Doctrine\ORM\EntityManager
      */
     public $em = null;
+    public $renderer = null;
 
-    public function getEm()
-    {
+    public function getEm() {
         return $this->em;
     }
 
-    public function setEm(\Doctrine\ORM\EntityManager $em)
-    {
+    public function setEm(\Doctrine\ORM\EntityManager $em) {
         $this->em = $em;
     }
 
-    public function getEntityRepository()
-    {
+    public function getEntityRepository() {
         return $this->getEm()->getRepository(self::ENTITY);
     }
 
-    public function __construct(\Doctrine\ORM\EntityManager $em)
-    {
+    public function __construct(\Doctrine\ORM\EntityManager $em, $renderer) {
         $this->em = $em;
+        $this->renderer = $renderer;
     }
 
-    protected function getContact()
-    {
+    protected function getContact() {
         //Get Object
         $CV = $this->pICv();
         $contact = $CV->getContact();
         if (!$contact) {
-
             $contact = new \PI\Entity\CvContact();
             $contact->setCv($CV);
             $CV->setContact($contact);
@@ -59,8 +54,7 @@ class CvContactController extends AbstractActionController
         return $contact;
     }
 
-    public function mainAction()
-    {
+    public function mainAction() {
         $contact = $this->getContact();
 
         //Generate Form
@@ -79,23 +73,42 @@ class CvContactController extends AbstractActionController
 
         //Process Form
         $service = $this->formProcess($this->getEm(), $form);
+        $vcontact = null;
         if ($service->getStatus()) {
-            return $this->forward()->dispatch(\PI\Controller\CvContactController::class, ["action" => "view", "contact" => $contact]);
+            $vcontact = $this->renderView($contact);
         }
 
-        $view = new \Zend\View\Model\ViewModel(array('form' => $form));
-        $view->setTerminal(true);
+        $vform = $this->renderForm($form);
+        $view = new \Zend\View\Model\JsonModel(array('status' => $service->getStatus(), 'form' => $vform, 'view' => $vcontact));
+        // $view->setTerminal(true);
         return $view;
     }
 
-    public function viewAction()
-    {
-         $contact = $this->params("contact");
+    public function renderForm($form) {
+        $htmlViewPart = new \Zend\View\Model\ViewModel();
+        $htmlViewPart
+                ->setTerminal(true)
+                ->setTemplate('Pi/cv-contact/form')
+                ->setVariables(array('form' => $form));
+
+        return $this->renderer->render($htmlViewPart);
+    }
+
+    public function renderView($contact) {
+        $htmlViewPart = new \Zend\View\Model\ViewModel();
+        $htmlViewPart
+                ->setTerminal(true)
+                ->setTemplate('Pi/cv-contact/view')
+                ->setVariables(array('contact' => $contact));
+
+        return $this->renderer->render($htmlViewPart);
+    }
+
+    public function viewAction() {
+        $contact = $this->params("contact");
         $view = new \Zend\View\Model\ViewModel(array("contact" => $contact));
         $view->setTerminal(true);
         return $view;
     }
 
-
 }
-

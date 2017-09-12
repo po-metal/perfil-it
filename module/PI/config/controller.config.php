@@ -7,6 +7,9 @@ return array(
             \PI\Controller\CvPictureController::class => \PI\Factory\Controller\CvPictureControllerFactory::class,
             \PI\Controller\CvPersonalInformationController::class => \PI\Factory\Controller\CvPersonalInformationControllerFactory::class,
             \PI\Controller\CvContactController::class => \PI\Factory\Controller\CvContactControllerFactory::class,
+            \PI\Controller\CvSkillController::class => \PI\Factory\Controller\CvSkillControllerFactory::class,
+            \PI\Controller\SkillCategoryController::class => \PI\Factory\Controller\SkillCategoryControllerFactory::class,
+            \PI\Controller\SkillController::class => \PI\Factory\Controller\SkillControllerFactory::class,
         ),
     ),
 );

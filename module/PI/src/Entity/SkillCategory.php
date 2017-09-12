@@ -40,6 +40,14 @@ class SkillCategory
      */
     public $name = null;
 
+    /**
+     * @Annotation\Type("DoctrineModule\Form\Element\ObjectMultiCheckbox")
+     * @Annotation\Options({"label":"skills","target_class":"\PI\Entity\Skill",
+     * "description":""})
+     * @ORM\OneToMany(targetEntity="\PI\Entity\Skill", mappedBy="category")
+     */
+    public $skills = null;
+
     public function getId()
     {
         return $this->id;
@@ -60,9 +68,19 @@ class SkillCategory
         $this->name = $name;
     }
 
+    public function getSkills()
+    {
+        return $this->skills;
+    }
+
+    public function setSkills($skills)
+    {
+        $this->skills = $skills;
+    }
+
     public function __toString()
     {
-return;
+        return  $this->name;
     }
 
 

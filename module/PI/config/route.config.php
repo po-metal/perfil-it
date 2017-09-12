@@ -66,7 +66,7 @@ return [
                                 'options' => [
                                     'route' => '/picture',
                                     'defaults' => [
-                                        'controller' => \PI\Controller\CvPictureController::CLASS,
+                                        'controller' => 'PI\\Controller\\CvPictureController',
                                         'action' => 'view',
                                     ],
                                 ],
@@ -112,7 +112,7 @@ return [
                                 'options' => [
                                     'route' => '/personal-information',
                                     'defaults' => [
-                                        'controller' => \PI\Controller\CvPersonalInformationController::CLASS,
+                                        'controller' => 'PI\\Controller\\CvPersonalInformationController',
                                         'action' => 'view',
                                     ],
                                 ],
@@ -160,6 +160,111 @@ return [
                                     'defaults' => [
                                         'controller' => \PI\Controller\CvContactController::CLASS,
                                         'action' => 'view',
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                    'CvSkill' => [
+                        'type' => 'Literal',
+                        'mayTerminate' => false,
+                        'options' => [
+                            'route' => '/cv-skill',
+                            'defaults' => [
+                                'controller' => \PI\Controller\CvSkillController::CLASS,
+                                'action' => 'main',
+                            ],
+                        ],
+                        'child_routes' => [
+                            'Main' => [
+                                'type' => 'Segment',
+                                'mayTerminate' => true,
+                                'options' => [
+                                    'route' => '/main',
+                                    'defaults' => [
+                                        'controller' => \PI\Controller\CvSkillController::CLASS,
+                                        'action' => 'main',
+                                    ],
+                                ],
+                            ],
+                            'View' => [
+                                'type' => 'Segment',
+                                'mayTerminate' => true,
+                                'options' => [
+                                    'route' => '/view',
+                                    'defaults' => [
+                                        'controller' => \PI\Controller\CvSkillController::CLASS,
+                                        'action' => 'view',
+                                    ],
+                                ],
+                            ],
+                            'Save' => [
+                                'type' => 'Segment',
+                                'mayTerminate' => true,
+                                'options' => [
+                                    'route' => '/save',
+                                    'defaults' => [
+                                        'controller' => \PI\Controller\CvSkillController::CLASS,
+                                        'action' => 'save',
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                    'SkillCategory' => [
+                        'type' => 'Literal',
+                        'mayTerminate' => false,
+                        'options' => [
+                            'route' => '/skill-category',
+                            'defaults' => [
+                                'controller' => \PI\Controller\SkillCategoryController::CLASS,
+                                'action' => 'grid',
+                            ],
+                        ],
+                        'child_routes' => [
+                            'Grid' => [
+                                'type' => 'Segment',
+                                'mayTerminate' => true,
+                                'options' => [
+                                    'route' => '/grid',
+                                    'defaults' => [
+                                        'controller' => \PI\Controller\SkillCategoryController::CLASS,
+                                        'action' => 'grid',
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                    'Skill' => [
+                        'type' => 'Literal',
+                        'mayTerminate' => false,
+                        'options' => [
+                            'route' => '/skill',
+                            'defaults' => [
+                                'controller' => \PI\Controller\SkillController::CLASS,
+                                'action' => 'grid',
+                            ],
+                        ],
+                        'child_routes' => [
+                            'Grid' => [
+                                'type' => 'Segment',
+                                'mayTerminate' => true,
+                                'options' => [
+                                    'route' => '/grid',
+                                    'defaults' => [
+                                        'controller' => \PI\Controller\SkillController::CLASS,
+                                        'action' => 'grid',
+                                    ],
+                                ],
+                            ],
+                            'Search' => [
+                                'type' => 'Segment',
+                                'mayTerminate' => true,
+                                'options' => [
+                                    'route' => '/search',
+                                    'defaults' => [
+                                        'controller' => \PI\Controller\SkillController::CLASS,
+                                        'action' => 'search',
                                     ],
                                 ],
                             ],

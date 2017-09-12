@@ -1,14 +1,9 @@
-    <div class="panel panel-cv" data-toggle="modal" data-target="#cv-contact-modal">
-        <div class="panel-heading">
-            <h4 class="panel-title">Datos de Contacto</h4>
-        </div>
-        <div class="panel-body padding5">
-            <div id="cv-contact">
-                <?php echo $this->partial("pi/cv/partial/contact", ["contact" => $this->cv->getContact()]); ?> 
-            </div>
-        </div>
 
-    </div>
+<div id="cv-contact" data-toggle="modal" data-target="#cv-contact-modal">
+    <?php echo $this->partial("pi/cv/partial/contact", ["contact" => $this->cv->getContact()]); ?> 
+</div>
+
+
 
 <!--Modal-->
 <div id="cv-contact-modal" class="modal fade " tabindex="-1" role="dialog" >
@@ -25,7 +20,10 @@
 
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <!--FORM-->
-                        <div id="form-cv-contact"></div>
+
+                        <div id="form-cv-contact">
+                            <i class="fa fa-spin fa-spinner"></i>
+                        </div>
                     </div>
 
                 </div>

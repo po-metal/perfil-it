@@ -1,34 +1,58 @@
-<?php echo $this->doctype(); ?>
-
-<html lang="UTF-8">
+<!DOCTYPE html>
+<html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Perfil IT</title>
 
-        <?php echo $this->headTitle($this->translate('PERFIL IT'))->setSeparator(' - ')->setAutoEscape(false) ?>
+        <?php echo $this->partial('layout/head/meta'); ?>
 
-        <?php
-        echo $this->headMeta()
-                ->appendName('viewport', 'width=device-width, initial-scale=1.0')
-                ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
-        ?>
+        <?php echo $this->partial('layout/head/css'); ?>
 
-        <!-- Le styles -->
-        <?php echo $this->partial('layout/css'); ?>
-        <?php echo $this->partial('layout/js'); ?>
+        <?php echo $this->partial('layout/head/js'); ?>
+
+        <style>
+            h2,h3 {padding-left:14px;}
+        </style>
 
     </head>
-    <body>
-        <?php echo $this->partial('layout/menu'); ?>
+    <body class="skin-blue layout-top-nav" id="body">
+        <div class="wrapper">
 
-        <div class="container main-content" >
+            <header class="main-header">
 
-            <?php echo $this->content; ?>
+                <nav class="navbar navbar-static-top">
+                    <!--TITLE-HOME-->
+                    <?php echo $this->partial('layout/nav/home'); ?>
 
-        </div> <!-- /container -->
+                    <!-- MENU-->
+                    <?php echo $this->partial('layout/nav/menu'); ?>
 
-        <?php //echo $this->partial('layout/footer'); ?>
+                    <!--RIGHT MENU-->       
+                    <?php echo $this->partial('layout/nav/menu-right'); ?>
+                </nav>
+            </header>
 
 
-        <?php echo $this->inlineScript() ?>
+
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+
+                    <?php
+                    echo $this->navigation('default')->breadcrumbs()->setMinDepth(1)
+                            ->setPartial('layout/partials/breadcrumbs');
+                    ?>
+
+                </section>
+
+                <!-- Main content -->
+                <section class="content">
+                    <?= $this->content ?>
+                </section>
+
+            </div>
+            <?php echo $this->partial('layout/partials/footer'); ?>
     </body>
 </html>

@@ -4,7 +4,7 @@
 
     <?php
     $form = $this->grid->getCrudForm();
-    $form->setAttribute("action", "javascript:".\ZfMetal\Datagrid\C::F_FORM. $this->grid->getId() . "('" . $form->getName() . "')");
+    $form->setAttribute("action", "javascript:" . \ZfMetal\Datagrid\C::F_FORM . $this->grid->getId() . "('" . $form->getName() . "')");
     $formConfig = $this->grid->getOptions()->getFormConfig();
 
     $form->get('submit')->setAttribute('value', 'Enviar')

@@ -1,0 +1,10 @@
+'<li id="'+data.id+'" class=" list-group-item" style="" >'+
+    '<label class="col-xs-6 text-right">'+data.name+'</label>'+
+    '<span class="rating">    '+
+        '<span class="s_'+data.id+'"></span>    '+
+        '<span class="s_3_'+data.id+' star"  onclick="cv.cv_skill.setSkill(3, '+data.id+')"></span>    '+
+        '<span class="s_2_'+data.id+' star"  onclick="cv.cv_skill.setSkill(2, '+data.id+')"></span>  '+  
+        '<span class="s_1_'+data.id+' star"  onclick="cv.cv_skill.setSkill(1, '+data.id+')"></span>  '+ 
+        '<span class="s_0_'+data.id+' trash fa fa-trash-o" onclick="cv.cv_skill.setSkill(0, '+data.id+')"></span>'+
+    '</span>'+
+'</li>'

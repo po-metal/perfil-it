@@ -1,0 +1,31 @@
+<?php
+
+$groups = [
+    [
+        'type' => \ZfMetal\Commons\Options\FormGroupConfig::TYPE_VERTICAL,
+        'id' => 'Email',
+        'title' => null,
+        'columns' => \ZfMetal\Commons\Consts::COLUMNS_ONE,
+        'style' => \ZfMetal\Commons\Consts::STYLE_VERTICAL,
+        'fields' => ['email', 'publicEmail']
+    ],
+    [
+        'type' => \ZfMetal\Commons\Options\FormGroupConfig::TYPE_VERTICAL,
+        'id' => 'Email',
+        'title' => null,
+        'columns' => \ZfMetal\Commons\Consts::COLUMNS_ONE,
+        'style' => \ZfMetal\Commons\Consts::STYLE_VERTICAL,
+        'fields' => ['phone', 'publicPhone']
+    ],
+    [
+        'type' => \ZfMetal\Commons\Options\FormGroupConfig::TYPE_VERTICAL,
+        'id' => 'Email',
+        'title' => null,
+        'columns' => \ZfMetal\Commons\Consts::COLUMNS_ONE,
+        'style' => \ZfMetal\Commons\Consts::STYLE_VERTICAL,
+        'fields' => ['skype', 'publicSkype']
+    ],
+];
+
+echo $this->renderForm($this->form, \ZfMetal\Commons\Consts::STYLE_VERTICAL, \ZfMetal\Commons\Consts::COLUMNS_TWO, $groups);
+?>

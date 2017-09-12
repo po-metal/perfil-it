@@ -1,14 +1,24 @@
 <?php
 
 $this->headScript()->appendFile($this->basePath() . '/shared/jquery-form/jquery.form.js', 'text/javascript')
+        ->appendFile($this->basePath() . '/shared/alert/alert.js')
         ->appendFile($this->basePath() . '/modules/pi/js/cv.js')
         ->appendFile($this->basePath() . '/modules/pi/js/cv-picture.js')
         ->appendFile($this->basePath() . '/modules/pi/js/cv-personal-information.js')
         ->appendFile($this->basePath() . '/modules/pi/js/cv-contact.js')
+        ->appendFile($this->basePath() . '/modules/pi/js/skill.js')
+        ->appendFile($this->basePath() . '/modules/pi/js/cv-skill.js')
         ->appendFile($this->basePath() . '/shared/list-filter/bootstrap-list-filter.min.js');
 
 $this->headScript()
         ->appendScript($this->partial('pi/cv/js/cv-init.js'), 'text/javascript');
+?>
+
+<?php
+
+echo $this->headLink()
+        ->appendStylesheet($this->basePath() . '/modules/pi/css/cv.css')
+        ->appendStylesheet($this->basePath() . '/shared/alert/alert.css');
 ?>
 
 <?php echo $this->partial('pi/cv/cv', array("cv" => $this->cv)); ?>

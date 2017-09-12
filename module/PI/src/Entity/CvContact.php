@@ -66,6 +66,27 @@ class CvContact
      */
     public $skype = null;
 
+    /**
+      * @Annotation\Exclude()
+     * @Annotation\Options({"label":"Email Publico", "description":""})
+     * @ORM\Column(type="boolean", nullable=true, name="publicemail")
+     */
+    public $publicEmail = null;
+
+    /**
+      * @Annotation\Exclude()
+     * @Annotation\Options({"label":"Teléfono Publico", "description":""})
+     * @ORM\Column(type="boolean", nullable=true, name="publicphone")
+     */
+    public $publicPhone = null;
+
+    /**
+     * @Annotation\Exclude()
+     * @Annotation\Options({"label":"Skype Publico", "description":""})
+     * @ORM\Column(type="boolean", nullable=true, name="publicskype")
+     */
+    public $publicSkype = null;
+
     public function getId()
     {
         return $this->id;
@@ -114,6 +135,36 @@ class CvContact
     public function setSkype($skype)
     {
         $this->skype = $skype;
+    }
+
+    public function getPublicEmail()
+    {
+        return $this->publicEmail;
+    }
+
+    public function setPublicEmail($publicEmail)
+    {
+        $this->publicEmail = $publicEmail;
+    }
+
+    public function getPublicPhone()
+    {
+        return $this->publicPhone;
+    }
+
+    public function setPublicPhone($publicPhone)
+    {
+        $this->publicPhone = $publicPhone;
+    }
+
+    public function getPublicSkype()
+    {
+        return $this->publicSkype;
+    }
+
+    public function setPublicSkype($publicSkype)
+    {
+        $this->publicSkype = $publicSkype;
     }
 
     public function __toString()
