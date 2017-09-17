@@ -36,5 +36,15 @@ class CvSkillRepository extends EntityRepository {
 
         return $query->getQuery()->getOneOrNullResult();
     }
+    
+    public function loadByCV(\PI\Entity\Cv $cv){
+         $query = $this->getEntityManager()->createQueryBuilder()
+                ->select('u')
+                ->from('PI\Entity\CvSkill', 'u')
+                ->where('u.cv = :cv')
+                ->setParameter('cv', $cv);
+
+        return $query->getQuery()->getArrayResult();
+    }
 
 }

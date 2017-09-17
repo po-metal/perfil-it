@@ -10,6 +10,10 @@ return array(
             \PI\Controller\CvSkillController::class => \PI\Factory\Controller\CvSkillControllerFactory::class,
             \PI\Controller\SkillCategoryController::class => \PI\Factory\Controller\SkillCategoryControllerFactory::class,
             \PI\Controller\SkillController::class => \PI\Factory\Controller\SkillControllerFactory::class,
+            \PI\Controller\EductaionController::class => \PI\Factory\Controller\EductaionControllerFactory::class,
+            \PI\Controller\EducationController::class => \PI\Factory\Controller\EducationControllerFactory::class,
+            \PI\Controller\EducationStateController::class => \PI\Factory\Controller\EducationStateControllerFactory::class,
+            \PI\Controller\CvEducationController::class => \PI\Factory\Controller\CvEducationControllerFactory::class,
         ),
     ),
 );

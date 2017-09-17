@@ -1,26 +1,28 @@
 
 <?php if ($this->contact): ?>
     <ul class="list-group list-group-unbordered" style="margin-bottom: 0;">
-        <?php if ($this->contact->getEmail()): ?>
             <li class="list-group-item">
                 <i class="fa fa-at"></i><b> Email</b><a class="pull-right">
-                    <?php echo $this->contact->getEmail(); ?></a>
+               <?php echo ($this->contact->getEmail())?$this->contact->getEmail():""; ?>  
+                </a>
             </li>
-        <?php endif; ?>
+        
 
 
-        <?php if ($this->contact->getPhone()): ?>
             <li class="list-group-item">
-                <i class="fa fa-phone"></i><b> Tel</b>  <a class="pull-right">
-                    <?php echo $this->contact->getPhone(); ?></a>
+                <i class="fa fa-phone"></i><b> Tel</b>  
+                <a class="pull-right">
+                     <?php echo ($this->contact->getPhone())?$this->contact->getPhone():""; ?>
+                    </a>
             </li>
-        <?php endif; ?>
-
+      
 
         <?php if ($this->contact->getSkype()): ?>
             <li class="list-group-item">
-                <i class="fa fa-skype"></i> <b> Skype</b><a class="pull-right">
-                    <?php echo $this->contact->getSkype(); ?></a>
+                <i class="fa fa-skype"></i> <b> Skype</b>
+                <a class="pull-right">
+                    <?php echo $this->contact->getSkype(); ?>
+                </a>
             </li>
         <?php endif; ?>
 
@@ -45,4 +47,5 @@
 
 
     </ul>
+
 <?php endif; ?>

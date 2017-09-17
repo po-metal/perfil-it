@@ -2,16 +2,21 @@
 
 $this->headScript()->appendFile($this->basePath() . '/shared/jquery-form/jquery.form.js', 'text/javascript')
         ->appendFile($this->basePath() . '/shared/alert/alert.js')
-        ->appendFile($this->basePath() . '/modules/pi/js/cv.js')
         ->appendFile($this->basePath() . '/modules/pi/js/cv-picture.js')
         ->appendFile($this->basePath() . '/modules/pi/js/cv-personal-information.js')
         ->appendFile($this->basePath() . '/modules/pi/js/cv-contact.js')
         ->appendFile($this->basePath() . '/modules/pi/js/skill.js')
         ->appendFile($this->basePath() . '/modules/pi/js/cv-skill.js')
-        ->appendFile($this->basePath() . '/shared/list-filter/bootstrap-list-filter.min.js');
+         ->appendFile($this->basePath() . '/modules/pi/js/cv-education.js')
+        ->appendFile($this->basePath() . '/shared/list-filter/bootstrap-list-filter.min.js')
+         ->appendFile($this->basePath() . '/shared/checkbox-spinnet/checkbox-spinnet.js')
+         ->appendFile($this->basePath() . '/modules/pi/js/cv.js');
 
 $this->headScript()
         ->appendScript($this->partial('pi/cv/js/cv-init.js'), 'text/javascript');
+
+
+
 ?>
 
 <?php

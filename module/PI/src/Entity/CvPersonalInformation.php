@@ -121,9 +121,12 @@ class CvPersonalInformation
 
     public function getYears()
     {
+        if($this->getBirthdate() and is_a($this->getBirthdate(), "DateTime")){
         $now = new \DateTime();
         $diff = $this->getBirthdate()->diff($now);
-        return $diff->y;
+        return $diff->y;    
+        }
+        return null;
     }
 
     public function __toString()

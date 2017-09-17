@@ -13,7 +13,7 @@
         categoryName: null,
         domAdmin: null,
         container: null,
-        container_class: 'col-lg-12 col-md-12 col-sm-12 col-xs-12  btn-default nopadding',
+        container_class: 'col-lg-6 col-md-6 col-sm-12 col-xs-12  btn-default skillPadding',
         //ADMIN
         populate: function (obj) {
             for (var prop in obj) {
@@ -36,27 +36,32 @@
             } else {
                 this.status = 'ok';
             }
+            console.log(this.status);
             this.lvl = lvl;
             this.applyStyleByLvl();
         },
         //VIEW
+         getDomElementId: function (){
+            return "skill_" + this.id;
+        },
         getContainer: function () {
             if (this.container === null) {
                 this.createContainer();
             }
             return this.container;
         },
+       
         createContainer: function () {
-            this.container = $('<div id="skill_' + this.id() + '" class="' + this.container_class + '" >' +
+            this.container = $('<div id="'+ this.getDomElementId() + '" class="' + this.container_class + '" >' +
                     this.getDomSkill() + '</div>');
         },
         getClassIcon: function () {
             if (1 === this.lvl) {
-                clase = "fa fa-battery-1 text-danger";
+                clase = "fa fa-battery-1 text-warning";
             } else if (2 === this.lvl) {
-                clase = "fa fa-battery-2 text-warning";
+                clase = "fa fa-battery-2 text-success";
             } else if (3 === this.lvl) {
-                clase = "fa fa-battery-4 text-success";
+                clase = "fa fa-battery-4 text-primary";
             }
             return clase;
         },
@@ -64,10 +69,10 @@
             return '<i class="' + this.getClassIcon() + '"></i>';
         },
         getDomSkill: function () {
-            return '<span class="col-lg-3 text-center ">' +
+            return '<span class="col-lg-2 col-md-3 col-sm-4 text-center skillPadding">' +
                     this.getDomIcon() +
                     '</span>' +
-                    '<span class="col-lg-9 text-left nopadding">' +
+                    '<span class="col-lg-10 col-md-9 col-sm-8 text-left skillPadding">' +
                     '<i class="fa"> ' +
                     this.name +
                     '</i>' +

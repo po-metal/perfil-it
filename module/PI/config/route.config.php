@@ -209,6 +209,17 @@ return [
                                     ],
                                 ],
                             ],
+                            'Load' => [
+                                'type' => 'Segment',
+                                'mayTerminate' => true,
+                                'options' => [
+                                    'route' => '/load',
+                                    'defaults' => [
+                                        'controller' => \PI\Controller\CvSkillController::CLASS,
+                                        'action' => 'load',
+                                    ],
+                                ],
+                            ],
                         ],
                     ],
                     'SkillCategory' => [
@@ -265,6 +276,102 @@ return [
                                     'defaults' => [
                                         'controller' => \PI\Controller\SkillController::CLASS,
                                         'action' => 'search',
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                    'Eductaion' => [
+                        'type' => 'Literal',
+                        'mayTerminate' => false,
+                        'options' => [
+                            'route' => '/eductaion',
+                            'defaults' => [
+                                'controller' => \PI\Controller\EducationController::CLASS,
+                                'action' => 'grid',
+                            ],
+                        ],
+                        'child_routes' => [
+                            'Grid' => [
+                                'type' => 'Segment',
+                                'mayTerminate' => true,
+                                'options' => [
+                                    'route' => '/grid',
+                                    'defaults' => [
+                                        'controller' => \PI\Controller\EducationController::CLASS,
+                                        'action' => 'grid',
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                    'Education' => [
+                        'type' => 'Literal',
+                        'mayTerminate' => false,
+                        'options' => [
+                            'route' => '/education',
+                            'defaults' => [
+                                'controller' => \PI\Controller\EducationController::CLASS,
+                                'action' => 'grid',
+                            ],
+                        ],
+                        'child_routes' => [
+                            'Grid' => [
+                                'type' => 'Segment',
+                                'mayTerminate' => true,
+                                'options' => [
+                                    'route' => '/grid',
+                                    'defaults' => [
+                                        'controller' => \PI\Controller\EducationController::CLASS,
+                                        'action' => 'grid',
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                    'EducationState' => [
+                        'type' => 'Literal',
+                        'mayTerminate' => false,
+                        'options' => [
+                            'route' => '/education-state',
+                            'defaults' => [
+                                'controller' => \PI\Controller\EducationStateController::CLASS,
+                                'action' => 'grid',
+                            ],
+                        ],
+                        'child_routes' => [
+                            'Grid' => [
+                                'type' => 'Segment',
+                                'mayTerminate' => true,
+                                'options' => [
+                                    'route' => '/grid',
+                                    'defaults' => [
+                                        'controller' => \PI\Controller\EducationStateController::CLASS,
+                                        'action' => 'grid',
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                    'CvEducation' => [
+                        'type' => 'Literal',
+                        'mayTerminate' => false,
+                        'options' => [
+                            'route' => '/cv-education',
+                            'defaults' => [
+                                'controller' => \PI\Controller\CvEducationController::CLASS,
+                                'action' => 'main',
+                            ],
+                        ],
+                        'child_routes' => [
+                            'Main' => [
+                                'type' => 'Segment',
+                                'mayTerminate' => true,
+                                'options' => [
+                                    'route' => '/main',
+                                    'defaults' => [
+                                        'controller' => \PI\Controller\CvEducationController::CLASS,
+                                        'action' => 'main',
                                     ],
                                 ],
                             ],

@@ -5,63 +5,57 @@
         <!-- Profile Image -->
         <div class="box box-primary">
             <div class="box-body box-profile">
-                <?php echo $this->partial('pi/cv/picture', array("cv" => $this->cv)); ?>
+                <div class="row">
+                    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                        <?php echo $this->partial('pi/cv/picture', array("cv" => $this->cv)); ?>
 
-                <?php echo $this->partial('pi/cv/personal-information', array("cv" => $this->cv)); ?>
+                    </div>
 
-                <?php echo $this->partial('pi/cv/roles', array("cv" => $this->cv)); ?>
+                    <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                        <?php echo $this->partial('pi/cv/personal-information', array("cv" => $this->cv)); ?>
+
+                    </div>
+                </div>
+                <br>
+                <div class="clearfix"></div>
+
+                <?php echo $this->partial('pi/cv/education', array("cv" => $this->cv)); ?>
+
+                <?php //echo $this->partial('pi/cv/roles', array("cv" => $this->cv)); ?>
                 <?php echo $this->partial('pi/cv/contact', array("cv" => $this->cv)); ?>
 
                 <?php echo $this->partial('pi/cv/location', array("cv" => $this->cv)); ?>
 
+
+
+
+
+
                 <?php echo $this->partial('pi/cv/extract', array("cv" => $this->cv)); ?>
-
-
             </div>
 
         </div>
 
     </div>
 
-    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+      <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+        <?php echo $this->partial('pi/cv/experience', array("cv" => $this->cv)); ?>
+    </div>
 
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 
-        <div class="box box-primary">
+        <?php echo $this->partial('pi/cv/skills', array("cv" => $this->cv)); ?>
 
-            <div class="box-body">
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                    <?php echo $this->partial('pi/cv/education', array("cv" => $this->cv)); ?>
-                    <br><br><br><br>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                    <?php echo $this->partial('pi/cv/language', array("cv" => $this->cv)); ?>     
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                    <?php echo $this->partial('pi/cv/soft-skill', array("cv" => $this->cv)); ?>    
-                </div>
+        <?php echo $this->partial('pi/cv/soft-skill', array("cv" => $this->cv)); ?>    
 
-            </div>
-        </div>
-
-
-        <div class="clearfix">  </div>
-        <div class="row"> 
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                <?php echo $this->partial('pi/cv/skills', array("cv" => $this->cv)); ?>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                <div class="box box-primary">
-                    <div class="box-header">
-                        <h4 class="panel-title">Experiencia</h4>
-                    </div>
-                    <div class="panel-body ">
-                    </div>
-                </div>
-            </div>
-        </div>
+        <?php echo $this->partial('pi/cv/language', array("cv" => $this->cv)); ?>    
 
     </div>
+
+  
+
 </div>
+
 
 
 

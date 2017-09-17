@@ -1,0 +1,19 @@
+
+<?php foreach ($this->pISkillCategories() as $skillCategory): ?>
+
+    <span class="button-checkbox" onclick="switchCategory('category_<?= $skillCategory->getId();?>')">
+        <button type="button" class="btn" data-color="primary"><?= $skillCategory; ?></button>
+        <input type="checkbox" class="hidden" checked/>
+    </span>
+
+<?php endforeach; ?>
+
+<script>
+    
+    function switchCategory(id){
+        $("#"+id).toggle('hidden');
+    }
+
+<?= $this->partial("pi/cv-skill/checkbox-spinnet.js") ?>
+    
+</script>

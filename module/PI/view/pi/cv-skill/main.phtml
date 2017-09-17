@@ -1,4 +1,20 @@
 <div class="clearfix" >
+    
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+        <div id="view-cv-skills">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">Categorias</h4>
+                </div>
+                <div class="panel-body">
+                    <?= $this->partial("pi/cv-skill/skill-categories") ?>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
 
     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 ">
         <div class="panel panel-default"> 
@@ -7,16 +23,14 @@
             </div> 
             <div class="panel-body"> 
                 <div class="form-group">
-
                     <div class="input-group">
-                        <div class="input-group-addon fa fa-search"></div>
-                        <input id="searchinput" class="form-control" autocomplete="off" type="search" placeholder="Search..." />
-
+                        <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                        <input  id="searchinput" class="form-control" autocomplete="off" type="search" placeholder="Buscar..." />
                     </div>
-                </div> 
-                <div class="skill-panel">
+                </div>
+                <div id="searchlist" class="skill-panel">
                     <?php foreach ($this->skillCategories as $skillCategory): ?>
-                        <div class="panel panel-default">
+                        <div class="panel panel-default" id="category_<?= $skillCategory->getId();?>">
                             <div class="panel-heading">
                                 <h4 class="panel-title"><?php echo $skillCategory->getName(); ?></h4>
                             </div>
@@ -44,23 +58,9 @@
         </div>
     </div>
 
-    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
-        <div id="view-cv-skills">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">Vista</h4>
-                </div>
-                <div class="panel-body">
-
-                    <i class="fa fa-spin fa-spinner"></i>
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
 </div>
 
 
-
+<script>
+	$('#searchlist').btsListFilter('#searchinput', {itemChild: 'label'});
+</script>

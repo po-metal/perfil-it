@@ -4,13 +4,28 @@
     };
     $.CV_SKILL.prototype = {
         news: null,
+        containerSkills: null,
         skills: new Array(),
         skillsToDelete: new Array(),
         skillsToSave: new Array(),
         init: function () {
-            var that = this;
+            //var that = this;
+            this.containerSkills = $("#cv-skills");
             $.get('/pi/cv-skill/main', function (data) {
                 $("#form-cv-skills").html(data);
+            }
+            );
+
+            this.loadSkill();
+        },
+        loadSkill: function (skill) {
+            var that = this;
+            $.post('/pi/cv-skill/load', function (data) {
+                data.forEach(function (item, index) {
+                    skill = that.getSkill(item.id, item.name);
+                    skill.setLvl(item.lvl);
+                    that.refreshViewSkill(skill, "new");
+                });
             }
             );
         },
@@ -21,7 +36,7 @@
                 if (data.success === true) {
                     //that.news.warning("Skill Guardado ", 1000);
                     //Si el save es exitoso, actualizo el CV con esta Skill
-                    //this.refreshViewSkill(skill, status);
+                    that.refreshViewSkill(skill, data.status);
                     return true;
                 } else {
                     skill.setLvl(0);
@@ -31,7 +46,7 @@
             }
             );
         },
-        getSkill: function (id) {
+        getSkill: function (id, name) {
             //Verifico si el skill ya esta cargado
             if ((id in this.skills)) {
                 return  this.skills[id];
@@ -39,14 +54,14 @@
             //Create Skill
             this.skills[id] = new $.SKILL();
             this.skills[id].id = id;
+            this.skills[id].name = name;
             this.skills[id].status = 'new';
             return this.skills[id];
 
         },
-        setSkill: function (id, lvl) {
-
+        setSkill: function (id, name, lvl) {
             //Create Skill
-            skill = this.getSkill(id);
+            skill = this.getSkill(id, name);
             skill.setLvl(lvl);
 
             if (skill.status === "change" || skill.status === "delete") {
@@ -55,13 +70,12 @@
         },
         refreshViewSkill: function (skill, status) {
             if (status === "change") {
-                $("#" + skill.domElementId()).html(this.getDomSkill(skill));
+                $("#" + skill.getDomElementId()).html(skill.getDomSkill());
             } else if (status === "new") {
-                var cSkill = $('<div id="' + skill.domElementId() + '" class="col-lg-12  btn-default nopadding" >' +
-                        this.getDomSkill(skill) + '</div>');
+                var cSkill = skill.getContainer();
                 this.containerSkills.append(cSkill);
             } else if (status === "delete") {
-                $("#" + skill.domElementId()).remove();
+                $("#" + skill.getDomElementId()).remove();
             }
         }
 

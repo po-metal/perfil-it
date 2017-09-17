@@ -41,6 +41,34 @@ class CvEducation
      */
     public $cv = null;
 
+    /**
+     * @Annotation\Type("DoctrineModule\Form\Element\ObjectSelect")
+     * @Annotation\Options({"label":"Educación","empty_option": "",
+     * "target_class":"\PI\Entity\Education", "description":""})
+     * @ORM\ManyToOne(targetEntity="\PI\Entity\Education")
+     * @ORM\JoinColumn(name="education_id", referencedColumnName="id", nullable=true)
+     */
+    public $education = null;
+
+    /**
+     * @Annotation\Type("DoctrineModule\Form\Element\ObjectSelect")
+     * @Annotation\Options({"label":"Estado","empty_option": "",
+     * "target_class":"\PI\Entity\EducationState", "description":""})
+     * @ORM\ManyToOne(targetEntity="\PI\Entity\EducationState")
+     * @ORM\JoinColumn(name="education_state_id", referencedColumnName="id",
+     * nullable=true)
+     */
+    public $educationState = null;
+
+    /**
+     * @Annotation\Type("Zend\Form\Element\Text")
+     * @Annotation\Attributes({"type":"text"})
+     * @Annotation\Options({"label":"Título (Opcional)", "description":"Ej: Ingeniero,
+     * Licenciado, Etc", "addon":""})
+     * @ORM\Column(type="string", length=50, unique=false, nullable=true, name="title")
+     */
+    public $title = null;
+
     public function getId()
     {
         return $this->id;
@@ -61,9 +89,39 @@ class CvEducation
         $this->cv = $cv;
     }
 
+    public function getEducation()
+    {
+        return $this->education;
+    }
+
+    public function setEducation($education)
+    {
+        $this->education = $education;
+    }
+
+    public function getEducationState()
+    {
+        return $this->educationState;
+    }
+
+    public function setEducationState($educationState)
+    {
+        $this->educationState = $educationState;
+    }
+
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    }
+
     public function __toString()
     {
-return;
+        return  $this->title;
     }
 
 

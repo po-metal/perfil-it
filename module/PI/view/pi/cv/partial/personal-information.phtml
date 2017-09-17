@@ -1,14 +1,11 @@
-<h3 class="profile-username text-center">
+<br>
+<h4 class="profile-username text-center">
     <?php if ($this->personalInformation && ($this->personalInformation->getName() || $this->personalInformation->getLastname())): ?>
-
         <?php echo $this->personalInformation->getName(); ?> <?php echo $this->personalInformation->getLastname(); ?>
-
-
-
     <?php else: ?>
         Nombre Apellido
     <?php endif; ?>
 
-</h3>
+</h4>
 
-<div class="text-center"><?php echo $this->personalInformation->getYears(); ?> años</div>
+<div class="text-center padding5"><?php echo $this->personalInformation->getYears(); ?> años</div>

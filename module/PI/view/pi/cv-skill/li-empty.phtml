@@ -2,9 +2,9 @@
     <label class="col-xs-6 text-right"><?php echo $skill->getName(); ?></label>
     <span class="rating">   
         <span id="s_<?php echo $skill->getId(); ?>"></span>   
-        <span id="s_3_<?php echo $skill->getId(); ?>" class="star"  onclick="cv.cv_skill.setSkill(<?php echo $skill->getId(); ?>,3)"></span>   
-        <span id="s_2_<?php echo $skill->getId(); ?>" class="star" onclick="cv.cv_skill.setSkill(<?php echo $skill->getId(); ?>,2)"></span>   
-        <span id="s_1_<?php echo $skill->getId(); ?>" class="star" onclick="cv.cv_skill.setSkill(<?php echo $skill->getId(); ?>,1)"></span>  
-        <span id="s_0_<?php echo $skill->getId(); ?>" class="trash fa fa-trash-o" onclick="cv.cv_skill.setSkill(<?php echo $skill->getId(); ?>,0)"></span>
+        <span id="s_3_<?php echo $skill->getId(); ?>" class="star"  onclick="cv.cv_skill.setSkill(<?php echo $skill->getId(); ?>,'<?php echo $skill->getName(); ?>',3)"></span>   
+        <span id="s_2_<?php echo $skill->getId(); ?>" class="star" onclick="cv.cv_skill.setSkill(<?php echo $skill->getId(); ?>,'<?php echo $skill->getName(); ?>',2)"></span>   
+        <span id="s_1_<?php echo $skill->getId(); ?>" class="star" onclick="cv.cv_skill.setSkill(<?php echo $skill->getId(); ?>,'<?php echo $skill->getName(); ?>',1)"></span>  
+        <span id="s_0_<?php echo $skill->getId(); ?>" class="trash fa fa-trash-o" onclick="cv.cv_skill.setSkill(<?php echo $skill->getId(); ?>,'<?php echo $skill->getName(); ?>',0)"></span>
     </span>
 </li>

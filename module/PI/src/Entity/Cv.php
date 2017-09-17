@@ -72,12 +72,30 @@ class Cv
      * @ORM\OneToMany(targetEntity="\PI\Entity\CvSkill", mappedBy="cv")
      */
     public $skills = null;
-    
-    function __construct() {
+
+    /**
+     * @Annotation\Type("DoctrineModule\Form\Element\ObjectSelect")
+     * @Annotation\Options({"label":"education","empty_option": "",
+     * "target_class":"\PI\Entity\CvEducation", "description":""})
+     * @ORM\OneToOne(targetEntity="\PI\Entity\CvEducation")
+     * @ORM\JoinColumn(name="education_id", referencedColumnName="id", nullable=true)
+     */
+    public $education = null;
+
+    /**
+     * @Annotation\Type("DoctrineModule\Form\Element\ObjectMultiCheckbox")
+     * @Annotation\Options({"label":"Experiencia","target_class":"\PI\Entity\CvExperience",
+     * "description":""})
+     * @ORM\OneToMany(targetEntity="\PI\Entity\CvExperience", mappedBy="cv")
+     */
+    public $espiriences = null;
+
+    public function __construct()
+    {
         $this->skills = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-        public function getId()
+    public function getId()
     {
         return $this->id;
     }
@@ -135,6 +153,26 @@ class Cv
     public function setSkills($skills)
     {
         $this->skills = $skills;
+    }
+
+    public function getEducation()
+    {
+        return $this->education;
+    }
+
+    public function setEducation($education)
+    {
+        $this->education = $education;
+    }
+
+    public function getEspiriences()
+    {
+        return $this->espiriences;
+    }
+
+    public function setEspiriences($espiriences)
+    {
+        $this->espiriences = $espiriences;
     }
 
     public function __toString()
