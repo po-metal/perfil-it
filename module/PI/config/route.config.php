@@ -377,6 +377,63 @@ return [
                             ],
                         ],
                     ],
+                    'CvExperience' => [
+                        'type' => 'Literal',
+                        'mayTerminate' => false,
+                        'options' => [
+                            'route' => '/cv-experience',
+                            'defaults' => [
+                                'controller' => \PI\Controller\CvExperienceController::CLASS,
+                                'action' => 'main',
+                            ],
+                        ],
+                        'child_routes' => [
+                            'Main' => [
+                                'type' => 'Segment',
+                                'mayTerminate' => true,
+                                'options' => [
+                                    'route' => '/main',
+                                    'defaults' => [
+                                        'controller' => \PI\Controller\CvExperienceController::CLASS,
+                                        'action' => 'main',
+                                    ],
+                                ],
+                            ],
+                            'View' => [
+                                'type' => 'Segment',
+                                'mayTerminate' => true,
+                                'options' => [
+                                    'route' => '/view',
+                                    'defaults' => [
+                                        'controller' => \PI\Controller\CvExperienceController::CLASS,
+                                        'action' => 'view',
+                                    ],
+                                ],
+                            ],
+                            'Save' => [
+                                'type' => 'Segment',
+                                'mayTerminate' => true,
+                                'options' => [
+                                    'route' => '/save',
+                                    'defaults' => [
+                                        'controller' => \PI\Controller\CvExperienceController::CLASS,
+                                        'action' => 'save',
+                                    ],
+                                ],
+                            ],
+                            'Load' => [
+                                'type' => 'Segment',
+                                'mayTerminate' => true,
+                                'options' => [
+                                    'route' => '/load',
+                                    'defaults' => [
+                                        'controller' => \PI\Controller\CvExperienceController::CLASS,
+                                        'action' => 'load',
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
                 ],
             ],
         ],
