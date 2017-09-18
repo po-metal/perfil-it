@@ -22,6 +22,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 class Cv
 {
 
+    
     /**
      * @Annotation\Type("Zend\Form\Element\Text")
      * @Annotation\Attributes({"type":"text"})
@@ -88,7 +89,7 @@ class Cv
      * "description":""})
      * @ORM\OneToMany(targetEntity="\PI\Entity\CvExperience", mappedBy="cv")
      */
-    public $espiriences = null;
+    public $experiences = null;
 
     public function __construct()
     {
@@ -165,14 +166,15 @@ class Cv
         $this->education = $education;
     }
 
-    public function getEspiriences()
+
+    public function getExperiences()
     {
-        return $this->espiriences;
+        return $this->experiences;
     }
 
-    public function setEspiriences($espiriences)
+    public function setExperiences($experiences)
     {
-        $this->espiriences = $espiriences;
+        $this->experiences = $experiences;
     }
 
     public function __toString()

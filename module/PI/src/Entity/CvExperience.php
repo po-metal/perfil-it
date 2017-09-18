@@ -22,6 +22,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 class CvExperience
 {
 
+
     /**
      * @Annotation\Type("Zend\Form\Element\Text")
      * @Annotation\Attributes({"type":"text"})
@@ -62,17 +63,17 @@ class CvExperience
      * @Annotation\Type("Zend\Form\Element\Date")
      * @Annotation\Attributes({"type":"date"})
      * @Annotation\Options({"label":"Desde", "description":"", "addon":""})
-     * @ORM\Column(type="date", unique=false, nullable=true, name="from")
+     * @ORM\Column(type="date", unique=false, nullable=true, name="date_from")
      */
-    public $from = null;
+    public $dateFrom = null;
 
     /**
      * @Annotation\Type("Zend\Form\Element\Date")
      * @Annotation\Attributes({"type":"date"})
      * @Annotation\Options({"label":"Hasta", "description":"", "addon":""})
-     * @ORM\Column(type="date", unique=false, nullable=true, name="to")
+     * @ORM\Column(type="date", unique=false, nullable=true, name="date_to")
      */
-    public $to = null;
+    public $dateTo = null;
 
     /**
      * @Annotation\Type("Zend\Form\Element\Textarea")
@@ -87,9 +88,10 @@ class CvExperience
      * @Annotation\Type("Zend\Form\Element\Checkbox")
      * @Annotation\Attributes({"type":"checkbox"})
      * @Annotation\Options({"label":"Actual", "description":""})
-     * @ORM\Column(type="boolean", nullable=true, name="current")
+     * @ORM\Column(type="boolean", nullable=true, name="currentjob")
+     * @Annotation\AllowEmpty(true)
      */
-    public $current = null;
+    public $currentJob = null;
 
     public function getId()
     {
@@ -131,25 +133,7 @@ class CvExperience
         $this->job = $job;
     }
 
-    public function getFrom()
-    {
-        return $this->from;
-    }
 
-    public function setFrom($from)
-    {
-        $this->from = $from;
-    }
-
-    public function getTo()
-    {
-        return $this->to;
-    }
-
-    public function setTo($to)
-    {
-        $this->to = $to;
-    }
 
     public function getDescription()
     {
@@ -161,14 +145,35 @@ class CvExperience
         $this->description = $description;
     }
 
-    public function getCurrent()
+
+    public function getDateFrom()
     {
-        return $this->current;
+        return $this->dateFrom;
     }
 
-    public function setCurrent($current)
+    public function setDateFrom($dateFrom)
     {
-        $this->current = $current;
+        $this->dateFrom = $dateFrom;
+    }
+
+    public function getDateTo()
+    {
+        return $this->dateTo;
+    }
+
+    public function setDateTo($dateTo)
+    {
+        $this->dateTo = $dateTo;
+    }
+
+    public function getCurrentJob()
+    {
+        return $this->currentJob;
+    }
+
+    public function setCurrentJob($currentJob)
+    {
+        $this->currentJob = $currentJob;
     }
 
     public function __toString()

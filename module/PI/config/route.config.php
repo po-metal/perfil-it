@@ -392,7 +392,7 @@ return [
                                 'type' => 'Segment',
                                 'mayTerminate' => true,
                                 'options' => [
-                                    'route' => '/main',
+                                    'route' => '/main[/:id]',
                                     'defaults' => [
                                         'controller' => \PI\Controller\CvExperienceController::CLASS,
                                         'action' => 'main',

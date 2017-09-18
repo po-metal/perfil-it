@@ -1,8 +1,51 @@
 <div class="box box-primary box-cv">
     <div class="box-header">
-        <strong><i class="fa fa-suitcase margin-r-5"></i> Experiencia </strong>
+        <strong><i class="fa fa-suitcase margin-r-5"></i> Experiencia </strong>     
+        <button class="btn btn-default fa fa-plus-square btn-xs pull-right" 
+                onclick="cv.cv_experience.add()" data-toggle="modal" data-target="#cv-experience-modal">
+        </button>
+
 
     </div>
-    <div class="panel-body ">
+    <div class="panel-body ">      
+        <div id="cv-experience">
+            <?php foreach ($this->cv->getExperiences() as $experience): ?>
+                <div id="exp_<?= $experience->getId() ?>">
+                    <?php echo $this->partial('pi/cv/partial/experience', array("experience" => $experience)); ?>
+                </div>
+            <?php endforeach; ?>
+        </div>
+
     </div>
 </div>
+
+
+
+<!--Modal-->
+<div id="cv-experience-modal" class="modal fade " tabindex="-1" role="dialog" >
+    <div class="modal-dialog modal-lg" role="document">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Experiencia</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="row">
+
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <!--FORM-->
+
+                        <div id="form-cv-experience">
+                            <i class="fa fa-spin fa-spinner"></i>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
