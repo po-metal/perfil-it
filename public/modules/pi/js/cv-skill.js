@@ -21,6 +21,7 @@
         loadSkill: function (skill) {
             var that = this;
             $.post('/pi/cv-skill/load', function (data) {
+                    that.containerSkills.html("");
                 data.forEach(function (item, index) {
                     skill = that.getSkill(item.id, item.name);
                     skill.setLvl(item.lvl);

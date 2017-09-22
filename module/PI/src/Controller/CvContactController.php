@@ -79,6 +79,7 @@ class CvContactController extends AbstractActionController {
         }
 
         $vform = $this->renderForm($form);
+        die("die");
         $view = new \Zend\View\Model\JsonModel(array('status' => $service->getStatus(), 'form' => $vform, 'view' => $vcontact));
         // $view->setTerminal(true);
         return $view;

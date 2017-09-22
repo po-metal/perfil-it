@@ -11,10 +11,10 @@
         cv_education: null,
         cv_experience: null,
         init: function () {
+            this.initSkill();
             this.initPictureForm();
             this.initPersonalInformationForm();
             this.initContact();
-            this.initSkill();
             this.initEducation();
             this.initExperience();
             console.log("init cv");

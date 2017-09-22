@@ -28,7 +28,7 @@ return [
                 'metadata_cache' => 'array',
                 'query_cache' => 'array',
                 'result_cache' => 'array',
-                'driver' => 'drv_zfmetal_generator', // This driver will be defined later
+                'driver' => 'drv_zfmetal_generator',
                 'generate_proxies' => true,
                 'proxy_dir' => 'data/DoctrineORMModule/Proxy',
                 'proxy_namespace' => 'DoctrineORMModule\Proxy',
