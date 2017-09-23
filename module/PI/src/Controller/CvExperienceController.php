@@ -103,7 +103,7 @@ class CvExperienceController extends AbstractActionController {
         $htmlViewPart = new \Zend\View\Model\ViewModel();
         $htmlViewPart
                 ->setTerminal(true)
-                ->setTemplate('Pi/cv-experience/form')
+                ->setTemplate('pi/cv-experience/form')
                 ->setVariables(array('form' => $form));
 
         return $this->renderer->render($htmlViewPart);
@@ -113,7 +113,7 @@ class CvExperienceController extends AbstractActionController {
         $htmlViewPart = new \Zend\View\Model\ViewModel();
         $htmlViewPart
                 ->setTerminal(true)
-                ->setTemplate('Pi/cv-experience/view')
+                ->setTemplate('pi/cv-experience/view')
                 ->setVariables(array('experience' => $experience));
 
         return $this->renderer->render($htmlViewPart);
