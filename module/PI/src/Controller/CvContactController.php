@@ -89,7 +89,7 @@ class CvContactController extends AbstractActionController {
         $htmlViewPart = new \Zend\View\Model\ViewModel();
         $htmlViewPart
                 ->setTerminal(true)
-                ->setTemplate('Pi/cv-contact/form')
+                ->setTemplate('pi/cv-contact/form')
                 ->setVariables(array('form' => $form));
 
         return $this->renderer->render($htmlViewPart);
@@ -99,7 +99,7 @@ class CvContactController extends AbstractActionController {
         $htmlViewPart = new \Zend\View\Model\ViewModel();
         $htmlViewPart
                 ->setTerminal(true)
-                ->setTemplate('Pi/cv-contact/view')
+                ->setTemplate('pi/cv-contact/view')
                 ->setVariables(array('contact' => $contact));
 
         return $this->renderer->render($htmlViewPart);

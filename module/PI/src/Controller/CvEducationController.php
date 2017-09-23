@@ -88,7 +88,7 @@ class CvEducationController extends AbstractActionController {
         $htmlViewPart = new \Zend\View\Model\ViewModel();
         $htmlViewPart
                 ->setTerminal(true)
-                ->setTemplate('Pi/cv-education/form')
+                ->setTemplate('pi/cv-education/form')
                 ->setVariables(array('form' => $form));
 
         return $this->renderer->render($htmlViewPart);
@@ -98,7 +98,7 @@ class CvEducationController extends AbstractActionController {
         $htmlViewPart = new \Zend\View\Model\ViewModel();
         $htmlViewPart
                 ->setTerminal(true)
-                ->setTemplate('Pi/cv-education/view')
+                ->setTemplate('pi/cv-education/view')
                 ->setVariables(array('education' => $education));
 
         return $this->renderer->render($htmlViewPart);
