@@ -106,3 +106,13 @@ div.box-cv > div.box-header, div.box-cv > div.box-body{
     -ms-transition: none !important;
     transition: none !important;
 }
+
+
+/* Fancy Checkbox */
+
+.btn span.glyphicon {    			
+	opacity: 0;				
+}
+.btn.active span.glyphicon {				
+	opacity: 1;				
+}

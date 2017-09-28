@@ -15,6 +15,7 @@ return array(
             \PI\Controller\EducationStateController::class => \PI\Factory\Controller\EducationStateControllerFactory::class,
             \PI\Controller\CvEducationController::class => \PI\Factory\Controller\CvEducationControllerFactory::class,
             \PI\Controller\CvExperienceController::class => \PI\Factory\Controller\CvExperienceControllerFactory::class,
+            \PI\Controller\JobController::class => \PI\Factory\Controller\JobControllerFactory::class,
         ),
     ),
 );

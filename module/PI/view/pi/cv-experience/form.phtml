@@ -2,12 +2,20 @@
 
 $groups = [
     [
-        'type' => \ZfMetal\Commons\Options\FormGroupConfig::TYPE_HORIZONTAL,
+        'type' => \ZfMetal\Commons\Options\FormGroupConfig::TYPE_VERTICAL,
         'id' => 'main',
         'title' => null,
         'columns' => \ZfMetal\Commons\Consts::COLUMNS_TWO,
         'style' => \ZfMetal\Commons\Consts::STYLE_VERTICAL,
         'fields' => ['company', 'job']
+    ],
+        [
+        'type' => \ZfMetal\Commons\Options\FormGroupConfig::TYPE_VERTICAL,
+        'id' => 'dates',
+        'title' => null,
+        'columns' => \ZfMetal\Commons\Consts::COLUMNS_TWO,
+        'style' => \ZfMetal\Commons\Consts::STYLE_VERTICAL,
+        'fields' => ['dateFrom', 'dateTo','currentJob']
     ],
     [
         'type' => \ZfMetal\Commons\Options\FormGroupConfig::TYPE_HORIZONTAL,
@@ -15,17 +23,31 @@ $groups = [
         'title' => null,
         'columns' => \ZfMetal\Commons\Consts::COLUMNS_ONE,
         'style' => \ZfMetal\Commons\Consts::STYLE_VERTICAL,
-        'fields' => ['description']
+        'fields' => ['summary']
     ],
-    [
+
+       [
         'type' => \ZfMetal\Commons\Options\FormGroupConfig::TYPE_HORIZONTAL,
-        'id' => 'dates',
+        'id' => 'desc',
         'title' => null,
-        'columns' => \ZfMetal\Commons\Consts::COLUMNS_THREE,
+        'columns' => \ZfMetal\Commons\Consts::COLUMNS_ONE,
         'style' => \ZfMetal\Commons\Consts::STYLE_VERTICAL,
-        'fields' => ['dateFrom', 'dateTo', 'currentJob']
+        'fields' => ['description']
     ],
 ];
 
 echo $this->renderForm($this->form, \ZfMetal\Commons\Consts::STYLE_VERTICAL, \ZfMetal\Commons\Consts::COLUMNS_ONE, $groups);
 ?>
+
+<script>
+    $( document ).ready(function() {
+    if($("[name='currentJob']").is(':checked')){
+        $("[name='dateTo']").parent().hide();
+    }
+});
+
+$("[name='currentJob']").change(function(){
+    $("[name='dateTo']").parent().toggle();
+});
+
+    </script>

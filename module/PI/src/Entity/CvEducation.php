@@ -64,7 +64,7 @@ class CvEducation
      * @Annotation\Type("Zend\Form\Element\Text")
      * @Annotation\Attributes({"type":"text"})
      * @Annotation\Options({"label":"Título (Opcional)", "description":"Ej: Ingeniero,
-     * Licenciado, Etc", "addon":""})
+     * Licenciado, DBA, Programador, Consultor, Especialista IT, Etc", "addon":""})
      * @ORM\Column(type="string", length=50, unique=false, nullable=true, name="title")
      */
     public $title = null;

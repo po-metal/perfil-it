@@ -22,7 +22,6 @@ use Gedmo\Mapping\Annotation as Gedmo;
 class CvExperience
 {
 
-
     /**
      * @Annotation\Type("Zend\Form\Element\Text")
      * @Annotation\Attributes({"type":"text"})
@@ -52,10 +51,11 @@ class CvExperience
     public $company = null;
 
     /**
-     * @Annotation\Type("Zend\Form\Element\Text")
-     * @Annotation\Attributes({"type":"text"})
-     * @Annotation\Options({"label":"Puesto", "description":"", "addon":""})
-     * @ORM\Column(type="string", length=100, unique=false, nullable=true, name="job")
+     * @Annotation\Type("DoctrineModule\Form\Element\ObjectSelect")
+     * @Annotation\Options({"label":"Puesto","empty_option": "",
+     * "target_class":"\PI\Entity\Job", "description":""})
+     * @ORM\ManyToOne(targetEntity="\PI\Entity\Job")
+     * @ORM\JoinColumn(name="job_id", referencedColumnName="id", nullable=true)
      */
     public $job = null;
 
@@ -76,22 +76,42 @@ class CvExperience
     public $dateTo = null;
 
     /**
-     * @Annotation\Type("Zend\Form\Element\Textarea")
-     * @Annotation\Attributes({"type":"textarea"})
-     * @Annotation\Options({"label":"Descripción", "description":""})
-     * @ORM\Column(type="string", length=300, unique=false, nullable=true,
-     * name="description")
+     * @Annotation\Type("Zend\Form\Element\Text")
+     * @Annotation\Attributes({"type":"text"})
+     * @Annotation\Options({"label":"Resumen Breve (160 Caracteres)", "description":"",
+     * "addon":""})
+     * @ORM\Column(type="string", length=160, unique=false, nullable=true,
+     * name="summary")
      */
-    public $description = null;
+    public $summary = null;
 
     /**
      * @Annotation\Type("Zend\Form\Element\Checkbox")
-     * @Annotation\Attributes({"type":"checkbox"})
+     * @Annotation\Attributes({"type":"checkbox", "autocomplete":"off"})
      * @Annotation\Options({"label":"Actual", "description":""})
+     * @Annotation\AllowEmpty({true})
      * @ORM\Column(type="boolean", nullable=true, name="currentjob")
-     * @Annotation\AllowEmpty(true)
      */
     public $currentJob = null;
+
+    /**
+     * @Annotation\Type("Zend\Form\Element\Hidden")
+     * @Annotation\Attributes({"type":"hidden"})
+     * @Annotation\Type("Zend\Form\Element\Hidden")
+     * @ORM\Column(type="string", length=100, unique=false, nullable=true,
+     * name="custom_job")
+     */
+    public $customJob = null;
+
+    /**
+     * @Annotation\Type("Zend\Form\Element\Textarea")
+     * @Annotation\Attributes({"type":"textarea"})
+     * @Annotation\Options({"label":"Descripción detallada (1000 Caraceteres)",
+     * "description":""})
+     * @ORM\Column(type="string", length=1000, unique=false, nullable=true,
+     * name="description")
+     */
+    public $description = null;
 
     public function getId()
     {
@@ -133,8 +153,6 @@ class CvExperience
         $this->job = $job;
     }
 
-
-
     public function getDescription()
     {
         return $this->description;
@@ -144,7 +162,6 @@ class CvExperience
     {
         $this->description = $description;
     }
-
 
     public function getDateFrom()
     {
@@ -174,6 +191,26 @@ class CvExperience
     public function setCurrentJob($currentJob)
     {
         $this->currentJob = $currentJob;
+    }
+
+    public function getSummary()
+    {
+        return $this->summary;
+    }
+
+    public function setSummary($summary)
+    {
+        $this->summary = $summary;
+    }
+
+    public function getCustomJob()
+    {
+        return $this->customJob;
+    }
+
+    public function setCustomJob($customJob)
+    {
+        $this->customJob = $customJob;
     }
 
     public function __toString()

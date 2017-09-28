@@ -48,6 +48,7 @@
                         $('#cv-experience-modal').modal('hide');
                     }
                     $("#form-cv-experience").html(xhr.responseJSON.form);
+                    that.ajaxForm();
 
                 }
             });

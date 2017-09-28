@@ -10,6 +10,7 @@ include "view-helper.config.php",
 include "view.config.php",
 include "zfm-datagrid.education-state.config.php",
 include "zfm-datagrid.education.config.php",
+include "zfm-datagrid.job.config.php",
 include "zfm-datagrid.skill-category.config.php",
 include "zfm-datagrid.skill.config.php"
 );

@@ -45,6 +45,13 @@ return [
                         'permission' => 'general-admin',
                         'route' => 'PI/EducationState/Grid',
                     ],
+                    [
+                        'label' => 'Jobs',
+                        'detail' => '',
+                        'icon' => '',
+                        'permission' => 'general-admin',
+                        'route' => 'PI/Job/Grid',
+                    ],
                 ],
             ],
         ],
