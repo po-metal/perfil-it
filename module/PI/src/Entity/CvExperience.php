@@ -19,8 +19,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Table(name="pi_cv_experience")
  * @ORM\Entity(repositoryClass="PI\Repository\CvExperienceRepository")
  */
-class CvExperience
-{
+class CvExperience {
 
     /**
      * @Annotation\Type("Zend\Form\Element\Text")
@@ -52,7 +51,7 @@ class CvExperience
 
     /**
      * @Annotation\Type("DoctrineModule\Form\Element\ObjectSelect")
-     * @Annotation\Options({"label":"Puesto","empty_option": "",
+     * @Annotation\Options({"label":"Cargo (Normalizado por Perfil IT)","empty_option": "",
      * "target_class":"\PI\Entity\Job", "description":""})
      * @ORM\ManyToOne(targetEntity="\PI\Entity\Job")
      * @ORM\JoinColumn(name="job_id", referencedColumnName="id", nullable=true)
@@ -88,16 +87,16 @@ class CvExperience
     /**
      * @Annotation\Type("Zend\Form\Element\Checkbox")
      * @Annotation\Attributes({"type":"checkbox", "autocomplete":"off"})
-     * @Annotation\Options({"label":"Actual", "description":""})
+     * @Annotation\Options({"label":"Actualmente trabajo aquí", "description":""})
      * @Annotation\AllowEmpty({true})
      * @ORM\Column(type="boolean", nullable=true, name="currentjob")
      */
     public $currentJob = null;
 
     /**
-     * @Annotation\Type("Zend\Form\Element\Hidden")
-     * @Annotation\Attributes({"type":"hidden"})
-     * @Annotation\Type("Zend\Form\Element\Hidden")
+     * @Annotation\Type("Zend\Form\Element\Text")
+     * @Annotation\Options({"label":"Cargo (Personalizado)","empty_option": "", "description":""})
+     * @Annotation\Attributes({"type":"text"})
      * @ORM\Column(type="string", length=100, unique=false, nullable=true,
      * name="custom_job")
      */
@@ -113,111 +112,110 @@ class CvExperience
      */
     public $description = null;
 
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
-    public function setId($id)
-    {
+    public function setId($id) {
         $this->id = $id;
     }
 
-    public function getCv()
-    {
+    public function getCv() {
         return $this->cv;
     }
 
-    public function setCv($cv)
-    {
+    public function setCv($cv) {
         $this->cv = $cv;
     }
 
-    public function getCompany()
-    {
+    public function getCompany() {
         return $this->company;
     }
 
-    public function setCompany($company)
-    {
+    public function setCompany($company) {
         $this->company = $company;
     }
 
-    public function getJob()
-    {
+    public function getJob() {
         return $this->job;
     }
 
-    public function setJob($job)
-    {
+    public function setJob($job) {
         $this->job = $job;
     }
 
-    public function getDescription()
-    {
+    public function getDescription() {
         return $this->description;
     }
 
-    public function setDescription($description)
-    {
+    public function setDescription($description) {
         $this->description = $description;
     }
 
-    public function getDateFrom()
-    {
+    public function getDateFrom() {
         return $this->dateFrom;
     }
 
-    public function setDateFrom($dateFrom)
-    {
+    public function setDateFrom($dateFrom) {
         $this->dateFrom = $dateFrom;
     }
 
-    public function getDateTo()
-    {
+    public function getDateTo() {
         return $this->dateTo;
     }
 
-    public function setDateTo($dateTo)
-    {
+    public function setDateTo($dateTo) {
         $this->dateTo = $dateTo;
     }
 
-    public function getCurrentJob()
-    {
+    public function getCurrentJob() {
         return $this->currentJob;
     }
 
-    public function setCurrentJob($currentJob)
-    {
+    public function setCurrentJob($currentJob) {
         $this->currentJob = $currentJob;
     }
 
-    public function getSummary()
-    {
+    public function getSummary() {
         return $this->summary;
     }
 
-    public function setSummary($summary)
-    {
+    public function setSummary($summary) {
         $this->summary = $summary;
     }
 
-    public function getCustomJob()
-    {
+    public function getCustomJob() {
         return $this->customJob;
     }
 
-    public function setCustomJob($customJob)
-    {
+    public function setCustomJob($customJob) {
         $this->customJob = $customJob;
     }
 
-    public function __toString()
-    {
-        return  $this->job;
+    public function __toString() {
+        return $this->job;
     }
 
+    public function getTime() {
+
+        if (is_a($this->getDateFrom(), "DateTime")) {
+
+            if ($this->getCurrentJob()) {
+                $dateTo = new \DateTime("now");
+            } else if ($this->getDateTo()) {
+                $dateTo = clone $this->getDateTo();
+            }
+
+            $diff = $dateTo->diff($this->getDateFrom());
+
+            if ($diff->y >= 1) {
+                return $diff->format('%yA %mM');
+            } else {
+                return $diff->format('%mM');
+            }
+        }
+
+        return "-";
+    }
 
 }
-

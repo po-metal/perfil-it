@@ -12,7 +12,9 @@ include "zfm-datagrid.education-state.config.php",
 include "zfm-datagrid.education.config.php",
 include "zfm-datagrid.job.config.php",
 include "zfm-datagrid.skill-category.config.php",
-include "zfm-datagrid.skill.config.php"
+include "zfm-datagrid.skill.config.php",
+include "zfm-datagrid.soft-skill-category.config.php",
+include "zfm-datagrid.soft-skill.config.php"
 );
 
 return $setting;

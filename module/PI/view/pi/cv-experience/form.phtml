@@ -2,12 +2,20 @@
 
 $groups = [
     [
-        'type' => \ZfMetal\Commons\Options\FormGroupConfig::TYPE_VERTICAL,
+        'type' => \ZfMetal\Commons\Options\FormGroupConfig::TYPE_HORIZONTAL,
+        'id' => 'main',
+        'title' => null,
+        'columns' => \ZfMetal\Commons\Consts::COLUMNS_ONE,
+        'style' => \ZfMetal\Commons\Consts::STYLE_VERTICAL,
+        'fields' => ['company']
+    ],
+     [
+        'type' => \ZfMetal\Commons\Options\FormGroupConfig::TYPE_HORIZONTAL,
         'id' => 'main',
         'title' => null,
         'columns' => \ZfMetal\Commons\Consts::COLUMNS_TWO,
         'style' => \ZfMetal\Commons\Consts::STYLE_VERTICAL,
-        'fields' => ['company', 'job']
+        'fields' => ['job', 'customJob']
     ],
         [
         'type' => \ZfMetal\Commons\Options\FormGroupConfig::TYPE_VERTICAL,
@@ -15,7 +23,15 @@ $groups = [
         'title' => null,
         'columns' => \ZfMetal\Commons\Consts::COLUMNS_TWO,
         'style' => \ZfMetal\Commons\Consts::STYLE_VERTICAL,
-        'fields' => ['dateFrom', 'dateTo','currentJob']
+        'fields' => ['dateFrom','currentJob']
+    ],
+           [
+        'type' => \ZfMetal\Commons\Options\FormGroupConfig::TYPE_VERTICAL,
+        'id' => 'dates',
+        'title' => null,
+        'columns' => \ZfMetal\Commons\Consts::COLUMNS_TWO,
+        'style' => \ZfMetal\Commons\Consts::STYLE_VERTICAL,
+        'fields' => ['dateTo']
     ],
     [
         'type' => \ZfMetal\Commons\Options\FormGroupConfig::TYPE_HORIZONTAL,

@@ -62,7 +62,7 @@ class SoftSkillCategory
 
     public function __toString()
     {
-return;
+        return  $this->name;
     }
 
 

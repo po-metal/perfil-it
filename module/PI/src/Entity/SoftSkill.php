@@ -50,6 +50,15 @@ class SoftSkill
      */
     public $category = null;
 
+    /**
+     * @Annotation\Type("Zend\Form\Element\Textarea")
+     * @Annotation\Attributes({"type":"textarea"})
+     * @Annotation\Options({"label":"Descripción", "description":""})
+     * @ORM\Column(type="string", length=300, unique=false, nullable=true,
+     * name="description")
+     */
+    public $description = null;
+
     public function getId()
     {
         return $this->id;
@@ -80,9 +89,19 @@ class SoftSkill
         $this->category = $category;
     }
 
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
     public function __toString()
     {
-return;
+        return  $this->name;
     }
 
 

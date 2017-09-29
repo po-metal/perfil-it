@@ -16,6 +16,8 @@ return array(
             \PI\Controller\CvEducationController::class => \PI\Factory\Controller\CvEducationControllerFactory::class,
             \PI\Controller\CvExperienceController::class => \PI\Factory\Controller\CvExperienceControllerFactory::class,
             \PI\Controller\JobController::class => \PI\Factory\Controller\JobControllerFactory::class,
+            \PI\Controller\SoftSkillController::class => \PI\Factory\Controller\SoftSkillControllerFactory::class,
+            \PI\Controller\SoftSkillCategoryController::class => \PI\Factory\Controller\SoftSkillCategoryControllerFactory::class,
         ),
     ),
 );

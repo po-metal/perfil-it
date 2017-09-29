@@ -1,10 +1,12 @@
-<div class="box box-default" onclick="cv.cv_experience.edit(<?= $this->experience->getId() ?>)" data-toggle="modal" data-target="#cv-experience-modal">
+<div class="box box-default box-cv" onclick="cv.cv_experience.edit(<?= $this->experience->getId() ?>)" data-toggle="modal" data-target="#cv-experience-modal">
     <div class="box-header">
-        <strong> <?= $this->experience->getJob() ?></strong> en  
+        <strong> <?= $this->experience->getJob()?$this->experience->getJob():$this->experience->getCustomJob() ?></strong> en  
         <a href="#" target="blank"><?= $this->experience->getCompany() ?></a>
+        
+        <span class="pull-right"><?= $this->experience->getTime()?></span>
     </div>
     <div class="box-body ">
-        <?= $this->experience->getDescription() ?>
+        <?= $this->experience->getSummary() ?>
     </div>
 
 </div>
