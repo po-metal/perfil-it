@@ -18,6 +18,7 @@ return array(
             \PI\Controller\JobController::class => \PI\Factory\Controller\JobControllerFactory::class,
             \PI\Controller\SoftSkillController::class => \PI\Factory\Controller\SoftSkillControllerFactory::class,
             \PI\Controller\SoftSkillCategoryController::class => \PI\Factory\Controller\SoftSkillCategoryControllerFactory::class,
+            \PI\Controller\CvVueController::class => \PI\Factory\Controller\CvVueControllerFactory::class,
         ),
     ),
 );

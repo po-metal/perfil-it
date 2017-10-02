@@ -1,13 +1,28 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
     <router-view></router-view>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
 export default {
-  name: 'app'
+  name: 'app',
+  mounted: function () {
+    var serverURL = 'http://perfilit.int/pi/cv-skill/load'
+    var config = {
+      url: serverURL,
+      method: 'get',
+      responseType: 'json',
+      data: {},
+      headers: {
+        accept: 'application/json'
+      }
+    }
+    axios.request(config).then(function (response) {
+      console.log(response.data)
+    })
+  }
 }
 </script>
 

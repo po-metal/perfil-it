@@ -68,6 +68,12 @@ return [
                     ],
                 ],
             ],
+            [
+                'label' => 'CV-VUE',
+                'detail' => '',
+                'icon' => '',
+                'route' => 'PI/CvVue/Main',
+            ],
         ],
     ],
 ];

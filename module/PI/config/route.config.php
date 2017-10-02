@@ -506,6 +506,41 @@ return [
                             ],
                         ],
                     ],
+                    'CvVue' => [
+                        'type' => 'Literal',
+                        'mayTerminate' => false,
+                        'options' => [
+                            'route' => '/cv-vue',
+                            'defaults' => [
+                                'controller' => \PI\Controller\CvVueController::CLASS,
+                                'action' => 'index',
+                            ],
+                        ],
+                        'child_routes' => [
+                            'Index' => [
+                                'type' => 'Segment',
+                                'mayTerminate' => true,
+                                'options' => [
+                                    'route' => '/index',
+                                    'defaults' => [
+                                        'controller' => \PI\Controller\CvVueController::CLASS,
+                                        'action' => 'index',
+                                    ],
+                                ],
+                            ],
+                            'Main' => [
+                                'type' => 'Segment',
+                                'mayTerminate' => true,
+                                'options' => [
+                                    'route' => '/main',
+                                    'defaults' => [
+                                        'controller' => \PI\Controller\CvVueController::CLASS,
+                                        'action' => 'main',
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
                 ],
             ],
         ],
