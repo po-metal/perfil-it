@@ -71,9 +71,11 @@ class CvSkillController extends AbstractActionController
         foreach($skills as $s){
             $r[] = ['id' => $s->getSkill()->getId(),'name' =>$s->getSkill()->getName(),'lvl' =>$s->getLvl()];
         }
-        $jsonModel = new \Zend\View\Model\JsonModel($r);
-        return $jsonModel;
-
+        $response = $this->getResponse();
+        $view = new \Zend\View\Model\JsonModel($r);
+        $response->getHeaders()->addHeaderLine('Content-Type', 'application/json');
+        $response->setContent($view->serialize());
+        return $response;
     }
 
     public function saveAction()
