@@ -67,14 +67,14 @@ class CvContact
     public $skype = null;
 
     /**
-      * @Annotation\Exclude()
+     * @Annotation\Exclude()
      * @Annotation\Options({"label":"Email Publico", "description":""})
      * @ORM\Column(type="boolean", nullable=true, name="publicemail")
      */
     public $publicEmail = null;
 
     /**
-      * @Annotation\Exclude()
+     * @Annotation\Exclude()
      * @Annotation\Options({"label":"Teléfono Publico", "description":""})
      * @ORM\Column(type="boolean", nullable=true, name="publicphone")
      */
@@ -169,9 +169,12 @@ class CvContact
 
     public function __toString()
     {
-return;
+        return $this->getEmail();
     }
 
+    public function toArray(){
+        return ["email" => $this->getEmail(),"phone" => $this->getPhone(),"skype" => $this->getSkype()];
+    }
 
 }
 

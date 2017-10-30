@@ -69,14 +69,14 @@
 </template>
 
 <script>
+  import axios from 'axios'
+  import qs from 'qs'
   import fe from './utils/form-error.vue'
   import modal from './utils/modal.vue'
-  import crud from './utils/crud'
 
   export default {
     name: 'cv-personal-information',
     props: [],
-    mixins: [crud],
     data: function () {
       return {
         loading: false,
@@ -99,7 +99,44 @@
       fe, modal
     },
     methods: {
-        populate: function (data) {
+      unsaved: function () {
+        this.isSaved = false
+      },
+      save: function () {
+        this.errors = ''
+        this.submitInProgress = true
+        axios.post(
+          '/pi/cv-personal-information/save', qs.stringify({
+            name: this.name,
+            lastname: this.lastname,
+            birthdate: this.birthdate
+          })
+        ).then((response) => {
+          if (response.data.status) {
+            this.isSaved = true
+            this.populate(response.data.data)
+          } else {
+            this.errors = response.data.errors
+          }
+          this.submitInProgress = false
+        }).catch((error) => {
+          this.errors = error.response.data.errors
+          this.submitInProgress = false
+        })
+      },
+      loadProps: function () {
+        axios.get(
+          '/pi/cv-personal-information/get',
+          {
+            headers: {
+              accept: 'application/json'
+            }
+          }).then((response) => {
+          this.populate(response.data)
+          this.loading = true
+        })
+      },
+      populate: function (data) {
         this.name = data.name
         this.lastname = data.lastname
         this.birthdate = data.birthdate

@@ -6,14 +6,15 @@ use Zend\Mvc\Controller\AbstractActionController;
 
 /**
  * CvEducationController
- *
- *
- *
+ * 
+ * 
+ * 
  * @author Cristian Incarnato
  * @license -
  * @link -
  */
-class CvEducationController extends AbstractActionController {
+class CvEducationController extends AbstractActionController
+{
 
     const ENTITY = '\\PI\\Entity\\CvEducation';
 
@@ -21,26 +22,32 @@ class CvEducationController extends AbstractActionController {
      * @var \Doctrine\ORM\EntityManager
      */
     public $em = null;
+
     public $renderer = null;
 
-    public function getEm() {
+    public function getEm()
+    {
         return $this->em;
     }
 
-    public function setEm(\Doctrine\ORM\EntityManager $em) {
+    public function setEm(\Doctrine\ORM\EntityManager $em)
+    {
         $this->em = $em;
     }
 
-    public function getEntityRepository() {
+    public function getEntityRepository()
+    {
         return $this->getEm()->getRepository(self::ENTITY);
     }
 
-    public function __construct(\Doctrine\ORM\EntityManager $em, $renderer) {
+    public function __construct(\Doctrine\ORM\EntityManager $em, $renderer)
+    {
         $this->em = $em;
         $this->renderer = $renderer;
     }
 
-    protected function getEducation() {
+    protected function getEducation()
+    {
         //Get Object
         $CV = $this->pICv();
         $education = $CV->getEducation();
@@ -54,7 +61,8 @@ class CvEducationController extends AbstractActionController {
         return $education;
     }
 
-    public function mainAction() {
+    public function mainAction()
+    {
         $education = $this->getEducation();
 
         //Generate Form
@@ -84,7 +92,8 @@ class CvEducationController extends AbstractActionController {
         return $view;
     }
 
-    public function renderForm($form) {
+    public function renderForm($form)
+    {
         $htmlViewPart = new \Zend\View\Model\ViewModel();
         $htmlViewPart
                 ->setTerminal(true)
@@ -94,7 +103,8 @@ class CvEducationController extends AbstractActionController {
         return $this->renderer->render($htmlViewPart);
     }
 
-    public function renderView($education) {
+    public function renderView($education)
+    {
         $htmlViewPart = new \Zend\View\Model\ViewModel();
         $htmlViewPart
                 ->setTerminal(true)
@@ -104,4 +114,34 @@ class CvEducationController extends AbstractActionController {
         return $this->renderer->render($htmlViewPart);
     }
 
+    public function getAction()
+    {
+        $a = $this->getEducation()->toArray();
+
+        return new \Zend\View\Model\JsonModel( $a );
+    }
+
+    public function saveAction()
+    {
+        $education = $this->getEducation();
+
+        //Generate Form
+        $form = $this->formBuilder($this->getEm(), 'PI\Entity\CvEducation');
+        //BIND:
+        $form->bind($education);
+        $form->getInputFilter()->remove('cv');
+
+        //Process Form
+        $service = $this->formProcess($this->getEm(), $form);
+        if ($service->getStatus()) {
+            $result = ["status" => $service->getStatus(),"data" => $education->toArray()];
+        }else{
+            $result = ["status" => $service->getStatus(),"errors" => $form->getMessages(),"data" => $education->toArray()];
+            $this->getResponse()->setStatusCode(\Zend\Http\Response::STATUS_CODE_422);
+        }
+        return new \Zend\View\Model\JsonModel( $result );
+    }
+
+
 }
+

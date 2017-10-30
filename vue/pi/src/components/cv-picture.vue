@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="loading">
         <div data-toggle="modal" data-target="#modal-cv-picture">
 
 
@@ -52,6 +52,7 @@
     },
     data: function () {
       return {
+        loading: false,
         src: false,
         isSaved: true,
         submitInProgress: false,
@@ -110,13 +111,14 @@
           })
           .then((response) => {
             this.populate(response.data)
+            this.loading = true
           })
       },
       populate: function (data) {
         this.src = data.src
       }
     },
-    mounted: function () {
+    created: function () {
       this.loadProps()
     }
   }

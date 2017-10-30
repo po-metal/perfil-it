@@ -11,7 +11,7 @@
     "lint": "eslint --ext .js,.vue src test/unit",
     "test": "karma start karma.conf.js",
     "build": "cross-env NODE_ENV=production browserify -g envify -p [ vueify/plugins/extract-css -o dist/build.css ] -e src/main.js | uglifyjs -c warnings=false -m > C:/Users/crist/Documents/NetBeansProjects/perfil-it/public/vue/build.js",
-    "dev": "cross-env NODE_ENV=debug browserify  -p [ vueify/plugins/extract-css -o dist/build.css ] -e src/main.js  > C:/Users/crist/Documents/NetBeansProjects/perfil-it/public/vue/build.js"
+    "dev": "cross-env NODE_ENV=debug browserify  -p [ vueify/plugins/extract-css -o dist/build.css ] -e src/main.js  > ../../public/vue/build.js"
   },
   "browserify": {
     "transform": [

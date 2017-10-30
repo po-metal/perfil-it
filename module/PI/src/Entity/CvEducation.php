@@ -124,6 +124,9 @@ class CvEducation
         return  $this->title;
     }
 
+    public function toArray(){
+        return ["education" => $this->getEducation(),"state" => $this->getEducationState(),"title" => $this->getTitle()];
+    }
 
 }
 

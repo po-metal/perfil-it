@@ -21,8 +21,7 @@ class CvEducationControllerFactory implements FactoryInterface
     {
         /* @var $em \Doctrine\ORM\EntityManager */
         $em = $container->get("doctrine.entitymanager.orm_default");
-          $renderer = $container->get('ViewRenderer');
-        return new \PI\Controller\CvEducationController($em,$renderer);
+        return new \PI\Controller\CvEducationController($em);
     }
 
 

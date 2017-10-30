@@ -207,6 +207,28 @@ return [
                                     ],
                                 ],
                             ],
+                            'Get' => [
+                                'type' => 'Segment',
+                                'mayTerminate' => true,
+                                'options' => [
+                                    'route' => '/get',
+                                    'defaults' => [
+                                        'controller' => \PI\Controller\CvContactController::CLASS,
+                                        'action' => 'get',
+                                    ],
+                                ],
+                            ],
+                            'Save' => [
+                                'type' => 'Segment',
+                                'mayTerminate' => true,
+                                'options' => [
+                                    'route' => '/save',
+                                    'defaults' => [
+                                        'controller' => \PI\Controller\CvContactController::CLASS,
+                                        'action' => 'save',
+                                    ],
+                                ],
+                            ],
                         ],
                     ],
                     'CvSkill' => [
@@ -416,6 +438,28 @@ return [
                                     'defaults' => [
                                         'controller' => \PI\Controller\CvEducationController::CLASS,
                                         'action' => 'main',
+                                    ],
+                                ],
+                            ],
+                            'Get' => [
+                                'type' => 'Segment',
+                                'mayTerminate' => true,
+                                'options' => [
+                                    'route' => '/get',
+                                    'defaults' => [
+                                        'controller' => \PI\Controller\CvEducationController::CLASS,
+                                        'action' => 'get',
+                                    ],
+                                ],
+                            ],
+                            'Save' => [
+                                'type' => 'Segment',
+                                'mayTerminate' => true,
+                                'options' => [
+                                    'route' => '/save',
+                                    'defaults' => [
+                                        'controller' => \PI\Controller\CvEducationController::CLASS,
+                                        'action' => 'save',
                                     ],
                                 ],
                             ],

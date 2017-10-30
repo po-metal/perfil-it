@@ -6,14 +6,15 @@ use Zend\Mvc\Controller\AbstractActionController;
 
 /**
  * CvContactController
- *
- *
- *
+ * 
+ * 
+ * 
  * @author Cristian Incarnato
  * @license -
  * @link -
  */
-class CvContactController extends AbstractActionController {
+class CvContactController extends AbstractActionController
+{
 
     const ENTITY = '\\PI\\Entity\\CvContact';
 
@@ -21,26 +22,32 @@ class CvContactController extends AbstractActionController {
      * @var \Doctrine\ORM\EntityManager
      */
     public $em = null;
+
     public $renderer = null;
 
-    public function getEm() {
+    public function getEm()
+    {
         return $this->em;
     }
 
-    public function setEm(\Doctrine\ORM\EntityManager $em) {
+    public function setEm(\Doctrine\ORM\EntityManager $em)
+    {
         $this->em = $em;
     }
 
-    public function getEntityRepository() {
+    public function getEntityRepository()
+    {
         return $this->getEm()->getRepository(self::ENTITY);
     }
 
-    public function __construct(\Doctrine\ORM\EntityManager $em, $renderer) {
+    public function __construct(\Doctrine\ORM\EntityManager $em, $renderer)
+    {
         $this->em = $em;
         $this->renderer = $renderer;
     }
 
-    protected function getContact() {
+    protected function getContact()
+    {
         //Get Object
         $CV = $this->pICv();
         $contact = $CV->getContact();
@@ -54,7 +61,8 @@ class CvContactController extends AbstractActionController {
         return $contact;
     }
 
-    public function mainAction() {
+    public function mainAction()
+    {
         $contact = $this->getContact();
 
         //Generate Form
@@ -84,7 +92,8 @@ class CvContactController extends AbstractActionController {
         return $view;
     }
 
-    public function renderForm($form) {
+    public function renderForm($form)
+    {
         $htmlViewPart = new \Zend\View\Model\ViewModel();
         $htmlViewPart
                 ->setTerminal(true)
@@ -94,7 +103,8 @@ class CvContactController extends AbstractActionController {
         return $this->renderer->render($htmlViewPart);
     }
 
-    public function renderView($contact) {
+    public function renderView($contact)
+    {
         $htmlViewPart = new \Zend\View\Model\ViewModel();
         $htmlViewPart
                 ->setTerminal(true)
@@ -104,11 +114,42 @@ class CvContactController extends AbstractActionController {
         return $this->renderer->render($htmlViewPart);
     }
 
-    public function viewAction() {
+    public function viewAction()
+    {
         $contact = $this->params("contact");
         $view = new \Zend\View\Model\ViewModel(array("contact" => $contact));
         $view->setTerminal(true);
         return $view;
     }
 
+    public function getAction()
+    {
+        $a = $this->getContact()->toArray();
+
+        return new \Zend\View\Model\JsonModel( $a );
+    }
+
+    public function saveAction()
+    {
+        $contact = $this->getContact();
+
+        //Generate Form
+        $form = $this->formBuilder($this->getEm(), 'PI\Entity\CvContact');
+        //BIND:
+        $form->bind($contact);
+        $form->getInputFilter()->remove('cv');
+
+        //Process Form
+        $service = $this->formProcess($this->getEm(), $form);
+        if ($service->getStatus()) {
+            $result = ["status" => $service->getStatus(),"data" => $contact->toArray()];
+        }else{
+            $result = ["status" => $service->getStatus(),"errors" => $form->getMessages(),"data" => $contact->toArray()];
+            $this->getResponse()->setStatusCode(\Zend\Http\Response::STATUS_CODE_422);
+        }
+        return new \Zend\View\Model\JsonModel( $result );
+    }
+
+
 }
+
