@@ -43,7 +43,7 @@ class CvPersonalInformationController extends AbstractActionController
         $this->em = $em;
     }
 
-    protected function getPersonalInformation()
+    protected function getPersonalInformation() : \PI\Entity\CvPersonalInformation
     {
         //Get Object
         $CV = $this->pICv();
@@ -75,8 +75,6 @@ class CvPersonalInformationController extends AbstractActionController
         $hcv->setValue($this->pICv()->getId());
         $form->add($hcv);
 
-
-
         //Process Form
         $service = $this->formProcess($this->getEm(), $form);
         if ($service->getStatus()) {
@@ -94,6 +92,33 @@ class CvPersonalInformationController extends AbstractActionController
         $view = new \Zend\View\Model\ViewModel(array("personalInformation" => $personalInformation));
         $view->setTerminal(true);
         return $view;
+    }
+
+    public function getAction()
+    {
+        $a = $this->getPersonalInformation()->toArray();
+
+        return new \Zend\View\Model\JsonModel( $a );
+    }
+
+    public function saveAction()
+    {
+        $personalInformation = $this->getPersonalInformation();
+
+        //Generate Form
+        $form = $this->formBuilder($this->getEm(), 'PI\Entity\CvPersonalInformation');
+        $form->bind($personalInformation);
+        $form->getInputFilter()->remove('cv');
+
+        //Process Form
+        $service = $this->formProcess($this->getEm(), $form);
+        if ($service->getStatus()) {
+        $result = ["status" => $service->getStatus(),"data" => $this->getPersonalInformation()->toArray()];
+        }else{
+            $result = ["status" => $service->getStatus(),"errors" => $form->getMessages(),"data" => $this->getPersonalInformation()->toArray()];
+            $this->getResponse()->setStatusCode(\Zend\Http\Response::STATUS_CODE_422);
+        }
+        return new \Zend\View\Model\JsonModel( $result );
     }
 
 

@@ -82,6 +82,28 @@ return [
                                     ],
                                 ],
                             ],
+                            'Get' => [
+                                'type' => 'Segment',
+                                'mayTerminate' => true,
+                                'options' => [
+                                    'route' => '/get',
+                                    'defaults' => [
+                                        'controller' => \PI\Controller\CvPictureController::CLASS,
+                                        'action' => 'get',
+                                    ],
+                                ],
+                            ],
+                            'Save' => [
+                                'type' => 'Segment',
+                                'mayTerminate' => true,
+                                'options' => [
+                                    'route' => '/save',
+                                    'defaults' => [
+                                        'controller' => \PI\Controller\CvPictureController::CLASS,
+                                        'action' => 'save',
+                                    ],
+                                ],
+                            ],
                         ],
                     ],
                     'CvPersonalInformation' => [
@@ -125,6 +147,28 @@ return [
                                     'defaults' => [
                                         'controller' => \PI\Controller\CvPersonalInformationController::CLASS,
                                         'action' => 'view',
+                                    ],
+                                ],
+                            ],
+                            'Get' => [
+                                'type' => 'Segment',
+                                'mayTerminate' => true,
+                                'options' => [
+                                    'route' => '/get',
+                                    'defaults' => [
+                                        'controller' => \PI\Controller\CvPersonalInformationController::CLASS,
+                                        'action' => 'get',
+                                    ],
+                                ],
+                            ],
+                            'Save' => [
+                                'type' => 'Segment',
+                                'mayTerminate' => true,
+                                'options' => [
+                                    'route' => '/save',
+                                    'defaults' => [
+                                        'controller' => \PI\Controller\CvPersonalInformationController::CLASS,
+                                        'action' => 'save',
                                     ],
                                 ],
                             ],

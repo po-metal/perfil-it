@@ -96,14 +96,18 @@ class CvPicture
 
     public function getPicture_fp()
     {
-        return "/cv/img/".$this->picture;
+        return "/cv/img/" . $this->picture;
     }
 
     public function __toString()
     {
-return;
+        return $this->getPicture_wp();
     }
 
+    public function toArray()
+    {
+        return ["src" => $this->getPicture_fp(),"picture" => $this->getPicture()];
+    }
 
 }
 

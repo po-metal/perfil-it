@@ -30,17 +30,8 @@ class CvPicture extends Form {
                 )
         ));
 
-
-
-        $this->addSubmitAndCsrf();
     }
 
-    protected function addSubmitAndCsrf() {
-        $this->add(array(
-            'type' => 'Zend\Form\Element\Csrf',
-            'name' => 'csrf'
-        ));
-    }
 
     public function InputFilter() {
 

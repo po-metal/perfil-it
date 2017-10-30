@@ -46,7 +46,7 @@ class CvPersonalInformation
      * @Annotation\Attributes({"type":"text"})
      * @Annotation\Options({"label":"Nombre", "description":"", "addon":"fa
      * fa-id-card-o"})
-     * @ORM\Column(type="string", length=50, unique=false, nullable=true, name="name")
+     * @ORM\Column(type="string", length=50, unique=false, nullable=false, name="name")
      */
     public $name = null;
 
@@ -55,7 +55,7 @@ class CvPersonalInformation
      * @Annotation\Attributes({"type":"text"})
      * @Annotation\Options({"label":"Apellido", "description":"", "addon":"fa
      * fa-id-card"})
-     * @ORM\Column(type="string", length=50, unique=false, nullable=true,
+     * @ORM\Column(type="string", length=50, unique=false, nullable=false,
      * name="lastname")
      */
     public $lastname = null;
@@ -121,19 +121,22 @@ class CvPersonalInformation
 
     public function getYears()
     {
-        if($this->getBirthdate() and is_a($this->getBirthdate(), "DateTime")){
-        $now = new \DateTime();
-        $diff = $this->getBirthdate()->diff($now);
-        return $diff->y;    
+        if ($this->getBirthdate() and is_a($this->getBirthdate(), "DateTime")) {
+            $now = new \DateTime();
+            $diff = $this->getBirthdate()->diff($now);
+            return $diff->y;
         }
         return null;
     }
 
     public function __toString()
     {
-return;
+        return $this->name . " " . $this->lastname;
     }
 
+    public function toArray(){
+        return ["name"=>$this->name,"lastname"=> $this->lastname,"birthdate"  => $this->getBirthdate()->format("Y-m-d"),"years" =>$this->getYears()];
+    }
 
 }
 

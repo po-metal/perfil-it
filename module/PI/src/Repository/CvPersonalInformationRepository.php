@@ -3,6 +3,7 @@
 namespace PI\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Query;
 
 /**
  * CvPersonalInformationRepository
@@ -24,6 +25,16 @@ class CvPersonalInformationRepository extends EntityRepository
     public function remove(\PI\Entity\CvPersonalInformation $entity)
     {
         $this->getEntityManager()->remove($entity); $this->getEntityManager()->flush();
+    }
+
+    public function aFindByCv($cvId){
+        $qb = $this->getEntityManager->createQueryBuilder();
+        return $qb->select('p')
+            ->from('\PI\Entity\CvPersonalInformation', 'p')
+            ->where('p.cv = :cv')
+            ->setParameter('cv', $cvId)
+            ->getQuery()
+            ->getResult(Query::HYDRATE_ARRAY);
     }
 
 

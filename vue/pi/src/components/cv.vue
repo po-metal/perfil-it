@@ -1,0 +1,36 @@
+<template>
+    <section>
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+            <div class="box box-primary">
+                <div class="box-body box-profile">
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <cv-picture></cv-picture>
+                        </div>
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <cv-personal-information></cv-personal-information>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+            Experience
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            Skill
+        </div>
+    </section>
+</template>
+
+<script>
+  import cvPersonalInformation from './cv-personal-information.vue'
+  import cvPicture from './cv-picture.vue'
+
+  export default {
+    name: 'cv',
+    components: {
+      cvPersonalInformation, cvPicture
+    }
+  }
+</script>

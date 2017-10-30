@@ -70,41 +70,41 @@ class CvPictureController extends AbstractActionController
     {
         $picture = $this->getPicture();
 
-                $form = new \PI\Form\CvPicture();
-                $form->setHydrator(new \DoctrineModule\Stdlib\Hydrator\DoctrineObject($this->getEm()));
-                $form->bind($picture);
+        $form = new \PI\Form\CvPicture();
+        $form->setHydrator(new \DoctrineModule\Stdlib\Hydrator\DoctrineObject($this->getEm()));
+        $form->bind($picture);
 
-                $form->setAttribute('action', $this->url()->fromRoute("PI/CvPicture/Main"));
+        $form->setAttribute('action', $this->url()->fromRoute("PI/CvPicture/Main"));
 
-                //ImgPath
-                $path = __dir__ . "/../../../../public/cv/img/";
-                $form->setInputFilter(new \PI\Form\InputFilter\CvPicture($path));
+        //ImgPath
+        $path = __dir__ . "/../../../../public/cv/img/";
+        $form->setInputFilter(new \PI\Form\InputFilter\CvPicture($path));
 
 
-                if ($this->getRequest()->isPost()) {
+        if ($this->getRequest()->isPost()) {
 
-                    $data = array_merge_recursive(
-                            $this->getRequest()->getPost()->toArray(), $this->getRequest()->getFiles()->toArray()
-                    );
+            $data = array_merge_recursive(
+                $this->getRequest()->getPost()->toArray(), $this->getRequest()->getFiles()->toArray()
+            );
 
-                    $form->setData($data);
+            $form->setData($data);
 
-                    if ($form->isValid()) {
-                        $this->getCvPictureRepository()->save($picture);
+            if ($form->isValid()) {
+                $this->getCvPictureRepository()->save($picture);
 
-                        return $this->forward()->dispatch(\PI\Controller\CvPictureController::class, ["action" => "view", "picture" => $picture]);
-                    } else {
+                return $this->forward()->dispatch(\PI\Controller\CvPictureController::class, ["action" => "view", "picture" => $picture]);
+            } else {
 
-                        $dataError = $form->getMessages();
-                        $error = array();
-                        foreach ($dataError as $key => $row) {
-                            $error[] = $row;
-                        }
-                    }
+                $dataError = $form->getMessages();
+                $error = array();
+                foreach ($dataError as $key => $row) {
+                    $error[] = $row;
                 }
-                $view = new \Zend\View\Model\ViewModel(array("form" => $form));
-                $view->setTerminal(true);
-                return $view;
+            }
+        }
+        $view = new \Zend\View\Model\ViewModel(array("form" => $form));
+        $view->setTerminal(true);
+        return $view;
     }
 
     public function viewAction()
@@ -118,6 +118,51 @@ class CvPictureController extends AbstractActionController
     public function getEntityRepository()
     {
         return $this->getEm()->getRepository(self::ENTITY);
+    }
+
+    public function getAction()
+    {
+        $a = $this->getPicture()->toArray();
+
+        return new \Zend\View\Model\JsonModel($a);
+    }
+
+    public function saveAction()
+    {
+        $picture = $this->getPicture();
+
+        $form = new \PI\Form\CvPicture();
+        $form->setHydrator(new \DoctrineModule\Stdlib\Hydrator\DoctrineObject($this->getEm()));
+        $form->bind($picture);
+
+        $form->setAttribute('action', $this->url()->fromRoute("PI/CvPicture/Main"));
+
+        //ImgPath
+        $path = __dir__ . "/../../../../public/cv/img/";
+        $form->setInputFilter(new \PI\Form\InputFilter\CvPicture($path));
+
+
+        if ($this->getRequest()->isPost()) {
+
+            $data = array_merge_recursive(
+                $this->getRequest()->getPost()->toArray(), $this->getRequest()->getFiles()->toArray()
+            );
+
+            $form->setData($data);
+
+            if ($form->isValid()) {
+                $this->getCvPictureRepository()->save($picture);
+                $result = ["status" => true,"data" => $this->getPicture()->toArray()];
+            } else {
+                $result = ["status" =>false,"errors" => $form->getMessages(),"data" => $this->getPicture()->toArray()];
+                $this->getResponse()->setStatusCode(\Zend\Http\Response::STATUS_CODE_422);
+            }
+        }else{
+            $result = [];
+            $this->getResponse()->setStatusCode(\Zend\Http\Response::STATUS_CODE_400);
+        }
+
+        return new \Zend\View\Model\JsonModel( $result );
     }
 
 
