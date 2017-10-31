@@ -18,7 +18,7 @@
                                     <div class="input-group">
                                                     <span class="input-group-addon"><i
                                                             class="fa fa-id-card-o"></i></span>
-                                        <input type="text" name="name" class=" form-control" v-model="name"
+                                        <input type="text" name="name" class=" form-control" v-model="entity.name"
                                                @keydown="unsaved">
                                     </div>
                                     <fe :errors="errors.name">
@@ -32,7 +32,7 @@
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-id-card"></i></span>
                                         <input type="text" name="lastname" class=" form-control"
-                                               v-model="lastname" @keydown="unsaved"></div>
+                                               v-model="entity.lastname" @keydown="unsaved"></div>
                                     <fe :errors="errors.lastname">
                                     </fe>
 
@@ -45,7 +45,7 @@
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-birthday-cake"></i></span>
                                         <input type="date" name="birthdate" class=" form-control"
-                                               v-model="birthdate"></div>
+                                               v-model="entity.birthdate"></div>
                                 </div>
                             </div>
 
@@ -81,11 +81,6 @@
     mixins: [crud],
     data: function () {
       return {
-        h: {
-          loading: false,
-          isSaved: true,
-          submitInProgress: false
-        },
         mp: {
           id: 'modal-cv-personal-information',
           title: 'Información Personal'

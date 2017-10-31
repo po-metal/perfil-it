@@ -13,6 +13,9 @@
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <cv-education></cv-education>
                         </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <cv-contact></cv-contact>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -30,11 +33,11 @@
   import cvPersonalInformation from './cv-personal-information.vue'
   import cvPicture from './cv-picture.vue'
   import cvEducation from './cv-education.vue'
-
+  import cvContact from './cv-contact.vue'
   export default {
     name: 'cv',
     components: {
-      cvPersonalInformation, cvPicture, cvEducation
+      cvPersonalInformation, cvPicture, cvEducation, cvContact
     }
   }
 </script>

@@ -2,6 +2,15 @@ import axios from 'axios'
 import qs from 'qs'
 
 export default {
+  data: function () {
+    return {
+      h: {
+        loading: false,
+        isSaved: true,
+        submitInProgress: false
+      }
+    }
+  },
   created: function () {
     this.loadProps()
   },

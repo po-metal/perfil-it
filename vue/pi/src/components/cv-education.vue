@@ -70,11 +70,6 @@
     },
     data: function () {
       return {
-        h: {
-          loading: false,
-          isSaved: true,
-          submitInProgress: false
-        },
         mp: {
           id: 'modal-cv-education',
           title: 'Educación'
@@ -103,9 +98,6 @@
         this.entity.state.id = data.state.id
         this.entity.state.name = data.state.name
         this.entity.title = data.title
-      },
-      mounted: function () {
-        this.loadProps()
       }
     },
     computed: {
