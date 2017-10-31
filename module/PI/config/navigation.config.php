@@ -66,6 +66,13 @@ return [
                         'permission' => 'general-admin',
                         'route' => 'PI/SoftSkillCategory/Grid',
                     ],
+                    [
+                        'label' => 'Countries',
+                        'detail' => '',
+                        'icon' => '',
+                        'permission' => 'general-admin',
+                        'route' => 'PI/Country/Grid',
+                    ],
                 ],
             ],
             [

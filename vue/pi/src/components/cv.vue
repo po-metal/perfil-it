@@ -12,8 +12,6 @@
                         </div>
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <cv-education></cv-education>
-                        </div>
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <cv-contact></cv-contact>
                         </div>
                     </div>

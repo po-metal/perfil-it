@@ -19,6 +19,9 @@ return array(
             \PI\Controller\SoftSkillController::class => \PI\Factory\Controller\SoftSkillControllerFactory::class,
             \PI\Controller\SoftSkillCategoryController::class => \PI\Factory\Controller\SoftSkillCategoryControllerFactory::class,
             \PI\Controller\CvVueController::class => \PI\Factory\Controller\CvVueControllerFactory::class,
+            \PI\Controller\CountriesController::class => \PI\Factory\Controller\CountriesControllerFactory::class,
+            \PI\Controller\CountryController::class => \PI\Factory\Controller\CountryControllerFactory::class,
+            \PI\Controller\CountryApiController::class => \PI\Factory\Controller\CountryApiControllerFactory::class,
         ),
     ),
 );

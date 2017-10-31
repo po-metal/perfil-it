@@ -1,7 +1,7 @@
 <template>
-    <div v-if="h.loading" >
+    <section v-if="h.loading" >
         <div data-toggle="modal" :data-target="'#'+mp.id">
-        <ul class="list-group list-group-unbordered" >
+        <ul class="list-group list-group-unbordered" style="margin-bottom: 0; border-bottom: none">
             <li class="list-group-item">
                 <i class="fa fa-graduation-cap"></i><b> Nivel Academico</b><a class="pull-right">
                 {{ entity.education.name }} {{ entity.state.name }}
@@ -15,7 +15,7 @@
                     <div class="col-lg-12 col-md-12 col-xs-12">
                         <div class="form-group">
                             <label class="control-label">Educación</label>
-                            <select name="education" class=" form-control" v-model="entity.education.id">
+                            <select name="education" class=" form-control" v-model="entity.education.id" @change="unsaved">
                                 <option value=""></option>
                                 <option value="1">Primario</option>
                                 <option value="2">Secundario</option>
@@ -27,7 +27,7 @@
                     <div class="col-lg-12 col-md-12 col-xs-12">
                         <div class="form-group">
                             <label class="control-label">Estado</label>
-                            <select name="educationState" class=" form-control" v-model="entity.state.id">
+                            <select name="educationState" class=" form-control" v-model="entity.state.id" @change="unsaved">
                                 <option value=""></option>
                                 <option value="1">En Curso</option>
                                 <option value="2">Incompleto</option>
@@ -39,7 +39,7 @@
                     <div class="col-lg-12 col-md-12 col-xs-12">
                         <div class="form-group">
                             <label class="control-label">Título (Opcional)</label>
-                            <input type="text" name="title" class=" form-control" v-model="entity.title">
+                            <input type="text" name="title" class=" form-control" v-model="entity.title" @keydown="unsaved">
                             <p class="help-block">Ej: Ingeniero,
                                 Licenciado, DBA, Programador, Consultor, Especialista IT, Etc
                             </p>
@@ -54,7 +54,7 @@
 
             </div>
         </modal>
-    </div>
+    </section>
 </template>
 
 <script>

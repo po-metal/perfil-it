@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <section>
         <div data-toggle="modal" :data-target="'#'+mp.id">
             <ul class="list-group list-group-unbordered" style="margin-bottom: 0;">
                 <li class="list-group-item">
@@ -14,7 +14,7 @@
                         {{entity.phone}}
                     </a>
                 </li>
-                <li class="list-group-item">
+                <li class="list-group-item" v-if="entity.skype">
                     <i class="fa fa-skype"></i> <b> Skype</b>
                     <a class="pull-right">
                         {{ entity.skype }}
@@ -30,7 +30,7 @@
                             <label class="control-label">Email</label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-at"></i></span>
-                                <input type="email" name="email" class=" form-control" v-model="entity.email">
+                                <input type="email" name="email" class=" form-control" v-model="entity.email" @keydown="unsaved">
                             </div>
                         </div>
                     </div>
@@ -41,7 +41,7 @@
                                 <label class="control-label">Teléfono</label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                                    <input type="text" name="phone" class=" form-control" v-model="entity.phone">
+                                    <input type="text" name="phone" class=" form-control" v-model="entity.phone" @keydown="unsaved">
                                 </div>
                             </div>
                         </div>
@@ -53,7 +53,7 @@
                                 <label class="control-label">Skype</label>
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="fa fa-skype"></i></span>
-                                    <input type="text" name="skype" class=" form-control" v-model="entity.skype">
+                                    <input type="text" name="skype" class=" form-control" v-model="entity.skype" @keydown="unsaved">
                                 </div>
                             </div>
                         </div>
@@ -65,7 +65,7 @@
                 </form>
             </div>
         </modal>
-    </div>
+    </section>
 </template>
 
 <script>

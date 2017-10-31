@@ -3,13 +3,12 @@
 namespace PI\Repository;
 
 use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\Query;
 
 /**
  * CvPersonalInformationRepository
- *
- *
- *
+ * 
+ * 
+ * 
  * @author Cristian Incarnato
  * @license -
  * @link -
@@ -27,7 +26,8 @@ class CvPersonalInformationRepository extends EntityRepository
         $this->getEntityManager()->remove($entity); $this->getEntityManager()->flush();
     }
 
-    public function aFindByCv($cvId){
+    public function aFindByCv($cvId)
+    {
         $qb = $this->getEntityManager->createQueryBuilder();
         return $qb->select('p')
             ->from('\PI\Entity\CvPersonalInformation', 'p')

@@ -629,6 +629,54 @@ return [
                             ],
                         ],
                     ],
+                    'Country' => [
+                        'type' => 'Literal',
+                        'mayTerminate' => false,
+                        'options' => [
+                            'route' => '/country',
+                            'defaults' => [
+                                'controller' => \PI\Controller\CountryController::CLASS,
+                                'action' => 'grid',
+                            ],
+                        ],
+                        'child_routes' => [
+                            'Grid' => [
+                                'type' => 'Segment',
+                                'mayTerminate' => true,
+                                'options' => [
+                                    'route' => '/grid',
+                                    'defaults' => [
+                                        'controller' => \PI\Controller\CountryController::CLASS,
+                                        'action' => 'grid',
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
+                    'CountryApi' => [
+                        'type' => 'Literal',
+                        'mayTerminate' => false,
+                        'options' => [
+                            'route' => '/country-api',
+                            'defaults' => [
+                                'controller' => \PI\Controller\CountryApiController::CLASS,
+                                'action' => 'list',
+                            ],
+                        ],
+                        'child_routes' => [
+                            'List' => [
+                                'type' => 'Segment',
+                                'mayTerminate' => true,
+                                'options' => [
+                                    'route' => '/list',
+                                    'defaults' => [
+                                        'controller' => \PI\Controller\CountryApiController::CLASS,
+                                        'action' => 'list',
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
                 ],
             ],
         ],

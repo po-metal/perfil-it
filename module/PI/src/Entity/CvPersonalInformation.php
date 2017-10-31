@@ -28,7 +28,7 @@ class CvPersonalInformation
      * @Annotation\Options({"label":"ID", "description":"", "addon":""})
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @ORM\Column(type="integer", length=11, unique=true, nullable=false, name="id")
+     * @ORM\Column(type="integer", length=11, unique=false, nullable=false, name="id")
      */
     public $id = null;
 
@@ -46,7 +46,7 @@ class CvPersonalInformation
      * @Annotation\Attributes({"type":"text"})
      * @Annotation\Options({"label":"Nombre", "description":"", "addon":"fa
      * fa-id-card-o"})
-     * @ORM\Column(type="string", length=50, unique=false, nullable=false, name="name")
+     * @ORM\Column(type="string", length=50, unique=false, nullable=true, name="name")
      */
     public $name = null;
 
@@ -55,7 +55,7 @@ class CvPersonalInformation
      * @Annotation\Attributes({"type":"text"})
      * @Annotation\Options({"label":"Apellido", "description":"", "addon":"fa
      * fa-id-card"})
-     * @ORM\Column(type="string", length=50, unique=false, nullable=false,
+     * @ORM\Column(type="string", length=50, unique=false, nullable=true,
      * name="lastname")
      */
     public $lastname = null;
@@ -68,6 +68,15 @@ class CvPersonalInformation
      * @ORM\Column(type="date", unique=false, nullable=true, name="birthdate")
      */
     public $birthdate = null;
+
+    /**
+     * @Annotation\Type("DoctrineModule\Form\Element\ObjectSelect")
+     * @Annotation\Options({"label":"Nacionalidad","empty_option": "",
+     * "target_class":"\PI\Entity\Country", "description":""})
+     * @ORM\ManyToOne(targetEntity="\PI\Entity\Country")
+     * @ORM\JoinColumn(name="nationality_id", referencedColumnName="id", nullable=true)
+     */
+    public $nationality = null;
 
     public function getId()
     {
@@ -129,14 +138,34 @@ class CvPersonalInformation
         return null;
     }
 
-    public function __toString()
+    public function toArray()
     {
-        return $this->name . " " . $this->lastname;
+        $a =  ["name"=>$this->name,"lastname"=> $this->lastname,
+            "birthdate"  => $this->getBirthdate()->format("Y-m-d"),"years" =>$this->getYears(),
+           ];
+        if($this->getNationality()){
+            $a["nationality"] =  [ "id" => $this->getNationality()->getId(), "name" =>$this->getNationality()->getName(), "icon" =>$this->getNationality()->getIcon()];
+        }
+
+        return $a;
     }
 
-    public function toArray(){
-        return ["name"=>$this->name,"lastname"=> $this->lastname,"birthdate"  => $this->getBirthdate()->format("Y-m-d"),"years" =>$this->getYears()];
+
+    public function getNationality()
+    {
+        return $this->nationality;
     }
+
+    public function setNationality($nationality)
+    {
+        $this->nationality = $nationality;
+    }
+
+    public function __toString()
+    {
+return;
+    }
+
 
 }
 

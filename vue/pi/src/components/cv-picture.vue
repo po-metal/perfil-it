@@ -14,10 +14,22 @@
         </div>
         <modal :modalId="mp.id" :title="mp.title" :isSaved="h.isSaved">
             <div class="row">
-                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 text-center">
-                    <form method="post" name="CvPicture" id="CvPicture" class="form-horizontal" role="form"
-                          v-on:submit.prevent="save" enctype="multipart/form-data">
-                        <div class="col-lg-12 col-md-12 col-xs-12">
+                <form method="post" name="CvPicture" id="CvPicture" class="form-horizontal" role="form"
+                      v-on:submit.prevent="save" enctype="multipart/form-data">
+
+                    <div class="col-lg-6 col-md-6 col-xs-6 col-lg-offset-3 col-md-offset-3 col-xs-offset-3">
+                        <div v-if="entity.src">
+                            <img :src="entity.src" class="img-responsive img-circle img-thumbnail"/>
+                        </div>
+                        <div v-else>
+                            <img src="/img/user.jpg" style="width:100px"
+                                 class="img-responsive img-circle img-thumbnail"/>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="clearfix"></div>
+                    <div class="col-lg-12 col-md-12 col-xs-12">
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 text-center">
                             <div class="form-group">
                                 <label class="control-label"></label>
                                 <label class="btn btn-default fa fa-upload">
@@ -25,15 +37,18 @@
                                 </label>
                             </div>
                         </div>
-                    </form>
-                </div>
-                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 text-center">
-                    <div class="progress progress-striped active margin6">
-                        <div id="cv-picture-bar" class="progress-bar progress-bar-warning " role="progressbar"
-                             :aria-valuenow="progressBar" :style="{width: progressBar + '%' }" aria-valuemin="1" aria-valuemax="100">
+                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 text-center">
+                            <div class="progress progress-striped active margin6">
+                                <div id="cv-picture-bar" class="progress-bar progress-bar-warning " role="progressbar"
+                                     :aria-valuenow="progressBar" :style="{width: progressBar + '%' }" aria-valuemin="1"
+                                     aria-valuemax="100">
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </form>
+
+
             </div>
         </modal>
     </div>
