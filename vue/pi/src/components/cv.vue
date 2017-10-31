@@ -10,6 +10,9 @@
                         <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
                             <cv-personal-information></cv-personal-information>
                         </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <cv-education></cv-education>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -26,11 +29,12 @@
 <script>
   import cvPersonalInformation from './cv-personal-information.vue'
   import cvPicture from './cv-picture.vue'
+  import cvEducation from './cv-education.vue'
 
   export default {
     name: 'cv',
     components: {
-      cvPersonalInformation, cvPicture
+      cvPersonalInformation, cvPicture, cvEducation
     }
   }
 </script>

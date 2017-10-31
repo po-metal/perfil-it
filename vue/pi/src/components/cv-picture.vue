@@ -1,10 +1,10 @@
 <template>
-    <div v-if="loading">
-        <div data-toggle="modal" data-target="#modal-cv-picture">
+    <div v-if="h.loading">
+        <div data-toggle="modal" :data-target="'#'+mp.id">
 
 
-            <div v-if="src">
-                <img :src="src" class="img-responsive img-circle img-thumbnail"/>
+            <div v-if="entity.src">
+                <img :src="entity.src" class="img-responsive img-circle img-thumbnail"/>
             </div>
             <div v-else>
                 <img src="/img/user.jpg" style="width:100px" class="img-responsive img-circle img-thumbnail"/>
@@ -12,7 +12,7 @@
 
 
         </div>
-        <modal :modalId="modalId" :title="modalTitle" :isSaved="isSaved">
+        <modal :modalId="mp.id" :title="mp.title" :isSaved="h.isSaved">
             <div class="row">
                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 text-center">
                     <form method="post" name="CvPicture" id="CvPicture" class="form-horizontal" role="form"
@@ -41,7 +41,6 @@
 
 <script>
   import axios from 'axios'
-  import qs from 'qs'
   import modal from './utils/modal.vue'
   import fe from './utils/form-error.vue'
 
@@ -52,19 +51,26 @@
     },
     data: function () {
       return {
-        loading: false,
-        src: false,
-        isSaved: true,
-        submitInProgress: false,
-        modalId: 'modal-cv-picture',
-        modalTitle: 'Imagen de perfil',
-        progressBar: 0
+        h: {
+          loading: false,
+          isSaved: true,
+          submitInProgress: false
+        },
+        mp: {
+          id: 'modal-cv-picture',
+          title: 'Imagen de perfil'
+        },
+        entity: {
+          src: false
+        },
+        progressBar: 0,
+        errors: []
       }
     },
     methods: {
       save: function () {
-        this.errors = ''
-        this.submitInProgress = true
+        this.errors = []
+        this.h.submitInProgress = true
         var formData = new FormData()
         var imagefile = document.querySelector('#picture')
         formData.append('picture', imagefile.files[0])
@@ -87,12 +93,12 @@
             } else {
               this.errors = response.data.errors
             }
-            this.submitInProgress = false
+            this.h.submitInProgress = false
             this.timerResetBar()
           })
           .catch((error) => {
             this.errors = error.response.data.errors
-            this.submitInProgress = false
+            this.h.submitInProgress = false
             this.timerResetBar()
           })
       },
@@ -111,11 +117,11 @@
           })
           .then((response) => {
             this.populate(response.data)
-            this.loading = true
+            this.h.loading = true
           })
       },
       populate: function (data) {
-        this.src = data.src
+        this.entity.src = data.src
       }
     },
     created: function () {

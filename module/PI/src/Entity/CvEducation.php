@@ -125,7 +125,16 @@ class CvEducation
     }
 
     public function toArray(){
-        return ["education" => $this->getEducation(),"state" => $this->getEducationState(),"title" => $this->getTitle()];
+        return [
+            "education" =>[
+                "id" => $this->getEducation()->getId(),
+                "name" => $this->getEducation()->getName()
+            ],
+            "state" => [
+                "id" => $this->getEducationState()->getId(),
+                "name" => $this->getEducationState()->getName()
+            ],
+            "title" => $this->getTitle()];
     }
 
 }

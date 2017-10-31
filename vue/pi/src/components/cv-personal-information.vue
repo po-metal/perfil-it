@@ -1,17 +1,16 @@
 <template>
-    <div v-if="loading">
-        <div data-toggle="modal" data-target="#modal-cv-personal-information">
-            <h4 class='profile-username text-center'>{{name}} {{lastname}}</h4>
-            <div class='text-center padding5'>{{years}} años</div>
+    <div v-if="h.loading">
+        <div data-toggle="modal" :data-target="'#'+mp.id">
+            <h4 class='profile-username text-center'>{{entity.name}} {{entity.lastname}}</h4>
+            <div class='text-center padding5'>{{entity.years}} años</div>
         </div>
 
-        <modal :modalId="modalId" :title="modalTitle" :isSaved="isSaved">
+        <modal :modalId="mp.id" :title="mp.title" :isSaved="h.isSaved">
             <div class="row">
 
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div id="form-cv-personal-information">
-                        <form method="POST" name="CvPersonalInformationForm" v-on:submit.prevent="save"
-                              action="/pi/cv-personal-information/main" id="CvPersonalInformationForm">
+                        <form method="POST" name="CvPersonalInformationForm" v-on:submit.prevent="save">
 
                             <div class="col-lg-12 col-md-12 col-xs-12">
                                 <div class="form-group" :class="{'has-error': errors.name}">
@@ -56,7 +55,7 @@
 
                             <div class="col-lg-12 col-xs-12">
                                 <input type="submit" name="submitbtn" class="btn btn-primary"
-                                       value="Submit" :disabled="submitInProgress">
+                                       value="Submit" :disabled="h.submitInProgress">
                             </div>
                         </form>
                     </div>
@@ -76,45 +75,48 @@
   export default {
     name: 'cv-personal-information',
     props: [],
+    components: {
+      fe, modal
+    },
     mixins: [crud],
     data: function () {
       return {
-        loading: false,
+        h: {
+          loading: false,
+          isSaved: true,
+          submitInProgress: false
+        },
+        mp: {
+          id: 'modal-cv-personal-information',
+          title: 'Información Personal'
+        },
         errors: [],
-        isSaved: true,
-        modalId: 'modal-cv-personal-information',
-        modalTitle: 'Información Personal',
-        name: 'Nombre',
-        lastname: 'Apellido',
-        birthdate: '',
-        years: '',
-        submitInProgress: false,
+        entity: {
+          name: 'Nombre',
+          lastname: 'Apellido',
+          birthdate: '',
+          years: ''
+        },
         url: {
-          get:  '/pi/cv-personal-information/get',
+          get: '/pi/cv-personal-information/get',
           save: '/pi/cv-personal-information/save'
         }
       }
     },
-    components: {
-      fe, modal
-    },
     methods: {
-        populate: function (data) {
-        this.name = data.name
-        this.lastname = data.lastname
-        this.birthdate = data.birthdate
-        this.years = data.years
+      populate: function (data) {
+        this.entity.name = data.name
+        this.entity.lastname = data.lastname
+        this.entity.birthdate = data.birthdate
+        this.entity.years = data.years
       }
     },
-    created: function () {
-      this.loadProps()
-    },
     computed: {
-      postParams: function(){
+      postParams: function () {
         return {
-          name: this.name,
-          lastname: this.lastname,
-          birthdate: this.birthdate
+          name: this.entity.name,
+          lastname: this.entity.lastname,
+          birthdate: this.entity.birthdate
         }
       }
     }

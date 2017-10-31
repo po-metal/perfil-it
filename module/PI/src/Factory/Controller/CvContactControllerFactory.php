@@ -21,7 +21,9 @@ class CvContactControllerFactory implements FactoryInterface
     {
         /* @var $em \Doctrine\ORM\EntityManager */
         $em = $container->get("doctrine.entitymanager.orm_default");
-        return new \PI\Controller\CvContactController($em);
+        $renderer = $container->get('ViewRenderer');
+
+        return new \PI\Controller\CvContactController($em,$renderer);
     }
 
 
