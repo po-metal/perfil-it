@@ -98,6 +98,10 @@
         this.entity.state.id = data.state.id
         this.entity.state.name = data.state.name
         this.entity.title = data.title
+      },
+      initProps: function () {
+        this.populate(cvLoad.cvEducation)
+        this.h.loading = true
       }
     },
     computed: {

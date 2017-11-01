@@ -25,13 +25,16 @@
         <modal :modalId="mp.id" :title="mp.title" :isSaved="h.isSaved">
             <div class="row">
                 <form method="POST" name="CvContact" v-on:submit.prevent="save" class="form-vertical">
+
                     <div class="col-lg-12 col-md-12 col-xs-12">
                         <div id="form-group-Email">
                             <label class="control-label">Email</label>
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-at"></i></span>
                                 <input type="email" name="email" class=" form-control" v-model="entity.email" @keydown="unsaved">
+
                             </div>
+                            <fe :errors="errors.email" />
                         </div>
                     </div>
 
@@ -43,6 +46,7 @@
                                     <span class="input-group-addon"><i class="fa fa-phone"></i></span>
                                     <input type="text" name="phone" class=" form-control" v-model="entity.phone" @keydown="unsaved">
                                 </div>
+                                <fe :errors="errors.phone" />
                             </div>
                         </div>
                     </div>
@@ -55,6 +59,7 @@
                                     <span class="input-group-addon"><i class="fa fa-skype"></i></span>
                                     <input type="text" name="skype" class=" form-control" v-model="entity.skype" @keydown="unsaved">
                                 </div>
+                                <fe :errors="errors.skype" />
                             </div>
                         </div>
                     </div>
@@ -103,6 +108,10 @@
         this.entity.email = data.email
         this.entity.phone = data.phone
         this.entity.skype = data.skype
+      },
+      initProps: function () {
+        this.populate(cvLoad.cvContact)
+        this.h.loading = true
       }
     },
     computed: {

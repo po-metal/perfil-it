@@ -182,6 +182,22 @@ class Cv
 return;
     }
 
+    public function toArray(){
+        $a = array();
+        if($this->getPersonalInformation()) {
+            $a["cvPersonalInformation"] = $this->getPersonalInformation()->toArray();
+        }
+        if($this->getPersonalInformation()) {
+            $a["cvPicture"] = $this->getPicture()->toArray();
+        }
+        if($this->getEducation()) {
+            $a["cvEducation"] = $this->getEducation()->toArray();
+        }
+        if($this->getContact()) {
+            $a["cvContact"] = $this->getContact()->toArray();
+        }
+        return $a;
+    }
 
 }
 

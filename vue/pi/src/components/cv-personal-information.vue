@@ -138,6 +138,10 @@
           this.entity.nationality.icon = data.nationality.icon
         }
       },
+      initProps: function () {
+        this.populate(cvLoad.cvPersonalInformation)
+        this.h.loading = true
+      },
       loadCountries: function () {
         axios.get(
           this.url.countryList,

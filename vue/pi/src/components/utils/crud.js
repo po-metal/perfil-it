@@ -12,7 +12,7 @@ export default {
     }
   },
   created: function () {
-    this.loadProps()
+    this.initProps()
   },
   methods: {
     unsaved: function () {

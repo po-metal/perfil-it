@@ -31,7 +31,7 @@ class CvVueController extends AbstractActionController
     public function mainAction()
     {
         return new \Zend\View\Model\ViewModel(
-            ["cv" => $this->pICv()
+            ["cv" => $this->pICv(), "cvLoad" => \Zend\Json\Encoder::encode($this->pICv()->toArray())
             ]
         );
     }

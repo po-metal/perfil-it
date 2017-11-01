@@ -19,10 +19,10 @@
             </div>
         </div>
         <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
-            Experience
+            <cv-experience></cv-experience>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-            Skill
+            <cv-skills></cv-skills>
         </div>
     </section>
 </template>
@@ -32,10 +32,17 @@
   import cvPicture from './cv-picture.vue'
   import cvEducation from './cv-education.vue'
   import cvContact from './cv-contact.vue'
+  import cvExperience from './cv-experiences.vue'
+  import cvSkills from './cv-skills.vue'
+
   export default {
     name: 'cv',
     components: {
-      cvPersonalInformation, cvPicture, cvEducation, cvContact
+      cvPersonalInformation, cvPicture, cvEducation, cvContact, cvExperience, cvSkills
+    },
+    mounted: function () {
+      console.log(cvLoad)
     }
+
   }
 </script>
