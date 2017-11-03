@@ -10,9 +10,9 @@ use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * CvPersonalInformation
- *
- *
- *
+ * 
+ * 
+ * 
  * @author Cristian Incarnato
  * @license -
  * @link -
@@ -46,7 +46,7 @@ class CvPersonalInformation
      * @Annotation\Attributes({"type":"text"})
      * @Annotation\Options({"label":"Nombre", "description":"", "addon":"fa
      * fa-id-card-o"})
-     * @ORM\Column(type="string", length=50, unique=false, nullable=true, name="name")
+     * @ORM\Column(type="string", length=50, unique=false, nullable=false, name="name")
      */
     public $name = null;
 
@@ -55,7 +55,7 @@ class CvPersonalInformation
      * @Annotation\Attributes({"type":"text"})
      * @Annotation\Options({"label":"Apellido", "description":"", "addon":"fa
      * fa-id-card"})
-     * @ORM\Column(type="string", length=50, unique=false, nullable=true,
+     * @ORM\Column(type="string", length=50, unique=false, nullable=false,
      * name="lastname")
      */
     public $lastname = null;
@@ -150,7 +150,6 @@ class CvPersonalInformation
         return $a;
     }
 
-
     public function getNationality()
     {
         return $this->nationality;
@@ -163,7 +162,7 @@ class CvPersonalInformation
 
     public function __toString()
     {
-return;
+        return  $this->name." ".  $this->lastname;
     }
 
 

@@ -1,5 +1,6 @@
 <template>
     <section>
+        <alert type="alert-danger" msg="Hola"></alert>
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
             <div class="box box-primary">
                 <div class="box-body box-profile">
@@ -10,6 +11,8 @@
                         <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
                             <cv-personal-information></cv-personal-information>
                         </div>
+                        <div class="clearfix"></div>
+                        <br>
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <cv-education></cv-education>
                             <cv-contact></cv-contact>
@@ -34,11 +37,12 @@
   import cvContact from './cv-contact.vue'
   import cvExperience from './cv-experiences.vue'
   import cvSkills from './cv-skills.vue'
+  import alert from './utils/alert.vue'
 
   export default {
     name: 'cv',
     components: {
-      cvPersonalInformation, cvPicture, cvEducation, cvContact, cvExperience, cvSkills
+      cvPersonalInformation, cvPicture, cvEducation, cvContact, cvExperience, cvSkills, alert
     },
     mounted: function () {
       console.log(cvLoad)

@@ -11,73 +11,7 @@
 
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div id="form-cv-personal-information">
-                        <form method="POST" name="CvPersonalInformationForm" v-on:submit.prevent="save">
-
-                            <div class="col-lg-12 col-md-12 col-xs-12">
-                                <div class="form-group" :class="{'has-error': errors.name}">
-                                    <label class="control-label">Nombre</label>
-                                    <div class="input-group">
-                                                    <span class="input-group-addon"><i
-                                                            class="fa fa-id-card-o"></i></span>
-                                        <input type="text" name="name" class=" form-control" v-model="entity.name"
-                                               @keydown="unsaved">
-                                    </div>
-                                    <fe :errors="errors.name" />
-                                </div>
-                            </div>
-
-                            <div class="col-lg-12 col-md-12 col-xs-12">
-                                <div class="form-group" :class="{'has-error': errors.lastname}">
-                                    <label class="control-label">Apellido</label>
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-id-card"></i></span>
-                                        <input type="text" name="lastname" class=" form-control"
-                                               v-model="entity.lastname" @keydown="unsaved">
-                                    </div>
-                                    <fe :errors="errors.lastname" />
-
-                                </div>
-                            </div>
-
-                            <div class="col-lg-12 col-md-12 col-xs-12">
-                                <div class="form-group">
-                                    <label class="control-label">Fecha de Nacimiento</label>
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-birthday-cake"></i></span>
-                                        <input type="date" name="birthdate" class=" form-control"
-                                               v-model="entity.birthdate">
-                                    </div>
-                                    <fe :errors="errors.birthdate" />
-                                </div>
-
-                            </div>
-
-
-                            <div class="col-lg-12 col-md-12 col-xs-12">
-                                <div class="form-group">
-                                    <label class="control-label">Nacionalidad</label>
-
-                                        <select name="nationality" class=" form-control" v-model="entity.nationality.id" @change="unsaved">
-                                            <option value=""></option>
-                                            <slot v-for="(value, key, index) in countries">
-                                                <option :value="key">{{value}}</option>
-                                            </slot>
-                                        </select>
-
-                                    <fe :errors="errors.nationality" />
-                                </div>
-
-                            </div>
-
-                            <div class="input-hidden">
-                                <input type="hidden" name="cv" value="1">
-                            </div>
-
-                            <div class="col-lg-12 col-xs-12">
-                                <input type="submit" name="submitbtn" class="btn btn-primary"
-                                       value="Submit" :disabled="h.submitInProgress">
-                            </div>
-                        </form>
+                        <form-personal-information v-model="entity" :countries="countries" :errors="errors"  @saveEmit="save"></form-personal-information>
                     </div>
                 </div>
 
@@ -92,12 +26,13 @@
   import modal from './utils/modal.vue'
   import axios from 'axios'
   import crud from './utils/crud'
+  import formPersonalInformation from './form/form-personal-information.vue'
 
   export default {
     name: 'cv-personal-information',
     props: [],
     components: {
-      fe, modal
+      fe, modal, formPersonalInformation
     },
     mixins: [crud],
     data: function () {
@@ -155,7 +90,7 @@
           })
       }
     },
-    mounted: function(){
+    created: function(){
       this.loadCountries()
     },
     computed: {
