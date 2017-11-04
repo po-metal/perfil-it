@@ -22,7 +22,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 class Cv
 {
 
-    
+
     /**
      * @Annotation\Type("Zend\Form\Element\Text")
      * @Annotation\Attributes({"type":"text"})
@@ -179,22 +179,30 @@ class Cv
 
     public function __toString()
     {
-return;
+        return;
     }
 
-    public function toArray(){
+    public function toArray()
+    {
         $a = array();
-        if($this->getPersonalInformation()) {
+        if ($this->getPersonalInformation()) {
             $a["cvPersonalInformation"] = $this->getPersonalInformation()->toArray();
         }
-        if($this->getPersonalInformation()) {
+        if ($this->getPersonalInformation()) {
             $a["cvPicture"] = $this->getPicture()->toArray();
         }
-        if($this->getEducation()) {
+        if ($this->getEducation()) {
             $a["cvEducation"] = $this->getEducation()->toArray();
         }
-        if($this->getContact()) {
+        if ($this->getContact()) {
             $a["cvContact"] = $this->getContact()->toArray();
+        }
+        if ($this->getExperiences()) {
+            if ($this->getExperiences()) {
+                foreach ($this->getExperiences() as $experience) {
+                    $a["cvExperiences"][] = $experience->toArray();
+                }
+            }
         }
         return $a;
     }

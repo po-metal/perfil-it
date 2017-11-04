@@ -2,7 +2,7 @@
     <div class="box box-primary">
         <div class="box-header">
             <strong><i class="fa fa-suitcase margin-r-5"></i> Experiencia </strong>
-            <button class="btn btn-default fa fa-plus-square btn-xs pull-right" onclick="cv.cv_experience.add()"
+            <button class="btn btn-default fa fa-plus-square btn-xs pull-right" @click="addJob"
                     data-toggle="modal" data-target="#cv-experience-modal">
             </button>
 
@@ -10,7 +10,7 @@
         </div>
         <div class="panel-body ">
 
-            <experience v-if="experiences"  v-for="exp in experiences" :exp="exp" />
+            <experience v-if="entity"  v-for="exp in entity" :exp="exp" :editJob="editJob(id)" />
 
         </div>
     </div>
@@ -18,13 +18,22 @@
 
 <script>
   import experience from './experience.vue'
-
+  import view from './utils/view'
   export default {
     name: 'cv-experiences',
-    componentes: [experience],
+    mixins: [view],
+    components: {experience},
     data() {
       return {
-        experiences: []
+        entity: []
+      }
+    },
+    methods: {
+      addJob: function (){
+
+      },
+      editJob: function (id){
+        console.log(id)
       }
     }
   }

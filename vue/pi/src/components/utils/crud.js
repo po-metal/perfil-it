@@ -11,8 +11,13 @@ export default {
       }
     }
   },
-  created: function () {
-    this.initProps()
+  computed: {
+    submitValue: function () {
+      return (this.h.isSaved) ? 'Ok' : 'Guardar'
+    },
+    submitClass: function () {
+      return (this.h.isSaved) ? 'btn-success' : 'btn-primary fa fa-save'
+    }
   },
   methods: {
     unsaved: function () {

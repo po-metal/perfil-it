@@ -196,6 +196,30 @@ class CvExperience {
         return $this->job;
     }
 
+    public function toArray(){
+        $a = array();
+        $a["id"] = $this->getId();
+        $a["company"] = $this->getCompany();
+        if($this->getJob()) {
+            $a["job"] = ["id" => $this->getJob()->getId(), "name" => $this->getJob()->getName()];
+        }else{
+            $a["job"] = ["id" => null, "name" => null];
+        }
+        $a["customJob"] = $this->getCustomJob();
+        if($this->getDateFrom()) {
+            $a["dateFrom"] = $this->getDateFrom()->format("Y-m-d");
+        }
+        if($this->getDateTo()) {
+            $a["dateTo"] = $this->getDateTo()->format("Y-m-d");
+        }
+        $a["currentJob"] = $this->getCurrentJob();
+        $a["summary"] = $this->getSummary();
+        $a["description"] = $this->getDescription();
+        $a["time"] = $this->getTime();
+        return $a;
+
+    }
+
     public function getTime() {
 
         if (is_a($this->getDateFrom(), "DateTime")) {

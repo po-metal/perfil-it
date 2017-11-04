@@ -38,6 +38,9 @@
     cursor: pointer;   
 }
 
+.box-highlight:hover{
+   /* background-color: #fff4b0; */
+}
 
 /*HEXA FONTAWESOME*/
 .fasave:before{

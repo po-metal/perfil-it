@@ -1,13 +1,13 @@
 <template>
-        <form method="POST" name="CvPersonalInformationForm" v-on:submit.prevent="saveForm">
+        <form method="POST" name="CvPersonalInformationForm" v-on:submit.prevent="save">
 
             <div class="col-lg-12 col-md-12 col-xs-12">
                 <div class="form-group" :class="{'has-error': errors.name}">
-                    <label class="control-label">Nombre</label>
+                    <label class="control-label">Nombre</label>  <saveStatus :isSaved="h.isSaved"></saveStatus>
                     <div class="input-group">
                                                     <span class="input-group-addon"><i
                                                             class="fa fa-id-card-o"></i></span>
-                        <input type="text" name="name" class=" form-control" v-model="dataEntity.name"
+                        <input type="text" name="name" class=" form-control" v-model="entity.name"
                                @keydown="unsaved">
                     </div>
                     <fe :errors="errors.name"/>
@@ -20,7 +20,7 @@
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-id-card"></i></span>
                         <input type="text" name="lastname" class=" form-control"
-                               v-model="dataEntity.lastname" @keydown="unsaved">
+                               v-model="entity.lastname" @keydown="unsaved">
                     </div>
                     <fe :errors="errors.lastname"/>
 
@@ -33,7 +33,7 @@
                     <div class="input-group">
                         <span class="input-group-addon"><i class="fa fa-birthday-cake"></i></span>
                         <input type="date" name="birthdate" class=" form-control"
-                               v-model="dataEntity.birthdate">
+                               v-model="entity.birthdate">
                     </div>
                     <fe :errors="errors.birthdate"/>
                 </div>
@@ -45,7 +45,7 @@
                 <div class="form-group">
                     <label class="control-label">Nacionalidad</label>
 
-                    <select name="nationality" class=" form-control" v-model="dataEntity.nationality.id"
+                    <select name="nationality" class=" form-control" v-model="entity.nationality.id"
                             @change="unsaved">
                         <option value=""></option>
                         <slot v-for="(value, key, index) in countries">
@@ -59,10 +59,6 @@
 
             </div>
 
-            <div class="input-hidden">
-                <input type="hidden" name="cv" value="1">
-            </div>
-
             <div class="col-lg-12 col-xs-12">
                 <button  name="submitbtn" class="btn" :class="submitClass" v-if="!h.isSaved"
                           :disabled="h.submitInProgress"> {{submitValue}}</button>
@@ -74,41 +70,72 @@
 
 <script>
   import fe from '../utils/form-error.vue'
+  import crud from '../utils/crud'
+  import saveStatus from '../utils/save-status.vue'
+  import axios from 'axios'
 
   export default {
     name: 'form-personal-information',
-    props: ['value', 'countries', 'errors'],
-    components: {fe},
+    props: ['value', 'isSaved'],
+    mixins: [crud],
+    components: {fe,saveStatus},
     data() {
       return {
+        errors: [],
         h: {
           loading: false,
           isSaved: true,
           submitInProgress: false
         },
-        dataEntity: {}
+        url: {
+          get: '/pi/cv-personal-information/get',
+          save: '/pi/cv-personal-information/save',
+          countryList: '/pi/country-api/list',
+        },
+        countries: [],
+        entity: {}
       }
-    },
-    created: function () {
-      this.dataEntity = this.value
-    },
-    computed: {
-      submitValue: function () {
-        return (this.h.isSaved) ? 'Ok' : 'Guardar'
-      },
-      submitClass: function () {
-        return (this.h.isSaved) ? 'btn-success' : 'btn-primary fa fa-save'
-      },
     },
     methods: {
-      saveForm: function () {
-        this.$emit('saveEmit', this.dataEntity)
-        //To review
-        this.h.isSaved = true
+      populate: function (data) {
+        this.entity.name = data.name
+        this.entity.lastname = data.lastname
+        this.entity.birthdate = data.birthdate
+        this.entity.years = data.years
+        if(data.nationality) {
+          this.entity.nationality.id = data.nationality.id
+          this.entity.nationality.name = data.nationality.name
+          this.entity.nationality.icon = data.nationality.icon
+        }
       },
-      unsaved: function () {
-        this.h.isSaved = false
+      loadCountries: function () {
+        axios.get(
+          this.url.countryList,
+          {
+            headers: {
+              accept: 'application/json'
+            }
+          }).then(
+          (response) => {
+            this.countries = response.data
+          })
+      }
+    },
+    created: function(){
+      this.entity = this.value
+      this.loadCountries()
+    },
+    computed: {
+      postParams: function () {
+        return {
+          name: this.entity.name,
+          lastname: this.entity.lastname,
+          birthdate: this.entity.birthdate,
+          nationality: this.entity.nationality.id
+        }
       }
     }
+
+
   }
 </script>

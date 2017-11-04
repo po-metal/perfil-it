@@ -1,5 +1,7 @@
 <template>
-    <span class="text-danger fa fa-save" v-if="!isSaved" ></span>
+   <div class="pull-right" v-if="!isSaved">
+       <span class="text-danger fa fa-save"></span>
+   </div>
 </template>
 
 <script>

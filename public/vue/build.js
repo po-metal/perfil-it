@@ -13081,71 +13081,30 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _formError = require('./utils/form-error.vue');
+var _view = require('./utils/view');
 
-var _formError2 = _interopRequireDefault(_formError);
-
-var _modal = require('./utils/modal.vue');
-
-var _modal2 = _interopRequireDefault(_modal);
-
-var _crud = require('./utils/crud');
-
-var _crud2 = _interopRequireDefault(_crud);
+var _view2 = _interopRequireDefault(_view);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
   name: 'cv-contact',
-  props: [],
-  mixins: [_crud2.default],
-  components: {
-    fe: _formError2.default, modal: _modal2.default
-  },
+  mixins: [_view2.default],
   data: function data() {
     return {
-      errors: [],
-      mp: {
-        id: 'modal-cv-contact',
-        title: 'Información de Contacto'
-      },
       entity: {
         email: '',
         phone: '',
         skype: ''
-      },
-      url: {
-        get: '/pi/cv-contact/get',
-        save: '/pi/cv-contact/save'
       }
     };
-  },
-  methods: {
-    populate: function populate(data) {
-      this.entity.email = data.email;
-      this.entity.phone = data.phone;
-      this.entity.skype = data.skype;
-    },
-    initProps: function initProps() {
-      this.populate(cvLoad.cvContact);
-      this.h.loading = true;
-    }
-  },
-  computed: {
-    postParams: function postParams() {
-      return {
-        email: this.entity.email,
-        phone: this.entity.phone,
-        skype: this.entity.skype
-      };
-    }
   }
 };
 })()
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('section',[_c('div',{attrs:{"data-toggle":"modal","data-target":'#'+_vm.mp.id}},[_c('ul',{staticClass:"list-group list-group-unbordered",staticStyle:{"margin-bottom":"0"}},[_c('li',{staticClass:"list-group-item"},[_c('i',{staticClass:"fa fa-at"}),_c('b',[_vm._v(" Email")]),_vm._v(" "),_c('a',{staticClass:"pull-right"},[_vm._v("\n                    "+_vm._s(_vm.entity.email)+"\n                ")])]),_vm._v(" "),_c('li',{staticClass:"list-group-item"},[_c('i',{staticClass:"fa fa-phone"}),_c('b',[_vm._v(" Tel")]),_vm._v(" "),_c('a',{staticClass:"pull-right"},[_vm._v("\n                    "+_vm._s(_vm.entity.phone)+"\n                ")])]),_vm._v(" "),(_vm.entity.skype)?_c('li',{staticClass:"list-group-item"},[_c('i',{staticClass:"fa fa-skype"}),_vm._v(" "),_c('b',[_vm._v(" Skype")]),_vm._v(" "),_c('a',{staticClass:"pull-right"},[_vm._v("\n                    "+_vm._s(_vm.entity.skype)+"\n                ")])]):_vm._e()])]),_vm._v(" "),_c('modal',{attrs:{"modalId":_vm.mp.id,"title":_vm.mp.title,"isSaved":_vm.h.isSaved}},[_c('div',{staticClass:"row"},[_c('form',{staticClass:"form-vertical",attrs:{"method":"POST","name":"CvContact"},on:{"submit":function($event){$event.preventDefault();_vm.save($event)}}},[_c('div',{staticClass:"col-lg-12 col-md-12 col-xs-12"},[_c('div',{attrs:{"id":"form-group-Email"}},[_c('label',{staticClass:"control-label"},[_vm._v("Email")]),_vm._v(" "),_c('div',{staticClass:"input-group"},[_c('span',{staticClass:"input-group-addon"},[_c('i',{staticClass:"fa fa-at"})]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.entity.email),expression:"entity.email"}],staticClass:" form-control",attrs:{"type":"email","name":"email"},domProps:{"value":(_vm.entity.email)},on:{"keydown":_vm.unsaved,"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.entity, "email", $event.target.value)}}})]),_vm._v(" "),_c('fe',{attrs:{"errors":_vm.errors.email}})],1)]),_vm._v(" "),_c('div',{staticClass:"col-lg-12 col-md-12 col-xs-12"},[_c('div',{attrs:{"id":"form-group-Phone"}},[_c('div',{staticClass:"form-group"},[_c('label',{staticClass:"control-label"},[_vm._v("Teléfono")]),_vm._v(" "),_c('div',{staticClass:"input-group"},[_c('span',{staticClass:"input-group-addon"},[_c('i',{staticClass:"fa fa-phone"})]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.entity.phone),expression:"entity.phone"}],staticClass:" form-control",attrs:{"type":"text","name":"phone"},domProps:{"value":(_vm.entity.phone)},on:{"keydown":_vm.unsaved,"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.entity, "phone", $event.target.value)}}})]),_vm._v(" "),_c('fe',{attrs:{"errors":_vm.errors.phone}})],1)])]),_vm._v(" "),_c('div',{staticClass:"col-lg-12 col-md-12 col-xs-12"},[_c('div',{attrs:{"id":"form-group-Skype"}},[_c('div',{staticClass:"form-group"},[_c('label',{staticClass:"control-label"},[_vm._v("Skype")]),_vm._v(" "),_c('div',{staticClass:"input-group"},[_c('span',{staticClass:"input-group-addon"},[_c('i',{staticClass:"fa fa-skype"})]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.entity.skype),expression:"entity.skype"}],staticClass:" form-control",attrs:{"type":"text","name":"skype"},domProps:{"value":(_vm.entity.skype)},on:{"keydown":_vm.unsaved,"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.entity, "skype", $event.target.value)}}})]),_vm._v(" "),_c('fe',{attrs:{"errors":_vm.errors.skype}})],1)])]),_vm._v(" "),_c('div',{staticClass:"col-lg-12 col-xs-12"},[_c('input',{staticClass:"btn btn-primary",attrs:{"type":"submit","name":"submitbtn","value":"Submit","disabled":_vm.h.submitInProgress}})])])])])],1)}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('section',{staticClass:"cursor-pointer box-highlight"},[_c('div',{attrs:{"data-toggle":"modal","data-target":'#'+_vm.dataTarget}},[_c('ul',{staticClass:"list-group list-group-unbordered",staticStyle:{"margin-bottom":"0"}},[_c('li',{staticClass:"list-group-item"},[_c('i',{staticClass:"fa fa-at"}),_c('b',[_vm._v(" Email")]),_vm._v(" "),_c('a',{staticClass:"pull-right"},[_vm._v("\n                    "+_vm._s(_vm.entity.email)+"\n                ")])]),_vm._v(" "),_c('li',{staticClass:"list-group-item"},[_c('i',{staticClass:"fa fa-phone"}),_c('b',[_vm._v(" Tel")]),_vm._v(" "),_c('a',{staticClass:"pull-right"},[_vm._v("\n                    "+_vm._s(_vm.entity.phone)+"\n                ")])]),_vm._v(" "),(_vm.entity.skype)?_c('li',{staticClass:"list-group-item"},[_c('i',{staticClass:"fa fa-skype"}),_vm._v(" "),_c('b',[_vm._v(" Skype")]),_vm._v(" "),_c('a',{staticClass:"pull-right"},[_vm._v("\n                    "+_vm._s(_vm.entity.skype)+"\n                ")])]):_vm._e()])])])}
 __vue__options__.staticRenderFns = []
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -13157,7 +13116,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.reload("data-v-829d2cfa", __vue__options__)
   }
 })()}
-},{"./utils/crud":46,"./utils/form-error.vue":47,"./utils/modal.vue":48,"vue":34,"vue-hot-reload-api":33}],37:[function(require,module,exports){
+},{"./utils/view":53,"vue":34,"vue-hot-reload-api":33}],37:[function(require,module,exports){
 ;(function(){
 'use strict';
 
@@ -13165,32 +13124,17 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _formError = require('./utils/form-error.vue');
+var _view = require('./utils/view');
 
-var _formError2 = _interopRequireDefault(_formError);
-
-var _modal = require('./utils/modal.vue');
-
-var _modal2 = _interopRequireDefault(_modal);
-
-var _crud = require('./utils/crud');
-
-var _crud2 = _interopRequireDefault(_crud);
+var _view2 = _interopRequireDefault(_view);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
   name: 'cv-education',
-  mixins: [_crud2.default],
-  components: {
-    fe: _formError2.default, modal: _modal2.default
-  },
+  mixins: [_view2.default],
   data: function data() {
     return {
-      mp: {
-        id: 'modal-cv-education',
-        title: 'Educación'
-      },
       entity: {
         education: {
           id: '',
@@ -13201,42 +13145,15 @@ exports.default = {
           name: ''
         },
         title: ''
-      },
-      url: {
-        get: '/pi/cv-education/get',
-        save: '/pi/cv-education/save'
       }
     };
-  },
-  methods: {
-    populate: function populate(data) {
-      this.entity.education.id = data.education.id;
-      this.entity.education.name = data.education.name;
-      this.entity.state.id = data.state.id;
-      this.entity.state.name = data.state.name;
-      this.entity.title = data.title;
-    },
-    initProps: function initProps() {
-      this.populate(cvLoad.cvEducation);
-      this.h.loading = true;
-    }
-  },
-  computed: {
-    postParams: function postParams() {
-      return {
-        education: this.entity.education.id,
-        educationState: this.entity.state.id,
-        title: this.entity.title
-      };
-    }
   }
-
 };
 })()
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.h.loading)?_c('section',[_c('div',{attrs:{"data-toggle":"modal","data-target":'#'+_vm.mp.id}},[_c('ul',{staticClass:"list-group list-group-unbordered",staticStyle:{"margin-bottom":"0","border-bottom":"none"}},[_c('li',{staticClass:"list-group-item"},[_c('i',{staticClass:"fa fa-graduation-cap"}),_c('b',[_vm._v(" Nivel Academico")]),_c('a',{staticClass:"pull-right"},[_vm._v("\n            "+_vm._s(_vm.entity.education.name)+" "+_vm._s(_vm.entity.state.name)+"\n        ")])])])]),_vm._v(" "),_c('modal',{attrs:{"modalId":_vm.mp.id,"title":_vm.mp.title,"isSaved":_vm.h.isSaved}},[_c('div',{staticClass:"row"},[_c('form',{staticClass:"form-vertical",attrs:{"method":"POST","name":"CvEducation"},on:{"submit":function($event){$event.preventDefault();_vm.save($event)}}},[_c('div',{staticClass:"col-lg-12 col-md-12 col-xs-12"},[_c('div',{staticClass:"form-group"},[_c('label',{staticClass:"control-label"},[_vm._v("Educación")]),_vm._v(" "),_c('select',{directives:[{name:"model",rawName:"v-model",value:(_vm.entity.education.id),expression:"entity.education.id"}],staticClass:" form-control",attrs:{"name":"education"},on:{"change":[function($event){var $$selectedVal = Array.prototype.filter.call($event.target.options,function(o){return o.selected}).map(function(o){var val = "_value" in o ? o._value : o.value;return val}); _vm.$set(_vm.entity.education, "id", $event.target.multiple ? $$selectedVal : $$selectedVal[0])},_vm.unsaved]}},[_c('option',{attrs:{"value":""}}),_vm._v(" "),_c('option',{attrs:{"value":"1"}},[_vm._v("Primario")]),_vm._v(" "),_c('option',{attrs:{"value":"2"}},[_vm._v("Secundario")]),_vm._v(" "),_c('option',{attrs:{"value":"3"}},[_vm._v("Terciario")]),_vm._v(" "),_c('option',{attrs:{"value":"4"}},[_vm._v("Universitario")])])])]),_vm._v(" "),_c('div',{staticClass:"col-lg-12 col-md-12 col-xs-12"},[_c('div',{staticClass:"form-group"},[_c('label',{staticClass:"control-label"},[_vm._v("Estado")]),_vm._v(" "),_c('select',{directives:[{name:"model",rawName:"v-model",value:(_vm.entity.state.id),expression:"entity.state.id"}],staticClass:" form-control",attrs:{"name":"educationState"},on:{"change":[function($event){var $$selectedVal = Array.prototype.filter.call($event.target.options,function(o){return o.selected}).map(function(o){var val = "_value" in o ? o._value : o.value;return val}); _vm.$set(_vm.entity.state, "id", $event.target.multiple ? $$selectedVal : $$selectedVal[0])},_vm.unsaved]}},[_c('option',{attrs:{"value":""}}),_vm._v(" "),_c('option',{attrs:{"value":"1"}},[_vm._v("En Curso")]),_vm._v(" "),_c('option',{attrs:{"value":"2"}},[_vm._v("Incompleto")]),_vm._v(" "),_c('option',{attrs:{"value":"3"}},[_vm._v("Completo")])])])]),_vm._v(" "),_c('div',{staticClass:"col-lg-12 col-md-12 col-xs-12"},[_c('div',{staticClass:"form-group"},[_c('label',{staticClass:"control-label"},[_vm._v("Título (Opcional)")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.entity.title),expression:"entity.title"}],staticClass:" form-control",attrs:{"type":"text","name":"title"},domProps:{"value":(_vm.entity.title)},on:{"keydown":_vm.unsaved,"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.entity, "title", $event.target.value)}}}),_vm._v(" "),_c('p',{staticClass:"help-block"},[_vm._v("Ej: Ingeniero,\n                            Licenciado, DBA, Programador, Consultor, Especialista IT, Etc\n                        ")])])]),_vm._v(" "),_c('div',{staticClass:"col-lg-12 col-xs-12"},[_c('input',{staticClass:"btn btn-primary",attrs:{"type":"submit","name":"submitbtn","value":"Submit","disabled":_vm.h.submitInProgress}})])])])])],1):_vm._e()}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('section',{staticClass:"cursor-pointer box-highlight"},[_c('div',{attrs:{"data-toggle":"modal","data-target":'#'+_vm.dataTarget}},[_c('ul',{staticClass:"list-group list-group-unbordered",staticStyle:{"margin-bottom":"0","border-bottom":"none"}},[_c('li',{staticClass:"list-group-item"},[_c('i',{staticClass:"fa fa-graduation-cap"}),_c('b',[_vm._v(" Nivel Academico")]),_c('a',{staticClass:"pull-right"},[_vm._v("\n                "+_vm._s(_vm.entity.education.name)+" "+_vm._s(_vm.entity.state.name)+"\n            ")])])])])])}
 __vue__options__.staticRenderFns = []
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -13248,7 +13165,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.reload("data-v-482b224b", __vue__options__)
   }
 })()}
-},{"./utils/crud":46,"./utils/form-error.vue":47,"./utils/modal.vue":48,"vue":34,"vue-hot-reload-api":33}],38:[function(require,module,exports){
+},{"./utils/view":53,"vue":34,"vue-hot-reload-api":33}],38:[function(require,module,exports){
 ;(function(){
 'use strict';
 
@@ -13260,23 +13177,35 @@ var _experience = require('./experience.vue');
 
 var _experience2 = _interopRequireDefault(_experience);
 
+var _view = require('./utils/view');
+
+var _view2 = _interopRequireDefault(_view);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
   name: 'cv-experiences',
-  componentes: [_experience2.default],
+  mixins: [_view2.default],
+  components: { experience: _experience2.default },
   data: function data() {
     return {
-      experiences: []
+      entity: []
     };
+  },
+
+  methods: {
+    addJob: function addJob() {},
+    editJob: function editJob(id) {
+      console.log(id);
+    }
   }
 };
 })()
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"box box-primary"},[_vm._m(0),_vm._v(" "),_c('div',{staticClass:"panel-body "},_vm._l((_vm.experiences),function(exp){return (_vm.experiences)?_c('experience',{attrs:{"exp":exp}}):_vm._e()}))])}
-__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"box-header"},[_c('strong',[_c('i',{staticClass:"fa fa-suitcase margin-r-5"}),_vm._v(" Experiencia ")]),_vm._v(" "),_c('button',{staticClass:"btn btn-default fa fa-plus-square btn-xs pull-right",attrs:{"onclick":"cv.cv_experience.add()","data-toggle":"modal","data-target":"#cv-experience-modal"}})])}]
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"box box-primary"},[_c('div',{staticClass:"box-header"},[_vm._m(0),_vm._v(" "),_c('button',{staticClass:"btn btn-default fa fa-plus-square btn-xs pull-right",attrs:{"data-toggle":"modal","data-target":"#cv-experience-modal"},on:{"click":_vm.addJob}})]),_vm._v(" "),_c('div',{staticClass:"panel-body "},_vm._l((_vm.entity),function(exp){return (_vm.entity)?_c('experience',{attrs:{"exp":exp,"editJob":_vm.editJob(_vm.id)}}):_vm._e()}))])}
+__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('strong',[_c('i',{staticClass:"fa fa-suitcase margin-r-5"}),_vm._v(" Experiencia ")])}]
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
@@ -13287,7 +13216,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.reload("data-v-8e5700a8", __vue__options__)
   }
 })()}
-},{"./experience.vue":43,"vue":34,"vue-hot-reload-api":33}],39:[function(require,module,exports){
+},{"./experience.vue":43,"./utils/view":53,"vue":34,"vue-hot-reload-api":33}],39:[function(require,module,exports){
 ;(function(){
 'use strict';
 
@@ -13295,41 +13224,17 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _formError = require('./utils/form-error.vue');
+var _view = require('./utils/view');
 
-var _formError2 = _interopRequireDefault(_formError);
-
-var _modal = require('./utils/modal.vue');
-
-var _modal2 = _interopRequireDefault(_modal);
-
-var _axios = require('axios');
-
-var _axios2 = _interopRequireDefault(_axios);
-
-var _crud = require('./utils/crud');
-
-var _crud2 = _interopRequireDefault(_crud);
-
-var _formPersonalInformation = require('./form/form-personal-information.vue');
-
-var _formPersonalInformation2 = _interopRequireDefault(_formPersonalInformation);
+var _view2 = _interopRequireDefault(_view);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
   name: 'cv-personal-information',
-  props: [],
-  components: {
-    fe: _formError2.default, modal: _modal2.default, formPersonalInformation: _formPersonalInformation2.default
-  },
-  mixins: [_crud2.default],
+  mixins: [_view2.default],
   data: function data() {
     return {
-      mp: {
-        id: 'modal-cv-personal-information',
-        title: 'Información Personal'
-      },
       errors: [],
       entity: {
         name: 'Nombre',
@@ -13341,62 +13246,16 @@ exports.default = {
           name: '',
           icon: ''
         }
-      },
-      url: {
-        get: '/pi/cv-personal-information/get',
-        save: '/pi/cv-personal-information/save',
-        countryList: '/pi/country-api/list'
-      },
-      countries: []
-    };
-  },
-  methods: {
-    populate: function populate(data) {
-      this.entity.name = data.name;
-      this.entity.lastname = data.lastname;
-      this.entity.birthdate = data.birthdate;
-      this.entity.years = data.years;
-      if (data.nationality) {
-        this.entity.nationality.id = data.nationality.id;
-        this.entity.nationality.name = data.nationality.name;
-        this.entity.nationality.icon = data.nationality.icon;
       }
-    },
-    initProps: function initProps() {
-      this.populate(cvLoad.cvPersonalInformation);
-      this.h.loading = true;
-    },
-    loadCountries: function loadCountries() {
-      var _this = this;
-
-      _axios2.default.get(this.url.countryList, {
-        headers: {
-          accept: 'application/json'
-        }
-      }).then(function (response) {
-        _this.countries = response.data;
-      });
-    }
-  },
-  created: function created() {
-    this.loadCountries();
-  },
-  computed: {
-    postParams: function postParams() {
-      return {
-        name: this.entity.name,
-        lastname: this.entity.lastname,
-        birthdate: this.entity.birthdate,
-        nationality: this.entity.nationality.id
-      };
-    }
+    };
   }
+
 };
 })()
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.h.loading)?_c('div',[_c('div',{attrs:{"data-toggle":"modal","data-target":'#'+_vm.mp.id}},[_c('h4',{staticClass:"profile-username text-center"},[_vm._v(_vm._s(_vm.entity.name)+" "+_vm._s(_vm.entity.lastname))]),_vm._v(" "),_c('div',{staticClass:"text-center padding5"},[_vm._v(_vm._s(_vm.entity.years)+" años")]),_vm._v(" "),_c('div',{staticClass:"pull-right"},[_c('i',{class:_vm.entity.nationality.icon})])]),_vm._v(" "),_c('modal',{attrs:{"modalId":_vm.mp.id,"title":_vm.mp.title,"isSaved":_vm.h.isSaved}},[_c('div',{staticClass:"row"},[_c('div',{staticClass:"col-lg-12 col-md-12 col-sm-12 col-xs-12"},[_c('div',{attrs:{"id":"form-cv-personal-information"}},[_c('form-personal-information',{attrs:{"countries":_vm.countries,"errors":_vm.errors},on:{"saveEmit":_vm.save},model:{value:(_vm.entity),callback:function ($$v) {_vm.entity=$$v},expression:"entity"}})],1)])])])],1):_vm._e()}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"cursor-pointer box-highlight"},[_c('div',{attrs:{"data-toggle":"modal","data-target":'#'+_vm.dataTarget}},[_c('h4',{staticClass:"profile-username text-center"},[_vm._v(_vm._s(_vm.entity.name)+" "+_vm._s(_vm.entity.lastname))]),_vm._v(" "),_c('div',{staticClass:"text-center padding5"},[_vm._v(_vm._s(_vm.entity.years)+" años")]),_vm._v(" "),_c('div',{staticClass:"pull-right"},[_c('i',{class:_vm.entity.nationality.icon})])])])}
 __vue__options__.staticRenderFns = []
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -13408,7 +13267,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.reload("data-v-2973d74c", __vue__options__)
   }
 })()}
-},{"./form/form-personal-information.vue":44,"./utils/crud":46,"./utils/form-error.vue":47,"./utils/modal.vue":48,"axios":1,"vue":34,"vue-hot-reload-api":33}],40:[function(require,module,exports){
+},{"./utils/view":53,"vue":34,"vue-hot-reload-api":33}],40:[function(require,module,exports){
 ;(function(){
 'use strict';
 
@@ -13416,110 +13275,29 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _axios = require('axios');
+var _view = require('./utils/view');
 
-var _axios2 = _interopRequireDefault(_axios);
-
-var _modal = require('./utils/modal.vue');
-
-var _modal2 = _interopRequireDefault(_modal);
-
-var _formError = require('./utils/form-error.vue');
-
-var _formError2 = _interopRequireDefault(_formError);
+var _view2 = _interopRequireDefault(_view);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
   name: 'cv-picture',
-  components: {
-    fe: _formError2.default, modal: _modal2.default
-  },
+  mixins: [_view2.default],
   data: function data() {
     return {
-      h: {
-        loading: false,
-        isSaved: true,
-        submitInProgress: false
-      },
-      mp: {
-        id: 'modal-cv-picture',
-        title: 'Imagen de perfil'
-      },
       entity: {
         src: false
-      },
-      progressBar: 0,
-      errors: []
+      }
     };
-  },
-  methods: {
-    initProps: function initProps() {
-      this.populate(cvLoad.cvPicture);
-      this.h.loading = true;
-    },
-    save: function save() {
-      var _this = this;
-
-      this.errors = [];
-      this.h.submitInProgress = true;
-      var formData = new FormData();
-      var imagefile = document.querySelector('#picture');
-      formData.append('picture', imagefile.files[0]);
-      var config = {
-        headers: {
-          'content-type': 'multipart/form-data'
-        },
-        onUploadProgress: function onUploadProgress(progressEvent) {
-          _this.progressBar = Math.round(progressEvent.loaded * 100 / progressEvent.total);
-        }
-      };
-      _axios2.default.post('/pi/cv-picture/save', formData, config).then(function (response) {
-        if (response.data.status) {
-          _this.populate(response.data.data);
-        } else {
-          _this.errors = response.data.errors;
-        }
-        _this.h.submitInProgress = false;
-        _this.timerResetBar();
-      }).catch(function (error) {
-        _this.errors = error.response.data.errors;
-        _this.h.submitInProgress = false;
-        _this.timerResetBar();
-      });
-    },
-    timerResetBar: function timerResetBar() {
-      var _this2 = this;
-
-      setTimeout(function () {
-        _this2.progressBar = 0;
-      }, 1000);
-    },
-    loadProps: function loadProps() {
-      var _this3 = this;
-
-      _axios2.default.get('/pi/cv-picture/get', {
-        headers: {
-          accept: 'application/json'
-        }
-      }).then(function (response) {
-        _this3.populate(response.data);
-        _this3.h.loading = true;
-      });
-    },
-    populate: function populate(data) {
-      this.entity.src = data.src;
-    }
-  },
-  created: function created() {
-    this.loadProps();
   }
+
 };
 })()
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.h.loading)?_c('div',[_c('div',{attrs:{"data-toggle":"modal","data-target":'#'+_vm.mp.id}},[(_vm.entity.src)?_c('div',[_c('img',{staticClass:"img-responsive img-circle img-thumbnail",attrs:{"src":_vm.entity.src}})]):_c('div',[_c('img',{staticClass:"img-responsive img-circle img-thumbnail",staticStyle:{"width":"100px"},attrs:{"src":"/img/user.jpg"}})])]),_vm._v(" "),_c('modal',{attrs:{"modalId":_vm.mp.id,"title":_vm.mp.title,"isSaved":_vm.h.isSaved}},[_c('div',{staticClass:"row"},[_c('form',{staticClass:"form-horizontal",attrs:{"method":"post","name":"CvPicture","id":"CvPicture","role":"form","enctype":"multipart/form-data"},on:{"submit":function($event){$event.preventDefault();_vm.save($event)}}},[_c('div',{staticClass:"col-lg-6 col-md-6 col-xs-6 col-lg-offset-3 col-md-offset-3 col-xs-offset-3"},[(_vm.entity.src)?_c('div',[_c('img',{staticClass:"img-responsive img-circle img-thumbnail",attrs:{"src":_vm.entity.src}})]):_c('div',[_c('img',{staticClass:"img-responsive img-circle img-thumbnail",staticStyle:{"width":"100px"},attrs:{"src":"/img/user.jpg"}})])]),_vm._v(" "),_c('div',{staticClass:"clearfix"}),_vm._v(" "),_c('br'),_vm._v(" "),_c('div',{staticClass:"col-lg-12 col-md-12 col-xs-12"},[_c('div',{staticClass:"col-lg-3 col-md-3 col-sm-3 col-xs-12 text-center"},[_c('div',{staticClass:"form-group"},[_c('label',{staticClass:"control-label"}),_vm._v(" "),_c('label',{staticClass:"btn btn-default fa fa-upload"},[_c('input',{staticClass:"hidden",attrs:{"type":"file","name":"picture","id":"picture"},on:{"change":_vm.save}})])])]),_vm._v(" "),_c('div',{staticClass:"col-lg-9 col-md-9 col-sm-9 col-xs-12 text-center"},[_c('div',{staticClass:"progress progress-striped active margin6"},[_c('div',{staticClass:"progress-bar progress-bar-warning ",style:({width: _vm.progressBar + '%' }),attrs:{"id":"cv-picture-bar","role":"progressbar","aria-valuenow":_vm.progressBar,"aria-valuemin":"1","aria-valuemax":"100"}})])])])])])])],1):_vm._e()}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"cursor-pointer box-highlight"},[_c('div',{attrs:{"data-toggle":"modal","data-target":'#'+_vm.dataTarget}},[(_vm.entity.src)?_c('div',[_c('img',{staticClass:"img-responsive img-circle img-thumbnail",attrs:{"src":_vm.entity.src}})]):_c('div',[_c('img',{staticClass:"img-responsive img-circle img-thumbnail",staticStyle:{"width":"100px"},attrs:{"src":"/img/user.jpg"}})])])])}
 __vue__options__.staticRenderFns = []
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -13531,7 +13309,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.reload("data-v-70670361", __vue__options__)
   }
 })()}
-},{"./utils/form-error.vue":47,"./utils/modal.vue":48,"axios":1,"vue":34,"vue-hot-reload-api":33}],41:[function(require,module,exports){
+},{"./utils/view":53,"vue":34,"vue-hot-reload-api":33}],41:[function(require,module,exports){
 ;(function(){
 'use strict';
 
@@ -13570,6 +13348,14 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _modal = require('./utils/modal.vue');
+
+var _modal2 = _interopRequireDefault(_modal);
+
+var _alert = require('./utils/alert.vue');
+
+var _alert2 = _interopRequireDefault(_alert);
+
 var _cvPersonalInformation = require('./cv-personal-information.vue');
 
 var _cvPersonalInformation2 = _interopRequireDefault(_cvPersonalInformation);
@@ -13594,27 +13380,115 @@ var _cvSkills = require('./cv-skills.vue');
 
 var _cvSkills2 = _interopRequireDefault(_cvSkills);
 
-var _alert = require('./utils/alert.vue');
+var _formPersonalInformation = require('./form/form-personal-information.vue');
 
-var _alert2 = _interopRequireDefault(_alert);
+var _formPersonalInformation2 = _interopRequireDefault(_formPersonalInformation);
+
+var _formContact = require('./form/form-contact.vue');
+
+var _formContact2 = _interopRequireDefault(_formContact);
+
+var _formEducation = require('./form/form-education.vue');
+
+var _formEducation2 = _interopRequireDefault(_formEducation);
+
+var _formPicture = require('./form/form-picture.vue');
+
+var _formPicture2 = _interopRequireDefault(_formPicture);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
   name: 'cv',
   components: {
-    cvPersonalInformation: _cvPersonalInformation2.default, cvPicture: _cvPicture2.default, cvEducation: _cvEducation2.default, cvContact: _cvContact2.default, cvExperience: _cvExperiences2.default, cvSkills: _cvSkills2.default, alert: _alert2.default
+    modal: _modal2.default,
+    alert: _alert2.default,
+    cvPersonalInformation: _cvPersonalInformation2.default,
+    cvPicture: _cvPicture2.default,
+    cvEducation: _cvEducation2.default,
+    cvContact: _cvContact2.default,
+    cvExperience: _cvExperiences2.default,
+    cvSkills: _cvSkills2.default,
+    formPersonalInformation: _formPersonalInformation2.default,
+    formEducation: _formEducation2.default,
+    formContact: _formContact2.default,
+    formPicture: _formPicture2.default
   },
-  mounted: function mounted() {
-    console.log(cvLoad);
-  }
+  data: function data() {
+    return {
+      mp: {
+        cvPersonalInformation: {
+          id: 'modal-cv-pi',
+          title: 'Información Personal'
+        },
+        cvPicture: {
+          id: 'modal-cv-picture',
+          title: 'Imagen de CV'
+        },
+        cvContact: {
+          id: 'modal-cv-c',
+          title: 'Información de Contacto'
+        },
+        cvEducation: {
+          id: 'modal-cv-e',
+          title: 'Educación'
+        }
+      },
+      cv: {
+        cvPersonalInformation: {
+          name: 'Nombre',
+          lastname: 'Apellido',
+          birthdate: '',
+          years: '',
+          nationality: {
+            id: '',
+            name: '',
+            icon: ''
+          }
+        },
+        cvPicture: {
+          src: ""
+        },
+        cvContact: {
+          email: '',
+          phone: '',
+          skype: ''
+        },
+        cvEducation: {
+          education: {
+            id: '',
+            name: ''
+          },
+          state: {
+            id: '',
+            name: ''
+          },
+          title: ''
+        },
+        cvExperiences: []
+      }
+    };
+  },
+  methods: {
+    populate: function populate(data) {
+      this.cv.cvPersonalInformation = data.cvPersonalInformation;
+      this.cv.cvEducation = data.cvEducation;
+      this.cv.cvPicture = data.cvPicture;
+      this.cv.cvContact = data.cvContact;
+      this.cv.cvExperiences = data.cvExperiences;
+    }
+  },
 
+  created: function created() {
+    console.log(cvLoad);
+    this.populate(cvLoad);
+  }
 };
 })()
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('section',[_c('alert',{attrs:{"type":"alert-danger","msg":"Hola"}}),_vm._v(" "),_c('div',{staticClass:"col-lg-3 col-md-3 col-sm-3 col-xs-12"},[_c('div',{staticClass:"box box-primary"},[_c('div',{staticClass:"box-body box-profile"},[_c('div',{staticClass:"row"},[_c('div',{staticClass:"col-lg-5 col-md-5 col-sm-12 col-xs-12"},[_c('cv-picture')],1),_vm._v(" "),_c('div',{staticClass:"col-lg-7 col-md-7 col-sm-12 col-xs-12"},[_c('cv-personal-information')],1),_vm._v(" "),_c('div',{staticClass:"clearfix"}),_vm._v(" "),_c('br'),_vm._v(" "),_c('div',{staticClass:"col-lg-12 col-md-12 col-sm-12 col-xs-12"},[_c('cv-education'),_vm._v(" "),_c('cv-contact')],1)])])])]),_vm._v(" "),_c('div',{staticClass:"col-lg-5 col-md-5 col-sm-5 col-xs-12"},[_c('cv-experience')],1),_vm._v(" "),_c('div',{staticClass:"col-lg-4 col-md-4 col-sm-4 col-xs-12"},[_c('cv-skills')],1)],1)}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('section',[_c('div',{staticClass:"col-lg-3 col-md-3 col-sm-3 col-xs-12"},[_c('div',{staticClass:"box box-primary"},[_c('div',{staticClass:"box-body box-profile"},[_c('div',{staticClass:"row"},[_c('div',{staticClass:"col-lg-5 col-md-5 col-sm-12 col-xs-12"},[_c('cv-picture',{attrs:{"propEntity":_vm.cv.cvPicture,"dataTarget":_vm.mp.cvPicture.id}})],1),_vm._v(" "),_c('div',{staticClass:"col-lg-7 col-md-7 col-sm-12 col-xs-12"},[_c('cv-personal-information',{attrs:{"propEntity":_vm.cv.cvPersonalInformation,"dataTarget":_vm.mp.cvPersonalInformation.id}})],1),_vm._v(" "),_c('div',{staticClass:"clearfix"}),_vm._v(" "),_c('br'),_vm._v(" "),_c('div',{staticClass:"col-lg-12 col-md-12 col-sm-12 col-xs-12"},[_c('cv-education',{attrs:{"propEntity":_vm.cv.cvEducation,"dataTarget":_vm.mp.cvEducation.id}}),_vm._v(" "),_c('cv-contact',{attrs:{"propEntity":_vm.cv.cvContact,"dataTarget":_vm.mp.cvContact.id}})],1)])])])]),_vm._v(" "),_c('div',{staticClass:"col-lg-5 col-md-5 col-sm-5 col-xs-12"},[_c('cv-experience',{attrs:{"propEntity":_vm.cv.cvExperiences}})],1),_vm._v(" "),_c('div',{staticClass:"col-lg-4 col-md-4 col-sm-4 col-xs-12"},[_c('cv-skills')],1),_vm._v(" "),_c('div',{staticClass:"clearfix"}),_vm._v(" "),_c('modal',{attrs:{"modalId":_vm.mp.cvPersonalInformation.id,"title":_vm.mp.cvPersonalInformation.title}},[_c('form-personal-information',{model:{value:(_vm.cv.cvPersonalInformation),callback:function ($$v) {_vm.$set(_vm.cv, "cvPersonalInformation", $$v)},expression:"cv.cvPersonalInformation"}})],1),_vm._v(" "),_c('modal',{attrs:{"modalId":_vm.mp.cvContact.id,"title":_vm.mp.cvContact.title}},[_c('form-contact',{model:{value:(_vm.cv.cvContact),callback:function ($$v) {_vm.$set(_vm.cv, "cvContact", $$v)},expression:"cv.cvContact"}})],1),_vm._v(" "),_c('modal',{attrs:{"modalId":_vm.mp.cvEducation.id,"title":_vm.mp.cvEducation.title}},[_c('form-education',{model:{value:(_vm.cv.cvEducation),callback:function ($$v) {_vm.$set(_vm.cv, "cvEducation", $$v)},expression:"cv.cvEducation"}})],1),_vm._v(" "),_c('modal',{attrs:{"modalId":_vm.mp.cvPicture.id,"title":_vm.mp.cvPicture.title}},[_c('form-picture',{model:{value:(_vm.cv.cvPicture),callback:function ($$v) {_vm.$set(_vm.cv, "cvPicture", $$v)},expression:"cv.cvPicture"}})],1)],1)}
 __vue__options__.staticRenderFns = []
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -13626,7 +13500,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.reload("data-v-5cfddbb0", __vue__options__)
   }
 })()}
-},{"./cv-contact.vue":36,"./cv-education.vue":37,"./cv-experiences.vue":38,"./cv-personal-information.vue":39,"./cv-picture.vue":40,"./cv-skills.vue":41,"./utils/alert.vue":45,"vue":34,"vue-hot-reload-api":33}],43:[function(require,module,exports){
+},{"./cv-contact.vue":36,"./cv-education.vue":37,"./cv-experiences.vue":38,"./cv-personal-information.vue":39,"./cv-picture.vue":40,"./cv-skills.vue":41,"./form/form-contact.vue":44,"./form/form-education.vue":45,"./form/form-personal-information.vue":46,"./form/form-picture.vue":47,"./utils/alert.vue":48,"./utils/modal.vue":51,"vue":34,"vue-hot-reload-api":33}],43:[function(require,module,exports){
 ;(function(){
 'use strict';
 
@@ -13641,21 +13515,44 @@ exports.default = {
       entity: {
         id: '',
         company: '',
-        job: '',
+        job: {
+          id: '',
+          name: ''
+        },
+        customJob: '',
         summary: '',
         description: '',
-        from: '',
-        to: '',
-        currentJob: ''
+        dateFrom: '',
+        dateTo: '',
+        currentJob: '',
+        time: ''
       }
     };
+  },
+
+  methods: {
+    editJob: function editJob() {
+      this.$emit('editJob', this.entity.id);
+    }
+  },
+  computed: {
+    theJob: function theJob() {
+      if (this.entity.job != null && this.entity.job.id != null) {
+        return this.entity.job.name;
+      } else {
+        return this.entity.customJob;
+      }
+    }
+  },
+  created: function created() {
+    this.entity = this.exp;
   }
 };
 })()
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div')}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":_vm.exp+this.id}},[_c('div',{staticClass:"box box-default box-cv",on:{"click":function($event){_vm.editJob()}}},[_c('div',{staticClass:"box-header"},[_c('strong',[_vm._v(" "+_vm._s(_vm.theJob))]),_vm._v(" en "),_c('a',{attrs:{"href":"#","target":"blank"}},[_vm._v(_vm._s(_vm.entity.company))]),_vm._v(" "),_c('span',{staticClass:"pull-right"},[_vm._v(_vm._s(_vm.entity.time))])]),_vm._v(" "),_c('div',{staticClass:"box-body "},[_vm._v("\n            "+_vm._s(_vm.entity.summary)+"\n        ")])])])}
 __vue__options__.staticRenderFns = []
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -13679,42 +13576,54 @@ var _formError = require('../utils/form-error.vue');
 
 var _formError2 = _interopRequireDefault(_formError);
 
+var _crud = require('../utils/crud');
+
+var _crud2 = _interopRequireDefault(_crud);
+
+var _saveStatus = require('../utils/save-status.vue');
+
+var _saveStatus2 = _interopRequireDefault(_saveStatus);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
-  name: 'form-personal-information',
-  props: ['value', 'countries', 'errors'],
-  components: { fe: _formError2.default },
+  name: 'form-contact',
+  props: ['value', 'isSaved'],
+  mixins: [_crud2.default],
+  components: { fe: _formError2.default, saveStatus: _saveStatus2.default },
   data: function data() {
     return {
+      errors: [],
       h: {
         loading: false,
         isSaved: true,
         submitInProgress: false
       },
-      dataEntity: {}
+      url: {
+        get: '/pi/cv-contact/get',
+        save: '/pi/cv-contact/save'
+      },
+      entity: {}
     };
   },
 
-  created: function created() {
-    this.dataEntity = this.value;
-  },
-  computed: {
-    submitValue: function submitValue() {
-      return this.h.isSaved ? 'Ok' : 'Guardar';
-    },
-    submitClass: function submitClass() {
-      return this.h.isSaved ? 'btn-success' : 'btn-primary fa fa-save';
+  methods: {
+    populate: function populate(data) {
+      this.entity.email = data.email;
+      this.entity.phone = data.phone;
+      this.entity.skype = data.skype;
     }
   },
-  methods: {
-    saveForm: function saveForm() {
-      this.$emit('saveEmit', this.dataEntity);
-
-      this.h.isSaved = true;
-    },
-    unsaved: function unsaved() {
-      this.h.isSaved = false;
+  created: function created() {
+    this.entity = this.value;
+  },
+  computed: {
+    postParams: function postParams() {
+      return {
+        email: this.entity.email,
+        phone: this.entity.phone,
+        skype: this.entity.skype
+      };
     }
   }
 };
@@ -13722,8 +13631,194 @@ exports.default = {
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('form',{attrs:{"method":"POST","name":"CvPersonalInformationForm"},on:{"submit":function($event){$event.preventDefault();_vm.saveForm($event)}}},[_c('div',{staticClass:"col-lg-12 col-md-12 col-xs-12"},[_c('div',{staticClass:"form-group",class:{'has-error': _vm.errors.name}},[_c('label',{staticClass:"control-label"},[_vm._v("Nombre")]),_vm._v(" "),_c('div',{staticClass:"input-group"},[_vm._m(0),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.dataEntity.name),expression:"dataEntity.name"}],staticClass:" form-control",attrs:{"type":"text","name":"name"},domProps:{"value":(_vm.dataEntity.name)},on:{"keydown":_vm.unsaved,"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.dataEntity, "name", $event.target.value)}}})]),_vm._v(" "),_c('fe',{attrs:{"errors":_vm.errors.name}})],1)]),_vm._v(" "),_c('div',{staticClass:"col-lg-12 col-md-12 col-xs-12"},[_c('div',{staticClass:"form-group",class:{'has-error': _vm.errors.lastname}},[_c('label',{staticClass:"control-label"},[_vm._v("Apellido")]),_vm._v(" "),_c('div',{staticClass:"input-group"},[_vm._m(1),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.dataEntity.lastname),expression:"dataEntity.lastname"}],staticClass:" form-control",attrs:{"type":"text","name":"lastname"},domProps:{"value":(_vm.dataEntity.lastname)},on:{"keydown":_vm.unsaved,"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.dataEntity, "lastname", $event.target.value)}}})]),_vm._v(" "),_c('fe',{attrs:{"errors":_vm.errors.lastname}})],1)]),_vm._v(" "),_c('div',{staticClass:"col-lg-12 col-md-12 col-xs-12"},[_c('div',{staticClass:"form-group"},[_c('label',{staticClass:"control-label"},[_vm._v("Fecha de Nacimiento")]),_vm._v(" "),_c('div',{staticClass:"input-group"},[_vm._m(2),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.dataEntity.birthdate),expression:"dataEntity.birthdate"}],staticClass:" form-control",attrs:{"type":"date","name":"birthdate"},domProps:{"value":(_vm.dataEntity.birthdate)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.dataEntity, "birthdate", $event.target.value)}}})]),_vm._v(" "),_c('fe',{attrs:{"errors":_vm.errors.birthdate}})],1)]),_vm._v(" "),_c('div',{staticClass:"col-lg-12 col-md-12 col-xs-12"},[_c('div',{staticClass:"form-group"},[_c('label',{staticClass:"control-label"},[_vm._v("Nacionalidad")]),_vm._v(" "),_c('select',{directives:[{name:"model",rawName:"v-model",value:(_vm.dataEntity.nationality.id),expression:"dataEntity.nationality.id"}],staticClass:" form-control",attrs:{"name":"nationality"},on:{"change":[function($event){var $$selectedVal = Array.prototype.filter.call($event.target.options,function(o){return o.selected}).map(function(o){var val = "_value" in o ? o._value : o.value;return val}); _vm.$set(_vm.dataEntity.nationality, "id", $event.target.multiple ? $$selectedVal : $$selectedVal[0])},_vm.unsaved]}},[_c('option',{attrs:{"value":""}}),_vm._v(" "),_vm._l((_vm.countries),function(value,key,index){return _vm._t("default",[_c('option',{domProps:{"value":key}},[_vm._v(_vm._s(value))])])})],2),_vm._v(" "),_c('fe',{attrs:{"errors":_vm.errors.nationality}})],1)]),_vm._v(" "),_vm._m(3),_vm._v(" "),_c('div',{staticClass:"col-lg-12 col-xs-12"},[(!_vm.h.isSaved)?_c('button',{staticClass:"btn",class:_vm.submitClass,attrs:{"name":"submitbtn","disabled":_vm.h.submitInProgress}},[_vm._v(" "+_vm._s(_vm.submitValue))]):_vm._e()])])}
-__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"input-group-addon"},[_c('i',{staticClass:"fa fa-id-card-o"})])},function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"input-group-addon"},[_c('i',{staticClass:"fa fa-id-card"})])},function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"input-group-addon"},[_c('i',{staticClass:"fa fa-birthday-cake"})])},function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"input-hidden"},[_c('input',{attrs:{"type":"hidden","name":"cv","value":"1"}})])}]
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('form',{attrs:{"method":"POST","name":"CvContact"},on:{"submit":function($event){$event.preventDefault();_vm.save($event)}}},[_c('div',{staticClass:"col-lg-12 col-md-12 col-xs-12"},[_c('div',{attrs:{"id":"form-group-Email"}},[_c('div',{staticClass:"form-group"},[_c('label',{staticClass:"control-label"},[_vm._v("Email")]),_vm._v(" "),_c('saveStatus',{attrs:{"isSaved":_vm.h.isSaved}}),_vm._v(" "),_c('div',{staticClass:"input-group"},[_vm._m(0),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.entity.email),expression:"entity.email"}],staticClass:" form-control",attrs:{"type":"email","name":"email"},domProps:{"value":(_vm.entity.email)},on:{"keydown":_vm.unsaved,"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.entity, "email", $event.target.value)}}})]),_vm._v(" "),_c('fe',{attrs:{"errors":_vm.errors.email}})],1)])]),_vm._v(" "),_c('div',{staticClass:"col-lg-12 col-md-12 col-xs-12"},[_c('div',{attrs:{"id":"form-group-Phone"}},[_c('div',{staticClass:"form-group"},[_c('label',{staticClass:"control-label"},[_vm._v("Teléfono")]),_vm._v(" "),_c('div',{staticClass:"input-group"},[_vm._m(1),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.entity.phone),expression:"entity.phone"}],staticClass:" form-control",attrs:{"type":"text","name":"phone"},domProps:{"value":(_vm.entity.phone)},on:{"keydown":_vm.unsaved,"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.entity, "phone", $event.target.value)}}})]),_vm._v(" "),_c('fe',{attrs:{"errors":_vm.errors.phone}})],1)])]),_vm._v(" "),_c('div',{staticClass:"col-lg-12 col-md-12 col-xs-12"},[_c('div',{attrs:{"id":"form-group-Skype"}},[_c('div',{staticClass:"form-group"},[_c('label',{staticClass:"control-label"},[_vm._v("Skype")]),_vm._v(" "),_c('div',{staticClass:"input-group"},[_vm._m(2),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.entity.skype),expression:"entity.skype"}],staticClass:" form-control",attrs:{"type":"text","name":"skype"},domProps:{"value":(_vm.entity.skype)},on:{"keydown":_vm.unsaved,"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.entity, "skype", $event.target.value)}}})]),_vm._v(" "),_c('fe',{attrs:{"errors":_vm.errors.skype}})],1)])]),_vm._v(" "),_c('div',{staticClass:"col-lg-12 col-xs-12"},[(!_vm.h.isSaved)?_c('button',{staticClass:"btn",class:_vm.submitClass,attrs:{"name":"submitbtn","disabled":_vm.h.submitInProgress}},[_vm._v(" "+_vm._s(_vm.submitValue)+"\n        ")]):_vm._e()])])}
+__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"input-group-addon"},[_c('i',{staticClass:"fa fa-at"})])},function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"input-group-addon"},[_c('i',{staticClass:"fa fa-phone"})])},function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"input-group-addon"},[_c('i',{staticClass:"fa fa-skype"})])}]
+if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-453cfe82", __vue__options__)
+  } else {
+    hotAPI.reload("data-v-453cfe82", __vue__options__)
+  }
+})()}
+},{"../utils/crud":49,"../utils/form-error.vue":50,"../utils/save-status.vue":52,"vue":34,"vue-hot-reload-api":33}],45:[function(require,module,exports){
+;(function(){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _formError = require('../utils/form-error.vue');
+
+var _formError2 = _interopRequireDefault(_formError);
+
+var _crud = require('../utils/crud');
+
+var _crud2 = _interopRequireDefault(_crud);
+
+var _saveStatus = require('../utils/save-status.vue');
+
+var _saveStatus2 = _interopRequireDefault(_saveStatus);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  name: 'form-education',
+  props: ['value', 'isSaved'],
+  mixins: [_crud2.default],
+  components: { fe: _formError2.default, saveStatus: _saveStatus2.default },
+  data: function data() {
+    return {
+      errors: [],
+      h: {
+        loading: false,
+        isSaved: true,
+        submitInProgress: false
+      },
+      url: {
+        get: '/pi/cv-education/get',
+        save: '/pi/cv-education/save'
+      },
+      entity: {}
+    };
+  },
+
+  methods: {
+    populate: function populate(data) {
+      this.entity.education.id = data.education.id;
+      this.entity.education.name = data.education.name;
+      this.entity.state.id = data.state.id;
+      this.entity.state.name = data.state.name;
+      this.entity.title = data.title;
+    }
+  },
+  created: function created() {
+    this.entity = this.value;
+  },
+  computed: {
+    postParams: function postParams() {
+      return {
+        education: this.entity.education.id,
+        educationState: this.entity.state.id,
+        title: this.entity.title
+      };
+    }
+  }
+};
+})()
+if (module.exports.__esModule) module.exports = module.exports.default
+var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
+if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('form',{attrs:{"method":"POST","name":"CvEducation"},on:{"submit":function($event){$event.preventDefault();_vm.save($event)}}},[_c('div',{staticClass:"col-lg-12 col-md-12 col-xs-12"},[_c('div',{staticClass:"form-group"},[_c('label',{staticClass:"control-label"},[_vm._v("Educación")]),_vm._v(" "),_c('saveStatus',{attrs:{"isSaved":_vm.h.isSaved}}),_vm._v(" "),_c('select',{directives:[{name:"model",rawName:"v-model",value:(_vm.entity.education.id),expression:"entity.education.id"}],staticClass:" form-control",attrs:{"name":"education"},on:{"change":[function($event){var $$selectedVal = Array.prototype.filter.call($event.target.options,function(o){return o.selected}).map(function(o){var val = "_value" in o ? o._value : o.value;return val}); _vm.$set(_vm.entity.education, "id", $event.target.multiple ? $$selectedVal : $$selectedVal[0])},_vm.unsaved]}},[_c('option',{attrs:{"value":""}}),_vm._v(" "),_c('option',{attrs:{"value":"1"}},[_vm._v("Primario")]),_vm._v(" "),_c('option',{attrs:{"value":"2"}},[_vm._v("Secundario")]),_vm._v(" "),_c('option',{attrs:{"value":"3"}},[_vm._v("Terciario")]),_vm._v(" "),_c('option',{attrs:{"value":"4"}},[_vm._v("Universitario")])])],1)]),_vm._v(" "),_c('div',{staticClass:"col-lg-12 col-md-12 col-xs-12"},[_c('div',{staticClass:"form-group"},[_c('label',{staticClass:"control-label"},[_vm._v("Estado")]),_vm._v(" "),_c('select',{directives:[{name:"model",rawName:"v-model",value:(_vm.entity.state.id),expression:"entity.state.id"}],staticClass:" form-control",attrs:{"name":"educationState"},on:{"change":[function($event){var $$selectedVal = Array.prototype.filter.call($event.target.options,function(o){return o.selected}).map(function(o){var val = "_value" in o ? o._value : o.value;return val}); _vm.$set(_vm.entity.state, "id", $event.target.multiple ? $$selectedVal : $$selectedVal[0])},_vm.unsaved]}},[_c('option',{attrs:{"value":""}}),_vm._v(" "),_c('option',{attrs:{"value":"1"}},[_vm._v("En Curso")]),_vm._v(" "),_c('option',{attrs:{"value":"2"}},[_vm._v("Incompleto")]),_vm._v(" "),_c('option',{attrs:{"value":"3"}},[_vm._v("Completo")])])])]),_vm._v(" "),_c('div',{staticClass:"col-lg-12 col-md-12 col-xs-12"},[_c('div',{staticClass:"form-group"},[_c('label',{staticClass:"control-label"},[_vm._v("Título (Opcional)")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.entity.title),expression:"entity.title"}],staticClass:" form-control",attrs:{"type":"text","name":"title"},domProps:{"value":(_vm.entity.title)},on:{"keydown":_vm.unsaved,"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.entity, "title", $event.target.value)}}}),_vm._v(" "),_c('p',{staticClass:"help-block"},[_vm._v("Ej: Ingeniero,\n                Licenciado, DBA, Programador, Consultor, Especialista IT, Etc\n            ")])])]),_vm._v(" "),_c('div',{staticClass:"col-lg-12 col-xs-12"},[(!_vm.h.isSaved)?_c('button',{staticClass:"btn",class:_vm.submitClass,attrs:{"name":"submitbtn","disabled":_vm.h.submitInProgress}},[_vm._v(" "+_vm._s(_vm.submitValue)+"\n        ")]):_vm._e()])])}
+__vue__options__.staticRenderFns = []
+if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-5a25738a", __vue__options__)
+  } else {
+    hotAPI.reload("data-v-5a25738a", __vue__options__)
+  }
+})()}
+},{"../utils/crud":49,"../utils/form-error.vue":50,"../utils/save-status.vue":52,"vue":34,"vue-hot-reload-api":33}],46:[function(require,module,exports){
+;(function(){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _formError = require('../utils/form-error.vue');
+
+var _formError2 = _interopRequireDefault(_formError);
+
+var _crud = require('../utils/crud');
+
+var _crud2 = _interopRequireDefault(_crud);
+
+var _saveStatus = require('../utils/save-status.vue');
+
+var _saveStatus2 = _interopRequireDefault(_saveStatus);
+
+var _axios = require('axios');
+
+var _axios2 = _interopRequireDefault(_axios);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  name: 'form-personal-information',
+  props: ['value', 'isSaved'],
+  mixins: [_crud2.default],
+  components: { fe: _formError2.default, saveStatus: _saveStatus2.default },
+  data: function data() {
+    return {
+      errors: [],
+      h: {
+        loading: false,
+        isSaved: true,
+        submitInProgress: false
+      },
+      url: {
+        get: '/pi/cv-personal-information/get',
+        save: '/pi/cv-personal-information/save',
+        countryList: '/pi/country-api/list'
+      },
+      countries: [],
+      entity: {}
+    };
+  },
+
+  methods: {
+    populate: function populate(data) {
+      this.entity.name = data.name;
+      this.entity.lastname = data.lastname;
+      this.entity.birthdate = data.birthdate;
+      this.entity.years = data.years;
+      if (data.nationality) {
+        this.entity.nationality.id = data.nationality.id;
+        this.entity.nationality.name = data.nationality.name;
+        this.entity.nationality.icon = data.nationality.icon;
+      }
+    },
+    loadCountries: function loadCountries() {
+      var _this = this;
+
+      _axios2.default.get(this.url.countryList, {
+        headers: {
+          accept: 'application/json'
+        }
+      }).then(function (response) {
+        _this.countries = response.data;
+      });
+    }
+  },
+  created: function created() {
+    this.entity = this.value;
+    this.loadCountries();
+  },
+  computed: {
+    postParams: function postParams() {
+      return {
+        name: this.entity.name,
+        lastname: this.entity.lastname,
+        birthdate: this.entity.birthdate,
+        nationality: this.entity.nationality.id
+      };
+    }
+  }
+
+};
+})()
+if (module.exports.__esModule) module.exports = module.exports.default
+var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
+if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('form',{attrs:{"method":"POST","name":"CvPersonalInformationForm"},on:{"submit":function($event){$event.preventDefault();_vm.save($event)}}},[_c('div',{staticClass:"col-lg-12 col-md-12 col-xs-12"},[_c('div',{staticClass:"form-group",class:{'has-error': _vm.errors.name}},[_c('label',{staticClass:"control-label"},[_vm._v("Nombre")]),_vm._v(" "),_c('saveStatus',{attrs:{"isSaved":_vm.h.isSaved}}),_vm._v(" "),_c('div',{staticClass:"input-group"},[_vm._m(0),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.entity.name),expression:"entity.name"}],staticClass:" form-control",attrs:{"type":"text","name":"name"},domProps:{"value":(_vm.entity.name)},on:{"keydown":_vm.unsaved,"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.entity, "name", $event.target.value)}}})]),_vm._v(" "),_c('fe',{attrs:{"errors":_vm.errors.name}})],1)]),_vm._v(" "),_c('div',{staticClass:"col-lg-12 col-md-12 col-xs-12"},[_c('div',{staticClass:"form-group",class:{'has-error': _vm.errors.lastname}},[_c('label',{staticClass:"control-label"},[_vm._v("Apellido")]),_vm._v(" "),_c('div',{staticClass:"input-group"},[_vm._m(1),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.entity.lastname),expression:"entity.lastname"}],staticClass:" form-control",attrs:{"type":"text","name":"lastname"},domProps:{"value":(_vm.entity.lastname)},on:{"keydown":_vm.unsaved,"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.entity, "lastname", $event.target.value)}}})]),_vm._v(" "),_c('fe',{attrs:{"errors":_vm.errors.lastname}})],1)]),_vm._v(" "),_c('div',{staticClass:"col-lg-12 col-md-12 col-xs-12"},[_c('div',{staticClass:"form-group"},[_c('label',{staticClass:"control-label"},[_vm._v("Fecha de Nacimiento")]),_vm._v(" "),_c('div',{staticClass:"input-group"},[_vm._m(2),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.entity.birthdate),expression:"entity.birthdate"}],staticClass:" form-control",attrs:{"type":"date","name":"birthdate"},domProps:{"value":(_vm.entity.birthdate)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.entity, "birthdate", $event.target.value)}}})]),_vm._v(" "),_c('fe',{attrs:{"errors":_vm.errors.birthdate}})],1)]),_vm._v(" "),_c('div',{staticClass:"col-lg-12 col-md-12 col-xs-12"},[_c('div',{staticClass:"form-group"},[_c('label',{staticClass:"control-label"},[_vm._v("Nacionalidad")]),_vm._v(" "),_c('select',{directives:[{name:"model",rawName:"v-model",value:(_vm.entity.nationality.id),expression:"entity.nationality.id"}],staticClass:" form-control",attrs:{"name":"nationality"},on:{"change":[function($event){var $$selectedVal = Array.prototype.filter.call($event.target.options,function(o){return o.selected}).map(function(o){var val = "_value" in o ? o._value : o.value;return val}); _vm.$set(_vm.entity.nationality, "id", $event.target.multiple ? $$selectedVal : $$selectedVal[0])},_vm.unsaved]}},[_c('option',{attrs:{"value":""}}),_vm._v(" "),_vm._l((_vm.countries),function(value,key,index){return _vm._t("default",[_c('option',{domProps:{"value":key}},[_vm._v(_vm._s(value))])])})],2),_vm._v(" "),_c('fe',{attrs:{"errors":_vm.errors.nationality}})],1)]),_vm._v(" "),_c('div',{staticClass:"col-lg-12 col-xs-12"},[(!_vm.h.isSaved)?_c('button',{staticClass:"btn",class:_vm.submitClass,attrs:{"name":"submitbtn","disabled":_vm.h.submitInProgress}},[_vm._v(" "+_vm._s(_vm.submitValue))]):_vm._e()])])}
+__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"input-group-addon"},[_c('i',{staticClass:"fa fa-id-card-o"})])},function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"input-group-addon"},[_c('i',{staticClass:"fa fa-id-card"})])},function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"input-group-addon"},[_c('i',{staticClass:"fa fa-birthday-cake"})])}]
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
@@ -13734,7 +13829,133 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.reload("data-v-114498ad", __vue__options__)
   }
 })()}
-},{"../utils/form-error.vue":47,"vue":34,"vue-hot-reload-api":33}],45:[function(require,module,exports){
+},{"../utils/crud":49,"../utils/form-error.vue":50,"../utils/save-status.vue":52,"axios":1,"vue":34,"vue-hot-reload-api":33}],47:[function(require,module,exports){
+;(function(){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _formError = require('../utils/form-error.vue');
+
+var _formError2 = _interopRequireDefault(_formError);
+
+var _crud = require('../utils/crud');
+
+var _crud2 = _interopRequireDefault(_crud);
+
+var _saveStatus = require('../utils/save-status.vue');
+
+var _saveStatus2 = _interopRequireDefault(_saveStatus);
+
+var _axios = require('axios');
+
+var _axios2 = _interopRequireDefault(_axios);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  name: 'form-picture',
+  props: ['value', 'isSaved'],
+  mixins: [_crud2.default],
+  components: { fe: _formError2.default, saveStatus: _saveStatus2.default },
+  data: function data() {
+    return {
+      errors: [],
+      h: {
+        loading: false,
+        isSaved: true,
+        submitInProgress: false
+      },
+      url: {
+        get: '/pi/cv-picture/get',
+        save: '/pi/cv-picture/save'
+      },
+      progressBar: 0,
+      entity: {
+        src: false
+      }
+    };
+  },
+
+  methods: {
+    populate: function populate(data) {
+      this.entity.src = data.src;
+    },
+    getFormData: function getFormData() {
+      var formData = new FormData();
+      var imagefile = document.querySelector('#picture');
+      formData.append('picture', imagefile.files[0]);
+      return formData;
+    },
+    getConfig: function getConfig() {
+      var _this = this;
+
+      return {
+        headers: {
+          'content-type': 'multipart/form-data'
+        },
+        onUploadProgress: function onUploadProgress(progressEvent) {
+          _this.progressBar = Math.round(progressEvent.loaded * 100 / progressEvent.total);
+        }
+      };
+    },
+    save: function save() {
+      var _this2 = this;
+
+      this.errors = [];
+      this.h.submitInProgress = true;
+      _axios2.default.post(this.url.save, this.getFormData(), this.getConfig()).then(function (response) {
+        if (response.data.status) {
+          _this2.populate(response.data.data);
+        } else {
+          _this2.errors = response.data.errors;
+        }
+        _this2.h.submitInProgress = false;
+        _this2.timerResetBar();
+      }).catch(function (error) {
+        _this2.errors = error.response.data.errors;
+        _this2.h.submitInProgress = false;
+        _this2.timerResetBar();
+      });
+    },
+    timerResetBar: function timerResetBar() {
+      var _this3 = this;
+
+      setTimeout(function () {
+        _this3.progressBar = 0;
+      }, 1000);
+    }
+  },
+  created: function created() {
+    this.entity = this.value;
+  },
+  computed: {
+    postParams: function postParams() {
+      return {
+        src: this.entity.src
+      };
+    }
+  }
+};
+})()
+if (module.exports.__esModule) module.exports = module.exports.default
+var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
+if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('form',{staticClass:"form-horizontal",attrs:{"method":"post","name":"CvPicture","id":"CvPicture","role":"form","enctype":"multipart/form-data"},on:{"submit":function($event){$event.preventDefault();_vm.save($event)}}},[_c('div',{staticClass:"col-lg-6 col-md-6 col-xs-6 col-lg-offset-3 col-md-offset-3 col-xs-offset-3"},[(_vm.entity.src)?_c('div',[_c('img',{staticClass:"img-responsive img-circle img-thumbnail",attrs:{"src":_vm.entity.src}})]):_c('div',[_c('img',{staticClass:"img-responsive img-circle img-thumbnail",staticStyle:{"width":"100px"},attrs:{"src":"/img/user.jpg"}})])]),_vm._v(" "),_c('div',{staticClass:"clearfix"}),_vm._v(" "),_c('br'),_vm._v(" "),_c('div',{staticClass:"col-lg-12 col-md-12 col-xs-12"},[_c('div',{staticClass:"col-lg-3 col-md-3 col-sm-3 col-xs-12 text-center"},[_c('div',{staticClass:"form-group"},[_c('label',{staticClass:"control-label"}),_vm._v(" "),_c('label',{staticClass:"btn btn-default fa fa-upload"},[_c('input',{staticClass:"hidden",attrs:{"type":"file","name":"picture","id":"picture"},on:{"change":_vm.save}})]),_vm._v(" "),_c('fe',{attrs:{"errors":_vm.errors.picture}})],1)]),_vm._v(" "),_c('div',{staticClass:"col-lg-9 col-md-9 col-sm-9 col-xs-12 text-center"},[_c('div',{staticClass:"progress progress-striped active margin6"},[_c('div',{staticClass:"progress-bar progress-bar-warning ",style:({width: _vm.progressBar + '%' }),attrs:{"id":"cv-picture-bar","role":"progressbar","aria-valuenow":_vm.progressBar,"aria-valuemin":"1","aria-valuemax":"100"}})])])])])}
+__vue__options__.staticRenderFns = []
+if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-121acf40", __vue__options__)
+  } else {
+    hotAPI.reload("data-v-121acf40", __vue__options__)
+  }
+})()}
+},{"../utils/crud":49,"../utils/form-error.vue":50,"../utils/save-status.vue":52,"axios":1,"vue":34,"vue-hot-reload-api":33}],48:[function(require,module,exports){
 ;(function(){
 'use strict';
 
@@ -13761,7 +13982,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.reload("data-v-517feff8", __vue__options__)
   }
 })()}
-},{"vue":34,"vue-hot-reload-api":33}],46:[function(require,module,exports){
+},{"vue":34,"vue-hot-reload-api":33}],49:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -13788,8 +14009,13 @@ exports.default = {
       }
     };
   },
-  created: function created() {
-    this.initProps();
+  computed: {
+    submitValue: function submitValue() {
+      return this.h.isSaved ? 'Ok' : 'Guardar';
+    },
+    submitClass: function submitClass() {
+      return this.h.isSaved ? 'btn-success' : 'btn-primary fa fa-save';
+    }
   },
   methods: {
     unsaved: function unsaved() {
@@ -13828,7 +14054,7 @@ exports.default = {
   }
 };
 
-},{"axios":1,"qs":29}],47:[function(require,module,exports){
+},{"axios":1,"qs":29}],50:[function(require,module,exports){
 ;(function(){
 'use strict';
 
@@ -13854,26 +14080,16 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.reload("data-v-024ffac7", __vue__options__)
   }
 })()}
-},{"vue":34,"vue-hot-reload-api":33}],48:[function(require,module,exports){
+},{"vue":34,"vue-hot-reload-api":33}],51:[function(require,module,exports){
 ;(function(){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-
-var _unsaved = require('./unsaved.vue');
-
-var _unsaved2 = _interopRequireDefault(_unsaved);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 exports.default = {
   name: 'modal',
-  props: ['modalId', 'modalClass', 'modalSize', 'title', 'isSaved'],
-  components: {
-    unsaved: _unsaved2.default
-  },
+  props: ['modalId', 'modalClass', 'modalSize', 'title'],
   data: function data() {
     return {};
   }
@@ -13882,7 +14098,7 @@ exports.default = {
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"modal fade ",class:[ _vm.modalClass ? _vm.modalClass : '' ],attrs:{"id":_vm.modalId,"tabindex":"-1","role":"dialog"}},[_c('div',{staticClass:"modal-dialog",class:[ _vm.modalSize ? _vm.modalSize : 'modal-sm' ],attrs:{"role":"document"}},[_c('div',{staticClass:"modal-content"},[_c('div',{staticClass:"modal-header"},[_vm._m(0),_vm._v(" "),_c('h4',{staticClass:"modal-title"},[_vm._v(_vm._s(_vm.title)+"\n                "),_c('unsaved',{attrs:{"isSaved":_vm.isSaved}})],1)]),_vm._v(" "),_c('div',{staticClass:"modal-body"},[_vm._t("default")],2)])])])}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"modal fade ",class:[ _vm.modalClass ? _vm.modalClass : '' ],attrs:{"id":_vm.modalId,"tabindex":"-1","role":"dialog"}},[_c('div',{staticClass:"modal-dialog",class:[ _vm.modalSize ? _vm.modalSize : 'modal-sm' ],attrs:{"role":"document"}},[_c('div',{staticClass:"modal-content"},[_c('div',{staticClass:"modal-header"},[_vm._m(0),_vm._v(" "),_c('h4',{staticClass:"modal-title"},[_vm._v(_vm._s(_vm.title)+"\n\n                ")])]),_vm._v(" "),_c('div',{staticClass:"modal-body"},[_c('div',{staticClass:"row"},[_vm._t("default")],2)])])])])}
 __vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('button',{staticClass:"close",attrs:{"type":"button","data-dismiss":"modal","aria-label":"Close"}},[_c('span',{attrs:{"aria-hidden":"true"}},[_vm._v("×")])])}]
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -13894,7 +14110,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.reload("data-v-a0812e56", __vue__options__)
   }
 })()}
-},{"./unsaved.vue":49,"vue":34,"vue-hot-reload-api":33}],49:[function(require,module,exports){
+},{"vue":34,"vue-hot-reload-api":33}],52:[function(require,module,exports){
 ;(function(){
 'use strict';
 
@@ -13909,19 +14125,32 @@ exports.default = {
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (!_vm.isSaved)?_c('span',{staticClass:"text-danger fa fa-save"}):_vm._e()}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (!_vm.isSaved)?_c('div',{staticClass:"pull-right"},[_c('span',{staticClass:"text-danger fa fa-save"})]):_vm._e()}
 __vue__options__.staticRenderFns = []
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-e3bb2d94", __vue__options__)
+    hotAPI.createRecord("data-v-abd7dc2c", __vue__options__)
   } else {
-    hotAPI.reload("data-v-e3bb2d94", __vue__options__)
+    hotAPI.reload("data-v-abd7dc2c", __vue__options__)
   }
 })()}
-},{"vue":34,"vue-hot-reload-api":33}],50:[function(require,module,exports){
+},{"vue":34,"vue-hot-reload-api":33}],53:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {
+  props: ['propEntity', 'dataTarget'],
+  created: function created() {
+    this.entity = this.propEntity;
+  }
+};
+
+},{}],54:[function(require,module,exports){
 'use strict';
 
 var _vue = require('vue');
@@ -13944,4 +14173,4 @@ new _vue2.default({
   }
 });
 
-},{"./App.vue":35,"vue":34}]},{},[50]);
+},{"./App.vue":35,"vue":34}]},{},[54]);
