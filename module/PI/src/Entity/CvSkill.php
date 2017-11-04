@@ -119,7 +119,17 @@ class CvSkill
 
     public function __toString()
     {
-return;
+        return $this->getSkill()->getName();
+    }
+
+    public function toArray()
+    {
+        return [
+            'id' => $this->getId(),
+            'lvl' => $this->getLvl(),
+            'priority' => $this->getPriority(),
+            'skill' => ['id' => $this->getSkill()->getId(), 'name' => $this->getSkill()->getName()]
+        ];
     }
 
 

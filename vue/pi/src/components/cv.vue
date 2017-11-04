@@ -26,7 +26,7 @@
             <cv-experience :propEntity="cv.cvExperiences"></cv-experience>
         </div>
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-            <cv-skills></cv-skills>
+            <cv-skills :propEntity="cv.cvSkills"></cv-skills>
         </div>
 
         <div class="clearfix"></div>
@@ -132,7 +132,8 @@
             },
             title: ''
           },
-          cvExperiences: []
+          cvExperiences: [],
+          cvSkills: []
         }
       }
     },
@@ -143,6 +144,7 @@
         this.cv.cvPicture = data.cvPicture
         this.cv.cvContact = data.cvContact
         this.cv.cvExperiences = data.cvExperiences
+        this.cv.cvSkills = data.cvSkills
       }
     }
     ,

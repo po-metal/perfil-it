@@ -4,6 +4,7 @@
             <strong><i class="fa fa-star margin-r-5"></i> Habilidades Técnicas</strong>
         </div>
         <div class="box-body ">
+            <skill v-if="entity"  v-for="skill in entity" :skill="skill" />
 
         </div>
 
@@ -11,12 +12,17 @@
 </template>
 
 <script>
+  import skill from './skill.vue'
+  import view from './utils/view'
+
 export default {
   name: 'cv-skills',
-  data () {
+  mixins: [view],
+  components: {skill},
+  data() {
     return {
-      msg: 'Welcome'
+      entity: []
     }
-  }
+  },
 }
 </script>

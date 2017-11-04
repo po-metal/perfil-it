@@ -20,6 +20,11 @@
 <?php $this->headLink()->prependStylesheet($this->basePath('shared/flag-icon-css-master/css/flag-icon.min.css')) ?>
 
 
+<?php
+$this->headLink()->appendStylesheet($this->basePath() . '/modules/pi/css/cv.css');
+?>
+
+
 <script type="text/javascript">
     var cvLoad = <?= $this->cvLoad; ?>
 

@@ -204,6 +204,13 @@ class Cv
                 }
             }
         }
+        if ($this->getSkills()) {
+            if ($this->getSkills()) {
+                foreach ($this->getSkills() as $skill) {
+                    $a["cvSkills"][] = $skill->toArray();
+                }
+            }
+        }
         return $a;
     }
 
