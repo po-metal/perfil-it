@@ -1,39 +1,76 @@
 <template>
-    <div class="box box-primary">
-        <div class="box-header">
-            <strong><i class="fa fa-suitcase margin-r-5"></i> Experiencia </strong>
-            <button class="btn btn-default fa fa-plus-square btn-xs pull-right" @click="addJob"
-                    data-toggle="modal" data-target="#cv-experience-modal">
-            </button>
+    <div>
+        <div class="box box-primary">
+            <div class="box-header">
+                <strong><i class="fa fa-suitcase margin-r-5"></i> Experiencia </strong>
+                <button class="btn btn-default fa fa-plus-square btn-xs pull-right" @click="addExp"
+                        data-toggle="modal" data-target="#cv-experience-modal">
+                </button>
 
 
+            </div>
+            <div class="panel-body ">
+
+                <experience v-if="entity" v-for="(exp, index) in entity" :exp="exp" :index="index"
+                            v-on:editExp="modExp"/>
+
+            </div>
         </div>
-        <div class="panel-body ">
-
-            <experience v-if="entity"  v-for="exp in entity" :exp="exp" :editJob="editJob(id)" />
-
-        </div>
+        <modal :modalId="mp.id" :title="mp.title" :modalSize="'modal-lg'">
+            <form-experience v-model="expForm"/>
+        </modal>
     </div>
 </template>
 
 <script>
+  import modal from './utils/modal.vue'
   import experience from './experience.vue'
   import view from './utils/view'
+  import formExperience from './form/form-experience.vue'
+
   export default {
     name: 'cv-experiences',
     mixins: [view],
-    components: {experience},
+    components: {experience, modal, formExperience},
     data() {
       return {
-        entity: []
+        mp: {
+          id: 'modal-cv-exp',
+          title: 'Experiencia'
+        },
+        entity: [],
+        blankExp: {
+          id: '',
+          company: '',
+          job: '',
+          customJob: '',
+          dateFrom: '',
+          dateTo: '',
+          currentJob: '',
+          summary: '',
+          description: ''
+        },
+        expForm: {
+        }
       }
     },
+    created: function () {
+      this.expForm = this.blankExp
+    },
     methods: {
-      addJob: function (){
-
+      addExp: function () {
+        console.log('newExp')
+        this.expForm = this.blankExp
+        this.showExpModal()
       },
-      editJob: function (id){
-        console.log(id)
+      modExp: function (index) {
+        console.log('modExp')
+        console.log(this.entity[index])
+        this.expForm = this.entity[index]
+        this.showExpModal()
+      },
+      showExpModal: function () {
+        $('#' + this.mp.id).modal("show");
       }
     }
   }

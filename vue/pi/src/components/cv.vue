@@ -1,12 +1,12 @@
 <template>
-    <section >
+    <section>
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
             <div class="box box-primary">
                 <div class="box-body box-profile">
-                    <div class="row" >
+                    <div class="row">
                         <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
                             <cv-picture :propEntity="cv.cvPicture"
-                                        :dataTarget="mp.cvPicture.id" />
+                                        :dataTarget="mp.cvPicture.id"/>
                         </div>
                         <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
                             <cv-personal-information :propEntity="cv.cvPersonalInformation"
@@ -15,7 +15,7 @@
                         <div class="clearfix"></div>
                         <br>
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <cv-education :propEntity="cv.cvEducation" :dataTarget="mp.cvEducation.id" />
+                            <cv-education :propEntity="cv.cvEducation" :dataTarget="mp.cvEducation.id"/>
                             <cv-contact :propEntity="cv.cvContact" :dataTarget="mp.cvContact.id"/>
                         </div>
                     </div>
@@ -23,7 +23,7 @@
             </div>
         </div>
         <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
-            <cv-experience :propEntity="cv.cvExperiences"></cv-experience>
+            <cv-experiences :propEntity="cv.cvExperiences" />
         </div>
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
             <cv-skills :propEntity="cv.cvSkills"></cv-skills>
@@ -48,6 +48,9 @@
             <form-picture v-model="cv.cvPicture"/>
         </modal>
 
+
+
+
     </section>
 </template>
 
@@ -58,7 +61,7 @@
   import cvPicture from './cv-picture.vue'
   import cvEducation from './cv-education.vue'
   import cvContact from './cv-contact.vue'
-  import cvExperience from './cv-experiences.vue'
+  import cvExperiences from './cv-experiences.vue'
   import cvSkills from './cv-skills.vue'
   import formPersonalInformation from './form/form-personal-information.vue'
   import formContact from './form/form-contact.vue'
@@ -74,7 +77,7 @@
       cvPicture,
       cvEducation,
       cvContact,
-      cvExperience,
+      cvExperiences,
       cvSkills,
       formPersonalInformation,
       formEducation,
@@ -99,7 +102,7 @@
           cvEducation: {
             id: 'modal-cv-e',
             title: 'Educación'
-          }
+          },
         },
         cv: {
           cvPersonalInformation: {
@@ -145,7 +148,7 @@
         this.cv.cvContact = data.cvContact
         this.cv.cvExperiences = data.cvExperiences
         this.cv.cvSkills = data.cvSkills
-      }
+      },
     }
     ,
     created: function () {

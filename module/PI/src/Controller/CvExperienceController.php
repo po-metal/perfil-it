@@ -127,11 +127,51 @@ class CvExperienceController extends AbstractActionController {
     }
 
     public function saveAction() {
-        return [];
+        $id =  $this->params("id");
+
+        if($this->getRequest()->isPost()){
+            $id = $this->getRequest()->getPost("id");
+        }
+
+        $new = false;
+
+        $experience = $this->getExperience($id);
+
+        if(!$experience){
+            $experience = new \PI\Entity\CvExperience();
+            $experience->setCv($this->pICv());
+        }
+
+
+        //Generate Form
+        $form = $this->formBuilder($this->getEm(), 'PI\Entity\CvExperience');
+        $form->bind($experience);
+
+        //Remove CV
+        $form->getInputFilter()->remove('cv');
+
+        //ID
+        $hid = new \Zend\Form\Element\Hidden("id");
+        $hid->setValue($id);
+        $form->add($hid);
+
+
+        //Process Form
+        $service = $this->formProcess($this->getEm(), $form);
+        $rview = null;
+        if ($service->getStatus()) {
+            $result = ["status" => $service->getStatus(),"data" => $experience->toArray()];
+        }else{
+            $result = ["status" => $service->getStatus(),"errors" => $form->getMessages(),"data" => $experience->toArray()];
+            $this->getResponse()->setStatusCode(\Zend\Http\Response::STATUS_CODE_422);
+        }
+        return new \Zend\View\Model\JsonModel( $result );
     }
 
     public function loadAction() {
-        return [];
+        $a = $this->pICv()->toArray();
+
+        return new \Zend\View\Model\JsonModel( $a["CvExperiences"] );
     }
 
 }

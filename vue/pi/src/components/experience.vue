@@ -1,13 +1,13 @@
 <template>
-    <div :id="exp+this.id">
-        <div class="box box-default box-cv" @click="editJob()">
+    <div :id="exp+this.id" @click="editExp">
+        <div class="box box-default box-cv" >
             <div class="box-header">
                 <strong> {{ theJob }}</strong> en <a href="#" target="blank">{{ entity.company }}</a>
 
                 <span class="pull-right">{{ entity.time }}</span>
             </div>
-            <div class="box-body ">
-                {{ entity.summary }}
+            <div class="box-body" >
+                {{entity.summary}}
             </div>
 
         </div>
@@ -17,7 +17,7 @@
 <script>
 export default {
   name: 'experience',
-  props: ['exp'],
+  props: ['exp', 'index'],
   data () {
     return {
       entity: {
@@ -38,8 +38,8 @@ export default {
     }
   },
   methods: {
-    editJob: function () {
-      this.$emit('editJob',this.entity.id)
+    editExp: function () {
+      this.$emit('editExp', this.index)
     }
   },
   computed: {

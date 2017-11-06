@@ -1,12 +1,17 @@
 <template>
-    <form method="POST" name="CvExperience" v-on:submit.prevent="save" class="form-vertical">
+    <form method="POST" name="CvExperience" v-on:submit.prevent="save" class="form-vertical" id="CvExperience">
 
         <div class="clearfix"></div>
+
+        <div class="input-hidden">
+            <input type="hidden" name="id" v-model="entity.id">
+        </div>
+
         <div class="col-lg-12 col-md-12 col-xs-12">
             <div class="form-group">
                 <label class="control-label">Compañia</label>
                 <saveStatus :isSaved="h.isSaved"></saveStatus>
-                <input type="text" name="company" class=" form-control" value="">
+                <input type="text" name="company" class=" form-control" value="" v-model="entity.company">
                 <fe :errors="errors.company"/>
             </div>
         </div>
@@ -16,7 +21,7 @@
         <div class="col-lg-6 col-md-6 col-xs-12">
             <div class="form-group">
                 <label class="control-label">Cargo (Normalizado por Perfil IT)</label>
-                <select name="job" class=" form-control">
+                <select name="job" class=" form-control" v-model="entity.job">
                     <option value=""></option>
                     <option value="1">Operador de Soporte Tecnico</option>
                     <option value="2">Implementador</option>
@@ -30,7 +35,7 @@
         <div class="col-lg-6 col-md-6 col-xs-12">
             <div class="form-group">
                 <label class="control-label">Cargo (Personalizado)</label>
-                <input type="text" name="customJob" class=" form-control" value="">
+                <input type="text" name="customJob" class=" form-control" v-model="entity.customJob">
                 <fe :errors="errors.customJob"/>
             </div>
         </div>
@@ -40,12 +45,12 @@
         <div class="col-lg-6 col-md-6 col-xs-12">
             <div class="form-group">
                 <label class="control-label">Desde</label>
-                <input type="date" name="dateFrom" class=" form-control" value="">
+                <input type="date" name="dateFrom" class=" form-control" v-model="entity.dateFrom">
                 <fe :errors="errors.dateFrom"/>
             </div>
             <div class="form-group">
-                <input type="hidden" name="currentJob" value="0">
-                <input type="checkbox" name="currentJob" autocomplete="off" value="1">
+                <input type="hidden" name="currentJob" v-model="entity.currentJob">
+                <input type="checkbox" name="currentJob" autocomplete="off" v-model="entity.currentJob">
                 Actualmente trabajo aquí
                 <fe :errors="errors.currentJob"/>
             </div>
@@ -54,7 +59,7 @@
         <div class="col-lg-6 col-md-6 col-xs-12">
             <div class="form-group">
                 <label class="control-label">Hasta</label>
-                <input type="date" name="dateTo" class=" form-control" value="">
+                <input type="date" name="dateTo" class=" form-control" v-model="entity.dateTo">
                 <fe :errors="errors.dateTo"/>
             </div>
         </div>
@@ -64,7 +69,7 @@
             <div class="col-lg-12 col-md-12 col-xs-12">
                 <div class="form-group">
                     <label class="control-label">Resumen Breve (160 Caracteres)</label>
-                    <input type="text" name="summary" class=" form-control" value="">
+                    <input type="text" name="summary" class=" form-control" v-model="entity.summary">
                     <fe :errors="errors.summary"/>
                 </div>
             </div>
@@ -76,17 +81,13 @@
             <div class="col-lg-12 col-md-12 col-xs-12">
                 <div class="form-group">
                     <label class="control-label">Descripción detallada (1000 Caraceteres)</label>
-                    <textarea name="description" class=" form-control"></textarea>
+                    <textarea name="description" class=" form-control" v-model="entity.description"></textarea>
                     <fe :errors="errors.description"/>
                 </div>
             </div>
         </div>
         <div class="clearfix"></div>
 
-
-        <div class="input-hidden">
-            <input type="hidden" name="id" value="">
-        </div>
 
         <div class="col-lg-12 col-xs-12">
             <button name="submitbtn" class="btn" :class="submitClass" v-if="!h.isSaved"
@@ -104,19 +105,33 @@
   export default {
     name: 'form-experience',
     mixins: [crud],
+    components: {
+      saveStatus, fe
+    },
     props: ['value', 'isSaved'],
     data() {
       return {
+        errors: [],
         h: {
           loading: false,
           isSaved: true,
           submitInProgress: false
         },
         url: {
-          get: '/pi/cv-contact/get',
-          save: '/pi/cv-contact/save'
+          get: '/pi/cv-experience/get',
+          save: '/pi/cv-experience/save'
         },
-        entity: {}
+        entity: {
+          id: '',
+          company: '',
+          job: '',
+          customJob: '',
+          dateFrom: '',
+          dateTo: '',
+          currentJob: '',
+          summary: '',
+          description: ''
+        }
       }
     },
     methods: {
@@ -135,13 +150,18 @@
     created: function () {
       this.entity = this.value
     },
+    watch: {
+      value: function (newVal, oldVal) { // watch it
+        this.entity = newVal
+      }
+    },
     computed: {
       postParams: function () {
         return {
-          id: this.entity.id
+          id: this.entity.id,
           company: this.entity.company,
           job: this.entity.job,
-          customJob: this.entity.customJob
+          customJob: this.entity.customJob,
           dateFrom: this.entity.dateFrom,
           dateTo: this.entity.dateTo,
           currentJob: this.entity.currentJob,
