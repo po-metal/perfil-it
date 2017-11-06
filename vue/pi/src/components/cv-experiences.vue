@@ -42,7 +42,10 @@
         blankExp: {
           id: '',
           company: '',
-          job: '',
+          job: {
+            id: null,
+            name: null
+          },
           customJob: '',
           dateFrom: '',
           dateTo: '',

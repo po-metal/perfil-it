@@ -41,11 +41,12 @@ class CvExperienceController extends AbstractActionController {
     }
 
     protected function getExperience($id = null) {
-        //Get Object
-        $CV = $this->pICv();
+
         if ($id) {
             $experience = $this->getEm()->getRepository(self::ENTITY)->find($id);
         } else {
+            //Get Object
+            $CV = $this->pICv();
             $experience = new \PI\Entity\CvExperience();
             $experience->setCv($CV);
         }
@@ -127,28 +128,20 @@ class CvExperienceController extends AbstractActionController {
     }
 
     public function saveAction() {
-        $id =  $this->params("id");
-
         if($this->getRequest()->isPost()){
             $id = $this->getRequest()->getPost("id");
         }
 
-        $new = false;
-
         $experience = $this->getExperience($id);
-
-        if(!$experience){
-            $experience = new \PI\Entity\CvExperience();
-            $experience->setCv($this->pICv());
-        }
-
 
         //Generate Form
         $form = $this->formBuilder($this->getEm(), 'PI\Entity\CvExperience');
         $form->bind($experience);
 
+
         //Remove CV
         $form->getInputFilter()->remove('cv');
+        $form->remove('cv');
 
         //ID
         $hid = new \Zend\Form\Element\Hidden("id");

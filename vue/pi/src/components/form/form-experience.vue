@@ -11,7 +11,7 @@
             <div class="form-group">
                 <label class="control-label">Compañia</label>
                 <saveStatus :isSaved="h.isSaved"></saveStatus>
-                <input type="text" name="company" class=" form-control" value="" v-model="entity.company">
+                <input type="text" name="company" class=" form-control" value="" v-model="entity.company" @keydown="unsaved">
                 <fe :errors="errors.company"/>
             </div>
         </div>
@@ -21,7 +21,7 @@
         <div class="col-lg-6 col-md-6 col-xs-12">
             <div class="form-group">
                 <label class="control-label">Cargo (Normalizado por Perfil IT)</label>
-                <select name="job" class=" form-control" v-model="entity.job">
+                <select name="job" class=" form-control" v-model="entity.job.id" @change="unsaved">
                     <option value=""></option>
                     <option value="1">Operador de Soporte Tecnico</option>
                     <option value="2">Implementador</option>
@@ -35,7 +35,7 @@
         <div class="col-lg-6 col-md-6 col-xs-12">
             <div class="form-group">
                 <label class="control-label">Cargo (Personalizado)</label>
-                <input type="text" name="customJob" class=" form-control" v-model="entity.customJob">
+                <input type="text" name="customJob" class=" form-control" v-model="entity.customJob" @keydown="unsaved">
                 <fe :errors="errors.customJob"/>
             </div>
         </div>
@@ -45,12 +45,12 @@
         <div class="col-lg-6 col-md-6 col-xs-12">
             <div class="form-group">
                 <label class="control-label">Desde</label>
-                <input type="date" name="dateFrom" class=" form-control" v-model="entity.dateFrom">
+                <input type="date" name="dateFrom" class=" form-control" v-model="entity.dateFrom" @keydown="unsaved" @change="unsaved">
                 <fe :errors="errors.dateFrom"/>
             </div>
             <div class="form-group">
                 <input type="hidden" name="currentJob" v-model="entity.currentJob">
-                <input type="checkbox" name="currentJob" autocomplete="off" v-model="entity.currentJob">
+                <input type="checkbox" name="currentJob" autocomplete="off" v-model="entity.currentJob" @keydown="unsaved" @change="unsaved">
                 Actualmente trabajo aquí
                 <fe :errors="errors.currentJob"/>
             </div>
@@ -59,7 +59,7 @@
         <div class="col-lg-6 col-md-6 col-xs-12">
             <div class="form-group">
                 <label class="control-label">Hasta</label>
-                <input type="date" name="dateTo" class=" form-control" v-model="entity.dateTo">
+                <input type="date" name="dateTo" class=" form-control" v-model="entity.dateTo" @keydown="unsaved" @change="unsaved">
                 <fe :errors="errors.dateTo"/>
             </div>
         </div>
@@ -69,7 +69,7 @@
             <div class="col-lg-12 col-md-12 col-xs-12">
                 <div class="form-group">
                     <label class="control-label">Resumen Breve (160 Caracteres)</label>
-                    <input type="text" name="summary" class=" form-control" v-model="entity.summary">
+                    <input type="text" name="summary" class=" form-control" v-model="entity.summary" @keydown="unsaved" @change="unsaved">
                     <fe :errors="errors.summary"/>
                 </div>
             </div>
@@ -81,7 +81,7 @@
             <div class="col-lg-12 col-md-12 col-xs-12">
                 <div class="form-group">
                     <label class="control-label">Descripción detallada (1000 Caraceteres)</label>
-                    <textarea name="description" class=" form-control" v-model="entity.description"></textarea>
+                    <textarea name="description" class=" form-control" v-model="entity.description" @keydown="unsaved" @change="unsaved"></textarea>
                     <fe :errors="errors.description"/>
                 </div>
             </div>
@@ -138,7 +138,8 @@
       populate: function (data) {
         this.entity.id = data.id
         this.entity.company = data.company
-        this.entity.job = data.job
+        this.entity.job.id = data.job.id
+        this.entity.job.name = data.job.name
         this.entity.customJob = data.customJob
         this.entity.dateFrom = data.dateFrom
         this.entity.dateTo = data.dateTo
@@ -160,7 +161,7 @@
         return {
           id: this.entity.id,
           company: this.entity.company,
-          job: this.entity.job,
+          job: this.entity.job.id,
           customJob: this.entity.customJob,
           dateFrom: this.entity.dateFrom,
           dateTo: this.entity.dateTo,
