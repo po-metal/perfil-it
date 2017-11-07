@@ -41,6 +41,23 @@ export default {
         this.h.submitInProgress = false
       })
     },
+    del: function () {
+      this.errors = ''
+      this.h.submitInProgress = true
+      axios.post(
+        this.url.delete, qs.stringify(this.deleteParams)
+      ).then((response) => {
+        if (response.data.status) {
+          this.remove(response.data)
+        } else {
+          this.errors = response.data.errors
+        }
+        this.h.submitInProgress = false
+      }).catch((error) => {
+        this.errors = error.response.data.errors
+        this.h.submitInProgress = false
+      })
+    },
     loadProps: function () {
       axios.get(
         this.url.get,

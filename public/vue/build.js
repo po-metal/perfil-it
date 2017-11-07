@@ -13216,7 +13216,8 @@ exports.default = {
         summary: '',
         description: ''
       },
-      expForm: {}
+      expForm: {},
+      indexForm: ''
     };
   },
 
@@ -13227,6 +13228,7 @@ exports.default = {
     addExp: function addExp() {
       console.log('newExp');
       this.expForm = this.blankExp;
+      this.entity.push(this.expForm);
       this.showExpModal();
     },
     modExp: function modExp(index) {
@@ -13244,7 +13246,7 @@ exports.default = {
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('div',{staticClass:"box box-primary"},[_c('div',{staticClass:"box-header"},[_vm._m(0),_vm._v(" "),_c('button',{staticClass:"btn btn-default fa fa-plus-square btn-xs pull-right",attrs:{"data-toggle":"modal","data-target":"#cv-experience-modal"},on:{"click":_vm.addExp}})]),_vm._v(" "),_c('div',{staticClass:"panel-body "},_vm._l((_vm.entity),function(exp,index){return (_vm.entity)?_c('experience',{attrs:{"exp":exp,"index":index},on:{"editExp":_vm.modExp}}):_vm._e()}))]),_vm._v(" "),_c('modal',{attrs:{"modalId":_vm.mp.id,"title":_vm.mp.title,"modalSize":'modal-lg'}},[_c('form-experience',{model:{value:(_vm.expForm),callback:function ($$v) {_vm.expForm=$$v},expression:"expForm"}})],1)],1)}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('div',{staticClass:"box box-primary"},[_c('div',{staticClass:"box-header"},[_vm._m(0),_vm._v(" "),_c('button',{staticClass:"btn btn-default fa fa-plus-square btn-xs pull-right",attrs:{"data-toggle":"modal","data-target":"#cv-experience-modal"},on:{"click":_vm.addExp}})]),_vm._v(" "),_c('div',{staticClass:"panel-body "},_vm._l((_vm.entity),function(exp,index){return (_vm.entity)?_c('experience',{attrs:{"exp":exp,"index":index},on:{"editExp":_vm.modExp}}):_vm._e()}))]),_vm._v(" "),_c('modal',{attrs:{"modalId":_vm.mp.id,"title":_vm.mp.title,"modalSize":'modal-lg'}},[_c('form-experience',{attrs:{"index":_vm.indexForm},model:{value:(_vm.expForm),callback:function ($$v) {_vm.expForm=$$v},expression:"expForm"}})],1)],1)}
 __vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('strong',[_c('i',{staticClass:"fa fa-suitcase margin-r-5"}),_vm._v(" Experiencia ")])}]
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -13607,7 +13609,7 @@ exports.default = {
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":_vm.exp+this.id},on:{"click":_vm.editExp}},[_c('div',{staticClass:"box box-default box-cv"},[_c('div',{staticClass:"box-header"},[_c('strong',[_vm._v(" "+_vm._s(_vm.theJob))]),_vm._v(" en "),_c('a',{attrs:{"target":"blank"}},[_vm._v(_vm._s(_vm.entity.company))]),_vm._v(" "),_c('span',{staticClass:"pull-right"},[_vm._v(_vm._s(_vm.entity.time))])]),_vm._v(" "),_c('div',{staticClass:"box-body"},[_vm._v("\n            "+_vm._s(_vm.entity.summary)+"\n        ")])])])}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"cursor-pointer",attrs:{"id":_vm.exp+this.id},on:{"click":_vm.editExp}},[_c('div',{staticClass:"box box-default box-cv"},[_c('div',{staticClass:"box-header"},[_c('strong',[_vm._v(" "+_vm._s(_vm.theJob))]),_vm._v(" en "),_c('a',{attrs:{"target":"blank"}},[_vm._v(_vm._s(_vm.entity.company))]),_vm._v(" "),_c('span',{staticClass:"pull-right"},[_vm._v(_vm._s(_vm.entity.time))])]),_vm._v(" "),_c('div',{staticClass:"box-body"},[_vm._v("\n            "+_vm._s(_vm.entity.summary)+"\n        ")])])])}
 __vue__options__.staticRenderFns = []
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -13807,7 +13809,7 @@ exports.default = {
   components: {
     saveStatus: _saveStatus2.default, fe: _formError2.default
   },
-  props: ['value', 'isSaved'],
+  props: ['value', 'isSaved', 'index'],
   data: function data() {
     return {
       errors: [],
@@ -13818,7 +13820,8 @@ exports.default = {
       },
       url: {
         get: '/pi/cv-experience/get',
-        save: '/pi/cv-experience/save'
+        save: '/pi/cv-experience/save',
+        delete: '/pi/cv-experience/delete'
       },
       entity: {
         id: '',
@@ -13846,6 +13849,9 @@ exports.default = {
       this.entity.currentJob = data.currentJob;
       this.entity.summary = data.summary;
       this.entity.description = data.description;
+    },
+    remove: function remove() {
+      this.$emit('remove', this.index);
     }
   },
   created: function created() {
@@ -13869,6 +13875,11 @@ exports.default = {
         summary: this.entity.summary,
         description: this.entity.description
       };
+    },
+    deleteParams: function deleteParams() {
+      return {
+        id: this.entity.id
+      };
     }
   }
 };
@@ -13876,7 +13887,7 @@ exports.default = {
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('form',{staticClass:"form-vertical",attrs:{"method":"POST","name":"CvExperience","id":"CvExperience"},on:{"submit":function($event){$event.preventDefault();_vm.save($event)}}},[_c('div',{staticClass:"clearfix"}),_vm._v(" "),_c('div',{staticClass:"input-hidden"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.entity.id),expression:"entity.id"}],attrs:{"type":"hidden","name":"id"},domProps:{"value":(_vm.entity.id)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.entity, "id", $event.target.value)}}})]),_vm._v(" "),_c('div',{staticClass:"col-lg-12 col-md-12 col-xs-12"},[_c('div',{staticClass:"form-group"},[_c('label',{staticClass:"control-label"},[_vm._v("Compañia")]),_vm._v(" "),_c('saveStatus',{attrs:{"isSaved":_vm.h.isSaved}}),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.entity.company),expression:"entity.company"}],staticClass:" form-control",attrs:{"type":"text","name":"company","value":""},domProps:{"value":(_vm.entity.company)},on:{"keydown":_vm.unsaved,"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.entity, "company", $event.target.value)}}}),_vm._v(" "),_c('fe',{attrs:{"errors":_vm.errors.company}})],1)]),_vm._v(" "),_c('div',{staticClass:"clearfix"}),_vm._v(" "),_c('div',{staticClass:"clearfix"}),_vm._v(" "),_c('div',{staticClass:"col-lg-6 col-md-6 col-xs-12"},[_c('div',{staticClass:"form-group"},[_c('label',{staticClass:"control-label"},[_vm._v("Cargo (Normalizado por Perfil IT)")]),_vm._v(" "),_c('select',{directives:[{name:"model",rawName:"v-model",value:(_vm.entity.job.id),expression:"entity.job.id"}],staticClass:" form-control",attrs:{"name":"job"},on:{"change":[function($event){var $$selectedVal = Array.prototype.filter.call($event.target.options,function(o){return o.selected}).map(function(o){var val = "_value" in o ? o._value : o.value;return val}); _vm.$set(_vm.entity.job, "id", $event.target.multiple ? $$selectedVal : $$selectedVal[0])},_vm.unsaved]}},[_c('option',{attrs:{"value":""}}),_vm._v(" "),_c('option',{attrs:{"value":"1"}},[_vm._v("Operador de Soporte Tecnico")]),_vm._v(" "),_c('option',{attrs:{"value":"2"}},[_vm._v("Implementador")]),_vm._v(" "),_c('option',{attrs:{"value":"3"}},[_vm._v("Lider de Proyecto")]),_vm._v(" "),_c('option',{attrs:{"value":"4"}},[_vm._v("Programador")])]),_vm._v(" "),_c('fe',{attrs:{"errors":_vm.errors.job}})],1)]),_vm._v(" "),_c('div',{staticClass:"col-lg-6 col-md-6 col-xs-12"},[_c('div',{staticClass:"form-group"},[_c('label',{staticClass:"control-label"},[_vm._v("Cargo (Personalizado)")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.entity.customJob),expression:"entity.customJob"}],staticClass:" form-control",attrs:{"type":"text","name":"customJob"},domProps:{"value":(_vm.entity.customJob)},on:{"keydown":_vm.unsaved,"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.entity, "customJob", $event.target.value)}}}),_vm._v(" "),_c('fe',{attrs:{"errors":_vm.errors.customJob}})],1)]),_vm._v(" "),_c('div',{staticClass:"clearfix"}),_vm._v(" "),_c('div',{staticClass:"col-lg-6 col-md-6 col-xs-12"},[_c('div',{staticClass:"form-group"},[_c('label',{staticClass:"control-label"},[_vm._v("Desde")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.entity.dateFrom),expression:"entity.dateFrom"}],staticClass:" form-control",attrs:{"type":"date","name":"dateFrom"},domProps:{"value":(_vm.entity.dateFrom)},on:{"keydown":_vm.unsaved,"change":_vm.unsaved,"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.entity, "dateFrom", $event.target.value)}}}),_vm._v(" "),_c('fe',{attrs:{"errors":_vm.errors.dateFrom}})],1),_vm._v(" "),_c('div',{staticClass:"form-group"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.entity.currentJob),expression:"entity.currentJob"}],attrs:{"type":"hidden","name":"currentJob"},domProps:{"value":(_vm.entity.currentJob)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.entity, "currentJob", $event.target.value)}}}),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.entity.currentJob),expression:"entity.currentJob"}],attrs:{"type":"checkbox","name":"currentJob","autocomplete":"off"},domProps:{"checked":Array.isArray(_vm.entity.currentJob)?_vm._i(_vm.entity.currentJob,null)>-1:(_vm.entity.currentJob)},on:{"keydown":_vm.unsaved,"change":[function($event){var $$a=_vm.entity.currentJob,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=null,$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.entity.currentJob=$$a.concat([$$v]))}else{$$i>-1&&(_vm.entity.currentJob=$$a.slice(0,$$i).concat($$a.slice($$i+1)))}}else{_vm.$set(_vm.entity, "currentJob", $$c)}},_vm.unsaved]}}),_vm._v("\n            Actualmente trabajo aquí\n            "),_c('fe',{attrs:{"errors":_vm.errors.currentJob}})],1)]),_vm._v(" "),_c('div',{staticClass:"col-lg-6 col-md-6 col-xs-12"},[_c('div',{staticClass:"form-group"},[_c('label',{staticClass:"control-label"},[_vm._v("Hasta")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.entity.dateTo),expression:"entity.dateTo"}],staticClass:" form-control",attrs:{"type":"date","name":"dateTo"},domProps:{"value":(_vm.entity.dateTo)},on:{"keydown":_vm.unsaved,"change":_vm.unsaved,"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.entity, "dateTo", $event.target.value)}}}),_vm._v(" "),_c('fe',{attrs:{"errors":_vm.errors.dateTo}})],1)]),_vm._v(" "),_c('div',{staticClass:"clearfix"}),_vm._v(" "),_c('div',{attrs:{"id":"form-group-summary"}},[_c('div',{staticClass:"col-lg-12 col-md-12 col-xs-12"},[_c('div',{staticClass:"form-group"},[_c('label',{staticClass:"control-label"},[_vm._v("Resumen Breve (160 Caracteres)")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.entity.summary),expression:"entity.summary"}],staticClass:" form-control",attrs:{"type":"text","name":"summary"},domProps:{"value":(_vm.entity.summary)},on:{"keydown":_vm.unsaved,"change":_vm.unsaved,"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.entity, "summary", $event.target.value)}}}),_vm._v(" "),_c('fe',{attrs:{"errors":_vm.errors.summary}})],1)])]),_vm._v(" "),_c('div',{staticClass:"clearfix"}),_vm._v(" "),_c('div',{staticClass:"clearfix"}),_vm._v(" "),_c('div',{attrs:{"id":"form-group-desc"}},[_c('div',{staticClass:"col-lg-12 col-md-12 col-xs-12"},[_c('div',{staticClass:"form-group"},[_c('label',{staticClass:"control-label"},[_vm._v("Descripción detallada (1000 Caraceteres)")]),_vm._v(" "),_c('textarea',{directives:[{name:"model",rawName:"v-model",value:(_vm.entity.description),expression:"entity.description"}],staticClass:" form-control",attrs:{"name":"description"},domProps:{"value":(_vm.entity.description)},on:{"keydown":_vm.unsaved,"change":_vm.unsaved,"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.entity, "description", $event.target.value)}}}),_vm._v(" "),_c('fe',{attrs:{"errors":_vm.errors.description}})],1)])]),_vm._v(" "),_c('div',{staticClass:"clearfix"}),_vm._v(" "),_c('div',{staticClass:"col-lg-12 col-xs-12"},[(!_vm.h.isSaved)?_c('button',{staticClass:"btn",class:_vm.submitClass,attrs:{"name":"submitbtn","disabled":_vm.h.submitInProgress}},[_vm._v(" "+_vm._s(_vm.submitValue)+"\n        ")]):_vm._e()])])}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('form',{staticClass:"form-vertical",attrs:{"method":"POST","name":"CvExperience","id":"CvExperience"},on:{"submit":function($event){$event.preventDefault();_vm.save($event)}}},[_c('div',{staticClass:"clearfix"}),_vm._v(" "),_c('div',{staticClass:"input-hidden"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.entity.id),expression:"entity.id"}],attrs:{"type":"hidden","name":"id"},domProps:{"value":(_vm.entity.id)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.entity, "id", $event.target.value)}}})]),_vm._v(" "),_c('div',{staticClass:"col-lg-12 col-md-12 col-xs-12"},[_c('div',{staticClass:"form-group"},[_c('label',{staticClass:"control-label"},[_vm._v("Compañia")]),_vm._v(" "),_c('saveStatus',{attrs:{"isSaved":_vm.h.isSaved}}),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.entity.company),expression:"entity.company"}],staticClass:" form-control",attrs:{"type":"text","name":"company","value":""},domProps:{"value":(_vm.entity.company)},on:{"keydown":_vm.unsaved,"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.entity, "company", $event.target.value)}}}),_vm._v(" "),_c('fe',{attrs:{"errors":_vm.errors.company}})],1)]),_vm._v(" "),_c('div',{staticClass:"clearfix"}),_vm._v(" "),_c('div',{staticClass:"clearfix"}),_vm._v(" "),_c('div',{staticClass:"col-lg-6 col-md-6 col-xs-12"},[_c('div',{staticClass:"form-group"},[_c('label',{staticClass:"control-label"},[_vm._v("Cargo (Normalizado por Perfil IT)")]),_vm._v(" "),_c('select',{directives:[{name:"model",rawName:"v-model",value:(_vm.entity.job.id),expression:"entity.job.id"}],staticClass:" form-control",attrs:{"name":"job"},on:{"change":[function($event){var $$selectedVal = Array.prototype.filter.call($event.target.options,function(o){return o.selected}).map(function(o){var val = "_value" in o ? o._value : o.value;return val}); _vm.$set(_vm.entity.job, "id", $event.target.multiple ? $$selectedVal : $$selectedVal[0])},_vm.unsaved]}},[_c('option',{attrs:{"value":""}}),_vm._v(" "),_c('option',{attrs:{"value":"1"}},[_vm._v("Operador de Soporte Tecnico")]),_vm._v(" "),_c('option',{attrs:{"value":"2"}},[_vm._v("Implementador")]),_vm._v(" "),_c('option',{attrs:{"value":"3"}},[_vm._v("Lider de Proyecto")]),_vm._v(" "),_c('option',{attrs:{"value":"4"}},[_vm._v("Programador")])]),_vm._v(" "),_c('fe',{attrs:{"errors":_vm.errors.job}})],1)]),_vm._v(" "),_c('div',{staticClass:"col-lg-6 col-md-6 col-xs-12"},[_c('div',{staticClass:"form-group"},[_c('label',{staticClass:"control-label"},[_vm._v("Cargo (Personalizado)")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.entity.customJob),expression:"entity.customJob"}],staticClass:" form-control",attrs:{"type":"text","name":"customJob"},domProps:{"value":(_vm.entity.customJob)},on:{"keydown":_vm.unsaved,"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.entity, "customJob", $event.target.value)}}}),_vm._v(" "),_c('fe',{attrs:{"errors":_vm.errors.customJob}})],1)]),_vm._v(" "),_c('div',{staticClass:"clearfix"}),_vm._v(" "),_c('div',{staticClass:"col-lg-6 col-md-6 col-xs-12"},[_c('div',{staticClass:"form-group"},[_c('label',{staticClass:"control-label"},[_vm._v("Desde")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.entity.dateFrom),expression:"entity.dateFrom"}],staticClass:" form-control",attrs:{"type":"date","name":"dateFrom"},domProps:{"value":(_vm.entity.dateFrom)},on:{"keydown":_vm.unsaved,"change":_vm.unsaved,"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.entity, "dateFrom", $event.target.value)}}}),_vm._v(" "),_c('fe',{attrs:{"errors":_vm.errors.dateFrom}})],1),_vm._v(" "),_c('div',{staticClass:"form-group"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.entity.currentJob),expression:"entity.currentJob"}],attrs:{"type":"hidden","name":"currentJob"},domProps:{"value":(_vm.entity.currentJob)},on:{"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.entity, "currentJob", $event.target.value)}}}),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.entity.currentJob),expression:"entity.currentJob"}],attrs:{"type":"checkbox","name":"currentJob","autocomplete":"off"},domProps:{"checked":Array.isArray(_vm.entity.currentJob)?_vm._i(_vm.entity.currentJob,null)>-1:(_vm.entity.currentJob)},on:{"keydown":_vm.unsaved,"change":[function($event){var $$a=_vm.entity.currentJob,$$el=$event.target,$$c=$$el.checked?(true):(false);if(Array.isArray($$a)){var $$v=null,$$i=_vm._i($$a,$$v);if($$el.checked){$$i<0&&(_vm.entity.currentJob=$$a.concat([$$v]))}else{$$i>-1&&(_vm.entity.currentJob=$$a.slice(0,$$i).concat($$a.slice($$i+1)))}}else{_vm.$set(_vm.entity, "currentJob", $$c)}},_vm.unsaved]}}),_vm._v("\n                Actualmente trabajo aquí\n                "),_c('fe',{attrs:{"errors":_vm.errors.currentJob}})],1)]),_vm._v(" "),_c('div',{staticClass:"col-lg-6 col-md-6 col-xs-12"},[_c('div',{staticClass:"form-group"},[_c('label',{staticClass:"control-label"},[_vm._v("Hasta")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.entity.dateTo),expression:"entity.dateTo"}],staticClass:" form-control",attrs:{"type":"date","name":"dateTo"},domProps:{"value":(_vm.entity.dateTo)},on:{"keydown":_vm.unsaved,"change":_vm.unsaved,"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.entity, "dateTo", $event.target.value)}}}),_vm._v(" "),_c('fe',{attrs:{"errors":_vm.errors.dateTo}})],1)]),_vm._v(" "),_c('div',{staticClass:"clearfix"}),_vm._v(" "),_c('div',{attrs:{"id":"form-group-summary"}},[_c('div',{staticClass:"col-lg-12 col-md-12 col-xs-12"},[_c('div',{staticClass:"form-group"},[_c('label',{staticClass:"control-label"},[_vm._v("Resumen Breve (160 Caracteres)")]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.entity.summary),expression:"entity.summary"}],staticClass:" form-control",attrs:{"type":"text","name":"summary"},domProps:{"value":(_vm.entity.summary)},on:{"keydown":_vm.unsaved,"change":_vm.unsaved,"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.entity, "summary", $event.target.value)}}}),_vm._v(" "),_c('fe',{attrs:{"errors":_vm.errors.summary}})],1)])]),_vm._v(" "),_c('div',{staticClass:"clearfix"}),_vm._v(" "),_c('div',{staticClass:"clearfix"}),_vm._v(" "),_c('div',{attrs:{"id":"form-group-desc"}},[_c('div',{staticClass:"col-lg-12 col-md-12 col-xs-12"},[_c('div',{staticClass:"form-group"},[_c('label',{staticClass:"control-label"},[_vm._v("Descripción detallada (1000 Caraceteres)")]),_vm._v(" "),_c('textarea',{directives:[{name:"model",rawName:"v-model",value:(_vm.entity.description),expression:"entity.description"}],staticClass:" form-control",attrs:{"name":"description"},domProps:{"value":(_vm.entity.description)},on:{"keydown":_vm.unsaved,"change":_vm.unsaved,"input":function($event){if($event.target.composing){ return; }_vm.$set(_vm.entity, "description", $event.target.value)}}}),_vm._v(" "),_c('fe',{attrs:{"errors":_vm.errors.description}})],1)])]),_vm._v(" "),_c('div',{staticClass:"clearfix"}),_vm._v(" "),_c('div',{staticClass:"col-lg-12 col-xs-12"},[(!_vm.h.isSaved)?_c('button',{staticClass:"btn",class:_vm.submitClass,attrs:{"name":"submitbtn","disabled":_vm.h.submitInProgress}},[_vm._v(" "+_vm._s(_vm.submitValue)+"\n            ")]):_vm._e()])]),_vm._v(" "),_c('div',{staticClass:"pull-right"},[_c('button',{staticClass:"btn text-danger fa fa-trash",attrs:{"name":"delete","disabled":_vm.h.submitInProgress},on:{"click":_vm.del}})])])}
 __vue__options__.staticRenderFns = []
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -14264,16 +14275,33 @@ exports.default = {
         _this.h.submitInProgress = false;
       });
     },
-    loadProps: function loadProps() {
+    del: function del() {
       var _this2 = this;
+
+      this.errors = '';
+      this.h.submitInProgress = true;
+      _axios2.default.post(this.url.delete, _qs2.default.stringify(this.deleteParams)).then(function (response) {
+        if (response.data.status) {
+          _this2.remove(response.data);
+        } else {
+          _this2.errors = response.data.errors;
+        }
+        _this2.h.submitInProgress = false;
+      }).catch(function (error) {
+        _this2.errors = error.response.data.errors;
+        _this2.h.submitInProgress = false;
+      });
+    },
+    loadProps: function loadProps() {
+      var _this3 = this;
 
       _axios2.default.get(this.url.get, {
         headers: {
           accept: 'application/json'
         }
       }).then(function (response) {
-        _this2.populate(response.data);
-        _this2.h.loading = true;
+        _this3.populate(response.data);
+        _this3.h.loading = true;
       });
     }
   }

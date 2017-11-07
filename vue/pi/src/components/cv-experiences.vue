@@ -17,7 +17,7 @@
             </div>
         </div>
         <modal :modalId="mp.id" :title="mp.title" :modalSize="'modal-lg'">
-            <form-experience v-model="expForm"/>
+            <form-experience v-model="expForm" :index="indexForm"/>
         </modal>
     </div>
 </template>
@@ -54,7 +54,8 @@
           description: ''
         },
         expForm: {
-        }
+        },
+        indexForm: ''
       }
     },
     created: function () {
@@ -64,6 +65,7 @@
       addExp: function () {
         console.log('newExp')
         this.expForm = this.blankExp
+        this.entity.push(this.expForm)
         this.showExpModal()
       },
       modExp: function (index) {
