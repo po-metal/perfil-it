@@ -166,7 +166,7 @@
         this.entity.description = data.description
       },
       remove: function () {
-        this.$emit('remove', this.index)
+        this.del()
       }
     },
     created: function () {
@@ -195,6 +195,10 @@
         return {
           id: this.entity.id
         }
+      },
+      onDelete: function () {
+        this.$emit('remove', this.index)
+
       }
     }
   }
