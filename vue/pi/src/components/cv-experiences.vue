@@ -17,7 +17,7 @@
             </div>
         </div>
         <modal :modalId="mp.id" :title="mp.title" :modalSize="'modal-lg'">
-            <form-experience v-model="expForm" :index="indexForm"/>
+            <form-experience v-model="expForm" :index="indexForm" :remove="removeExp"/>
         </modal>
     </div>
 </template>
@@ -53,8 +53,7 @@
           summary: '',
           description: ''
         },
-        expForm: {
-        },
+        expForm: {},
         indexForm: ''
       }
     },
@@ -64,18 +63,26 @@
     methods: {
       addExp: function () {
         console.log('newExp')
-        this.expForm = this.blankExp
-        this.entity.push(this.expForm)
+        this.expForm = Object.assign({}, this.blankExp);
+        this.indexForm = this.entity.push(this.expForm) - 1;
         this.showExpModal()
       },
       modExp: function (index) {
         console.log('modExp')
-        console.log(this.entity[index])
         this.expForm = this.entity[index]
+        this.indexForm = index
         this.showExpModal()
       },
       showExpModal: function () {
         $('#' + this.mp.id).modal("show");
+      },
+      hideExpModal: function () {
+        $('#' + this.mp.id).modal("hide");
+      },
+      removeExp: function (index) {
+        console.log("removeExp" + index)
+        this.entity.slice(index,1)
+        this.hideExpModal()
       }
     }
   }

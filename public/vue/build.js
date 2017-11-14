@@ -13227,18 +13227,27 @@ exports.default = {
   methods: {
     addExp: function addExp() {
       console.log('newExp');
-      this.expForm = this.blankExp;
-      this.entity.push(this.expForm);
+      this.expForm = Object.assign({}, this.blankExp);
+      this.indexForm = this.entity.push(this.expForm) - 1;
       this.showExpModal();
     },
     modExp: function modExp(index) {
       console.log('modExp');
       console.log(this.entity[index]);
       this.expForm = this.entity[index];
+      this.indexForm = index;
       this.showExpModal();
     },
     showExpModal: function showExpModal() {
       $('#' + this.mp.id).modal("show");
+    },
+    hideExpModal: function hideExpModal() {
+      $('#' + this.mp.id).modal("hide");
+    },
+    removeExp: function removeExp(index) {
+      console.log("removeExp" + index);
+      this.entity.slice(index, 1);
+      this.hideExpModal();
     }
   }
 };
@@ -13246,7 +13255,7 @@ exports.default = {
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('div',{staticClass:"box box-primary"},[_c('div',{staticClass:"box-header"},[_vm._m(0),_vm._v(" "),_c('button',{staticClass:"btn btn-default fa fa-plus-square btn-xs pull-right",attrs:{"data-toggle":"modal","data-target":"#cv-experience-modal"},on:{"click":_vm.addExp}})]),_vm._v(" "),_c('div',{staticClass:"panel-body "},_vm._l((_vm.entity),function(exp,index){return (_vm.entity)?_c('experience',{attrs:{"exp":exp,"index":index},on:{"editExp":_vm.modExp}}):_vm._e()}))]),_vm._v(" "),_c('modal',{attrs:{"modalId":_vm.mp.id,"title":_vm.mp.title,"modalSize":'modal-lg'}},[_c('form-experience',{attrs:{"index":_vm.indexForm},model:{value:(_vm.expForm),callback:function ($$v) {_vm.expForm=$$v},expression:"expForm"}})],1)],1)}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('div',{staticClass:"box box-primary"},[_c('div',{staticClass:"box-header"},[_vm._m(0),_vm._v(" "),_c('button',{staticClass:"btn btn-default fa fa-plus-square btn-xs pull-right",attrs:{"data-toggle":"modal","data-target":"#cv-experience-modal"},on:{"click":_vm.addExp}})]),_vm._v(" "),_c('div',{staticClass:"panel-body "},_vm._l((_vm.entity),function(exp,index){return (_vm.entity)?_c('experience',{attrs:{"exp":exp,"index":index},on:{"editExp":_vm.modExp}}):_vm._e()}))]),_vm._v(" "),_c('modal',{attrs:{"modalId":_vm.mp.id,"title":_vm.mp.title,"modalSize":'modal-lg'}},[_c('form-experience',{attrs:{"index":_vm.indexForm,"remove":_vm.removeExp},model:{value:(_vm.expForm),callback:function ($$v) {_vm.expForm=$$v},expression:"expForm"}})],1)],1)}
 __vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('strong',[_c('i',{staticClass:"fa fa-suitcase margin-r-5"}),_vm._v(" Experiencia ")])}]
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -13850,7 +13859,7 @@ exports.default = {
       this.entity.summary = data.summary;
       this.entity.description = data.description;
     },
-    remove: function remove() {
+    onDelete: function onDelete() {
       this.$emit('remove', this.index);
     }
   },
@@ -14282,12 +14291,11 @@ exports.default = {
       this.h.submitInProgress = true;
       _axios2.default.post(this.url.delete, _qs2.default.stringify(this.deleteParams)).then(function (response) {
         if (response.data.status) {
-          _this2.remove(response.data);
-        } else {
-          _this2.errors = response.data.errors;
+          _this2.onDelete();
         }
         _this2.h.submitInProgress = false;
       }).catch(function (error) {
+        console.log(error);
         _this2.errors = error.response.data.errors;
         _this2.h.submitInProgress = false;
       });

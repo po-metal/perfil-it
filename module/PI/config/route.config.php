@@ -520,6 +520,17 @@ return [
                                     ],
                                 ],
                             ],
+                            'Delete' => [
+                                'type' => 'Segment',
+                                'mayTerminate' => true,
+                                'options' => [
+                                    'route' => '/delete',
+                                    'defaults' => [
+                                        'controller' => \PI\Controller\CvExperienceController::CLASS,
+                                        'action' => 'delete',
+                                    ],
+                                ],
+                            ],
                         ],
                     ],
                     'Job' => [

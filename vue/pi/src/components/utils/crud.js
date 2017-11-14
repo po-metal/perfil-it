@@ -48,12 +48,11 @@ export default {
         this.url.delete, qs.stringify(this.deleteParams)
       ).then((response) => {
         if (response.data.status) {
-          this.remove(response.data)
-        } else {
-          this.errors = response.data.errors
+          this.onDelete()
         }
         this.h.submitInProgress = false
       }).catch((error) => {
+        console.log(error)
         this.errors = error.response.data.errors
         this.h.submitInProgress = false
       })
