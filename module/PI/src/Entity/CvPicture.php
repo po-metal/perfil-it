@@ -96,7 +96,11 @@ class CvPicture
 
     public function getPicture_fp()
     {
-        return "/cv/img/" . $this->picture;
+        $fp = "";
+        if($this->picture){
+            $fp = "/cv/img/" . $this->picture;
+        }
+        return $fp;
     }
 
     public function __toString()

@@ -121,20 +121,42 @@ class CvEducation
 
     public function __toString()
     {
-        return  $this->title;
+        return (String)$this->title;
     }
 
-    public function toArray(){
-        return [
-            "education" =>[
-                "id" => $this->getEducation()->getId(),
-                "name" => $this->getEducation()->getName()
+    public function toArray()
+    {
+
+        $a = array();
+
+        $a = [
+            "education" => [
+                "id" => "",
+                "name" => ""
             ],
             "state" => [
+                "id" => "",
+                "name" => ""
+            ]
+        ];
+
+        if ($this->getEducation()) {
+            $a["education"] = [
+                "id" => $this->getEducation()->getId(),
+                "name" => $this->getEducation()->getName()
+            ];
+        }
+
+        if ($this->getEducation()) {
+            $a["state"] = [
                 "id" => $this->getEducationState()->getId(),
                 "name" => $this->getEducationState()->getName()
-            ],
-            "title" => $this->getTitle()];
+            ];
+
+        }
+        $a["title"] = $this->getTitle();
+
+        return $a;
     }
 
 }

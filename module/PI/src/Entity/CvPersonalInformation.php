@@ -10,9 +10,9 @@ use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * CvPersonalInformation
- * 
- * 
- * 
+ *
+ *
+ *
  * @author Cristian Incarnato
  * @license -
  * @link -
@@ -123,6 +123,13 @@ class CvPersonalInformation
         return $this->birthdate;
     }
 
+    public function getFormatBirthdate()
+    {
+        if ($this->getBirthdate()) {
+            return $this->getBirthdate()->format("Y-m-d");
+        }
+    }
+
     public function setBirthdate($birthdate)
     {
         $this->birthdate = $birthdate;
@@ -140,11 +147,35 @@ class CvPersonalInformation
 
     public function toArray()
     {
-        $a =  ["name"=>$this->name,"lastname"=> $this->lastname,
-            "birthdate"  => $this->getBirthdate()->format("Y-m-d"),"years" =>$this->getYears(),
-           ];
-        if($this->getNationality()){
-            $a["nationality"] =  [ "id" => $this->getNationality()->getId(), "name" =>$this->getNationality()->getName(), "icon" =>$this->getNationality()->getIcon()];
+
+        $a = array();
+        $a = [
+            "name" => null,
+            "lastname" => null,
+            "birthdate" => null,
+            "years" => null,
+            "nationality" => ["id" => null, "name" => null, "icon" => null]
+        ];
+
+
+        if ($this->getName()) {
+            $a["name"] = $this->name;
+        }
+
+        if ($this->getBirthdate()) {
+            $a["lastname"] = $this->lastname;
+        }
+
+        if ($this->getBirthdate()) {
+            $a["birthdate"] = $this->getFormatBirthdate();
+        }
+
+        if ($this->getYears()) {
+            $a["years"] = $this->getYears();
+        }
+
+        if ($this->getNationality()) {
+            $a["nationality"] = ["id" => $this->getNationality()->getId(), "name" => $this->getNationality()->getName(), "icon" => $this->getNationality()->getIcon()];
         }
 
         return $a;
@@ -162,7 +193,7 @@ class CvPersonalInformation
 
     public function __toString()
     {
-        return  $this->name." ".  $this->lastname;
+        return $this->name . " " . $this->lastname;
     }
 
 

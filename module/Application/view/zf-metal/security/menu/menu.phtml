@@ -12,7 +12,7 @@
         <?php if ($user->getImg()): ?>
             <img src="<?php echo $this->getSecurityOptions()->getProfilePicturePathRelative(). $user->getImg(); ?>" class="user-image" alt="User Image">
         <?php else : ?>
-            <img src="<?= $this->basePath('/img/logo_sondeos.jpeg');?>" class="user-image" alt="User Image">
+            <i class="glyphicon glyphicon-user"></i>
         <?php endif; ?>
          <?php if ($user->getName()): ?>
             <?php echo $user->getName(); ?>
