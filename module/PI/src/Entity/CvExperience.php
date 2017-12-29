@@ -212,6 +212,7 @@ class CvExperience {
         if($this->getDateTo()) {
             $a["dateTo"] = $this->getDateTo()->format("Y-m-d");
         }
+
         $a["currentJob"] = $this->getCurrentJob();
         $a["summary"] = $this->getSummary();
         $a["description"] = $this->getDescription();

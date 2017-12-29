@@ -197,19 +197,19 @@ class Cv
         if ($this->getContact()) {
             $a["cvContact"] = $this->getContact()->toArray();
         }
+
+        $a["cvExperiences"] = array();
         if ($this->getExperiences()) {
-            if ($this->getExperiences()) {
                 foreach ($this->getExperiences() as $experience) {
                     $a["cvExperiences"][] = $experience->toArray();
                 }
-            }
         }
+        $a["cvSkills"] = array();
         if ($this->getSkills()) {
-            if ($this->getSkills()) {
                 foreach ($this->getSkills() as $skill) {
                     $a["cvSkills"][] = $skill->toArray();
                 }
-            }
+
         }
         return $a;
     }

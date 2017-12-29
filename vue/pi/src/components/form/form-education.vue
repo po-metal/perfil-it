@@ -16,7 +16,7 @@
         <div class="col-lg-12 col-md-12 col-xs-12">
             <div class="form-group">
                 <label class="control-label">Estado</label>
-                <select name="educationState" class=" form-control" v-model="entity.state.id" @change="unsaved">
+                <select name="state" class=" form-control" v-model="entity.state.id" @change="unsaved">
                     <option value=""></option>
                     <option value="1">En Curso</option>
                     <option value="2">Incompleto</option>
@@ -85,7 +85,7 @@
       postParams: function () {
         return {
           education: this.entity.education.id,
-          educationState: this.entity.state.id,
+          state: this.entity.state.id,
           title: this.entity.title
         }
       }

@@ -143,6 +143,7 @@ class CvExperienceController extends AbstractActionController
             $id = $this->getRequest()->getPost("id");
         }
 
+
         $experience = $this->getExperience($id);
 
         //Generate Form

@@ -55,7 +55,7 @@
                     <fe :errors="errors.dateFrom"/>
                 </div>
                 <div class="form-group">
-                    <input type="hidden" name="currentJob" v-model="entity.currentJob">
+
                     <input type="checkbox" name="currentJob" autocomplete="off" v-model="entity.currentJob"
                            @keydown="unsaved" @change="unsaved">
                     Actualmente trabajo aquí
@@ -164,6 +164,7 @@
         this.entity.currentJob = data.currentJob
         this.entity.summary = data.summary
         this.entity.description = data.description
+        this.entity.time = data.time
       },
       onDelete: function () {
         this.$emit('remove', this.index)
@@ -187,10 +188,13 @@
           customJob: this.entity.customJob,
           dateFrom: this.entity.dateFrom,
           dateTo: this.entity.dateTo,
-          currentJob: this.entity.currentJob,
+          currentJob: this.getCurrentJob,
           summary: this.entity.summary,
           description: this.entity.description,
         }
+      },
+      getCurrentJob: function () {
+        return this.entity.currentJob | 0
       },
       deleteParams: function () {
         return {

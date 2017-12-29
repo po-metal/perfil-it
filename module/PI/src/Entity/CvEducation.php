@@ -58,7 +58,7 @@ class CvEducation
      * @ORM\JoinColumn(name="education_state_id", referencedColumnName="id",
      * nullable=true)
      */
-    public $educationState = null;
+    public $state = null;
 
     /**
      * @Annotation\Type("Zend\Form\Element\Text")
@@ -99,15 +99,23 @@ class CvEducation
         $this->education = $education;
     }
 
-    public function getEducationState()
+    /**
+     * @return mixed
+     */
+    public function getState()
     {
-        return $this->educationState;
+        return $this->state;
     }
 
-    public function setEducationState($educationState)
+    /**
+     * @param mixed $state
+     */
+    public function setState($state)
     {
-        $this->educationState = $educationState;
+        $this->state = $state;
     }
+
+
 
     public function getTitle()
     {
@@ -147,10 +155,10 @@ class CvEducation
             ];
         }
 
-        if ($this->getEducation()) {
+        if ($this->getState()) {
             $a["state"] = [
-                "id" => $this->getEducationState()->getId(),
-                "name" => $this->getEducationState()->getName()
+                "id" => $this->getState()->getId(),
+                "name" => $this->getState()->getName()
             ];
 
         }
