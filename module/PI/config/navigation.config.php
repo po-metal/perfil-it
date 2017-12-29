@@ -7,7 +7,7 @@ return [
                 'label' => 'CV',
                 'detail' => '',
                 'icon' => 'fa fa-suitcase',
-                'permission' => 'general-ver',
+                'permission' => 'general-admin',
                 'route' => 'PI/Cv/Index',
             ],
             [

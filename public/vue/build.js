@@ -13636,24 +13636,38 @@ var _view = require('./utils/view');
 
 var _view2 = _interopRequireDefault(_view);
 
+var _modal = require('./utils/modal.vue');
+
+var _modal2 = _interopRequireDefault(_modal);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
   name: 'cv-skills',
   mixins: [_view2.default],
-  components: { skill: _skill2.default },
+  components: { skill: _skill2.default, modal: _modal2.default },
   data: function data() {
     return {
+      mp: {
+        id: 'modal-cv-skill',
+        title: 'Experiencia'
+      },
       entity: []
     };
+  },
+
+  methods: {
+    showSkillModal: function showSkillModal() {
+      $('#' + this.mp.id).modal("show");
+    }
   }
 };
 })()
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"box box-primary",attrs:{"data-toggle":"modal","data-target":"#cv-skills-modal"}},[_vm._m(0),_vm._v(" "),_c('div',{staticClass:"box-body "},_vm._l((_vm.entity),function(skill){return (_vm.entity)?_c('skill',{attrs:{"skill":skill}}):_vm._e()}))])}
-__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"box-header"},[_c('strong',[_c('i',{staticClass:"fa fa-star margin-r-5"}),_vm._v(" Habilidades Técnicas")])])}]
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('div',{staticClass:"box box-primary",attrs:{"data-toggle":"modal","data-target":"#cv-skills-modal"}},[_vm._m(0),_vm._v(" "),_c('div',{staticClass:"box-body "},_vm._l((_vm.entity),function(skill){return (_vm.entity)?_c('skill',{attrs:{"skill":skill}}):_vm._e()})),_vm._v(" "),_c('modal',{attrs:{"modalId":_vm.mp.id,"title":_vm.mp.title,"modalSize":'modal-lg'}},[_c('div',{staticClass:"col-lg-8 col-md-8 col-sm-8 col-xs-12 "},[_c('div',{staticClass:"panel panel-default"},[_c('div',{staticClass:"panel-heading"},[_c('h4',{staticClass:"panel-title"},[_vm._v("Explorador de Habilidades")])]),_vm._v(" "),_c('div',{staticClass:"panel-body"},[_c('div',{staticClass:"form-group"},[_c('div',{staticClass:"input-group"},[_c('div',{staticClass:"input-group-addon"},[_c('i',{staticClass:"fa fa-search"})]),_vm._v(" "),_c('input',{staticClass:"form-control",attrs:{"id":"searchinput","autocomplete":"off","type":"search","placeholder":"Buscar..."}})])]),_vm._v(" "),_c('div',{staticClass:"skill-panel",attrs:{"id":"searchlist"}},[_vm._v("\n                            ...\n                            ...\n                        ")])])])])])],1)])}
+__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"box-header"},[_c('strong',[_c('i',{staticClass:"fa fa-star margin-r-5"}),_vm._v(" Habilidades Técnicas")]),_vm._v(" "),_c('button',{staticClass:"btn btn-default fa fa-edit btn-xs pull-right",attrs:{"data-toggle":"modal","data-target":"#modal-cv-skill"}})])}]
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
@@ -13664,7 +13678,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.reload("data-v-0b88d6ce", __vue__options__)
   }
 })()}
-},{"./skill.vue":49,"./utils/view":55,"vue":34,"vue-hot-reload-api":33}],42:[function(require,module,exports){
+},{"./skill.vue":49,"./utils/modal.vue":53,"./utils/view":55,"vue":34,"vue-hot-reload-api":33}],42:[function(require,module,exports){
 ;(function(){
 'use strict';
 
