@@ -9,3 +9,4 @@ ubuntu-xenial-16.04-cloudimg-console.log
 /nbproject/private/
 composer.lock
 public/cv/img/*
+composer.lock
