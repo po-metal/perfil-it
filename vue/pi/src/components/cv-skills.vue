@@ -6,19 +6,13 @@
                 <button class="btn btn-default fa fa-edit btn-xs pull-right"
                         data-toggle="modal" data-target="#modal-cv-skill">
                 </button>
-            </div>
-            <div class="box-body ">
+
                 <skill v-if="entity" v-for="skill in entity" :skill="skill"/>
 
             </div>
 
             <modal :modalId="mp.id" :title="mp.title" :modalSize="'modal-lg'">
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 ">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">Explorador de Habilidades</h4>
-                        </div>
-                        <div class="panel-body">
                             <div class="form-group">
                                 <div class="input-group">
                                     <div class="input-group-addon"><i class="fa fa-search"></i></div>
@@ -29,8 +23,8 @@
                                 ...
                                 ...
                             </div>
-                        </div>
-                    </div>
+
+
                 </div>
             </modal>
         </div>
@@ -52,7 +46,7 @@
       return {
         mp: {
           id: 'modal-cv-skill',
-          title: 'Experiencia'
+          title: 'Habilidades'
         },
         entity: []
       }

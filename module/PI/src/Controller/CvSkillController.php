@@ -6,9 +6,9 @@ use Zend\Mvc\Controller\AbstractActionController;
 
 /**
  * CvSkillController
- *
- *
- *
+ * 
+ * 
+ * 
  * @author Cristian Incarnato
  * @license -
  * @link -
@@ -116,6 +116,21 @@ class CvSkillController extends AbstractActionController
 
 
         return new \Zend\View\Model\JsonModel($r);
+    }
+
+    public function listAction()
+    {
+
+        //Debo remplazar por join completo
+        $skillCategories = $this->getEm()->getRepository('PI\Entity\SkillCategory')->list();
+
+        foreach($skillCategories as $sk){
+            foreach($sk->getSkills() as $skill){
+                $a[$sk->getName()][] = $skill->getName();
+            }
+        }
+
+        return new \Zend\View\Model\JsonModel($a);
     }
 
 
