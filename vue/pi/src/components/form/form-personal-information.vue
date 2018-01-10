@@ -118,7 +118,9 @@
           }).then(
           (response) => {
             this.countries = response.data
-          })
+          }) .catch((error) => {
+          this.errors = error.response.data.errors
+        })
       }
     },
     created: function(){

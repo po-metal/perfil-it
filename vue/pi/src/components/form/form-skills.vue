@@ -7,7 +7,11 @@
             </div>
         </div>
         <div id="searchlist" class="skill-panel">
-            <skill v-if="entity" v-for="skill in entity" :skill="skill"/>
+            <div v-if="skillList" v-for="category in skillList">
+                <fskill v-if="category" v-for="skill in category" :skill="skill"/>
+
+            </div>
+
         </div>
 
 
@@ -16,65 +20,42 @@
 
 
 <script>
-  import saveStatus from '../utils/save-status.vue'
   import axios from 'axios'
+  import fskill from './form-skill-item.vue'
+  import blf from 'bootstrap-list-filter'
 
   export default {
     name: 'form-skills',
-    props: ['value', 'isSaved'],
-    mixins: [crud],
-    components: {saveStatus},
+    components: {fskill},
     data() {
       return {
         errors: [],
-        entity: [],
-        h: {
-          loading: false,
-          isSaved: true,
-          submitInProgress: false
-        },
+        skillList: [],
         url: {
-          save: '/pi/cv-skill/save'
+          skillList: '/pi/cv-skill/list'
         }
       }
     },
     methods: {
-      populate: function (data) {
-        this.entity.src = data.src
-      },
-      save: function () {
-        this.errors = []
-        this.h.submitInProgress = true
-        axios.post(
-          this.url.save,
-          this.getFormData(),
-          this.getConfig()
-        )
-          .then((response) => {
-            if (response.data.status) {
-              this.populate(response.data.data)
-            } else {
-              this.errors = response.data.errors
+      loadSkills: function () {
+        axios.get(
+          this.url.skillList,
+          {
+            headers: {
+              accept: 'application/json'
             }
-            this.h.submitInProgress = false
-            this.timerResetBar()
-          })
-          .catch((error) => {
+          }).then(
+          (response) => {
+            this.skillList = response.data
+          }) .catch((error) => {
             this.errors = error.response.data.errors
-            this.h.submitInProgress = false
-            this.timerResetBar()
-          })
+        })
       }
     },
     created: function () {
-      this.entity = this.value
-    },
-    computed: {
-      postParams: function () {
-        return {
-          src: this.entity.src
-        }
-      }
+      this.loadSkills()
+      console.log(this.$refs.searchlist)
+      this.$refs.searchlist.btsListFilter('#searchinput', {itemChild: 'span'})
     }
   }
 </script>

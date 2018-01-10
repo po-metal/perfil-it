@@ -286,6 +286,17 @@ return [
                                     ],
                                 ],
                             ],
+                            'List' => [
+                                'type' => 'Segment',
+                                'mayTerminate' => true,
+                                'options' => [
+                                    'route' => '/list',
+                                    'defaults' => [
+                                        'controller' => \PI\Controller\CvSkillController::CLASS,
+                                        'action' => 'list',
+                                    ],
+                                ],
+                            ],
                         ],
                     ],
                     'SkillCategory' => [

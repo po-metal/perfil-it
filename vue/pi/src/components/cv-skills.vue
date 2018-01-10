@@ -12,20 +12,7 @@
             </div>
 
             <modal :modalId="mp.id" :title="mp.title" :modalSize="'modal-lg'">
-                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 ">
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <div class="input-group-addon"><i class="fa fa-search"></i></div>
-                                    <input  id="searchinput" class="form-control" autocomplete="off" type="search" placeholder="Buscar..." />
-                                </div>
-                            </div>
-                            <div id="searchlist" class="skill-panel">
-                                ...
-                                ...
-                            </div>
-
-
-                </div>
+                <FormSkills></FormSkills>
             </modal>
         </div>
     </div>
@@ -37,11 +24,14 @@
   import skill from './skill.vue'
   import view from './utils/view'
   import modal from './utils/modal.vue'
+  import FormSkills from "./form/form-skills.vue";
 
   export default {
     name: 'cv-skills',
     mixins: [view],
-    components: {skill, modal},
+    components: {
+      FormSkills,
+      skill, modal},
     data() {
       return {
         mp: {

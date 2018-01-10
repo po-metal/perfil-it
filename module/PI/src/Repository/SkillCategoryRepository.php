@@ -33,7 +33,7 @@ class SkillCategoryRepository extends EntityRepository
             ->from('PI\Entity\SkillCategory', 'u')
             ->innerJoin('u.skills','s');
 
-        return $query->getQuery()->getOneOrNullResult();
+        return $query->getQuery()->getResult();
 
 
     }

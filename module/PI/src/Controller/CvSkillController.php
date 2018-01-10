@@ -121,12 +121,23 @@ class CvSkillController extends AbstractActionController
     public function listAction()
     {
 
-        //Debo remplazar por join completo
-        $skillCategories = $this->getEm()->getRepository('PI\Entity\SkillCategory')->list();
+        $skills = $this->getEm()->getRepository('PI\Entity\CvSkill')->findByCv($this->pICv());
+        $r = array();
+        foreach($skills as $s){
+            $r[$s->getSkill()->getId()] = [$s->getLvl()];
+        }
+
+       $skillCategories = $this->getEm()->getRepository('PI\Entity\SkillCategory')->list();
 
         foreach($skillCategories as $sk){
             foreach($sk->getSkills() as $skill){
-                $a[$sk->getName()][] = $skill->getName();
+                $a[$sk->getName()][$skill->getId()]["id"] = $skill->getId();
+                $a[$sk->getName()][$skill->getId()]["name"] = $skill->getName();
+                if( $r[$skill->getId()]){
+                    $a[$sk->getName()][$skill->getId()]["lvl"] = $r[$skill->getId()];
+                } else {
+                    $a[$sk->getName()][$skill->getId()]["lvl"] = 0;
+                }
             }
         }
 
