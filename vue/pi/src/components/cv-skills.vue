@@ -6,6 +6,7 @@
                 <button class="btn btn-default fa fa-edit btn-xs pull-right"
                         data-toggle="modal" data-target="#modal-cv-skill">
                 </button>
+                <div class="clearfix"></div>
 
                 <skill v-if="entity" v-for="skill in entity" :skill="skill"/>
 

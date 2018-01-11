@@ -124,7 +124,7 @@ class CvSkillController extends AbstractActionController
         $skills = $this->getEm()->getRepository('PI\Entity\CvSkill')->findByCv($this->pICv());
         $r = array();
         foreach($skills as $s){
-            $r[$s->getSkill()->getId()] = [$s->getLvl()];
+            $r[$s->getSkill()->getId()] = $s->getLvl();
         }
 
        $skillCategories = $this->getEm()->getRepository('PI\Entity\SkillCategory')->list();

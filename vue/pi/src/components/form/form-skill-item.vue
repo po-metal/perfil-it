@@ -55,7 +55,8 @@
       trashSkill: function (){
 
       },
-      saveSkill: function () {
+      saveSkill: function (lvl) {
+        this.entity.lvl = lvl
         this.errors = []
         this.h.submitInProgress = true
         axios.post(
