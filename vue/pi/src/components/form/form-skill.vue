@@ -1,12 +1,13 @@
 <template>
     <li :id="'skill_'+entity.id" class=" list-group-item">
+        <i v-if="submitInProgress" class="fa fa-circle-o-notch" aria-hidden="true"></i>
         <label class="col-xs-6 text-right">{{entity.name}}</label>
         <span class="rating">
-        <span ></span>
-        <span  class="star" :class="getActive(3)"  @click="saveSkill(3)"></span>
-        <span  class="star" :class="getActive(2)" @click="saveSkill(2)"></span>
-        <span  class="star" :class="getActive(1)" @click="saveSkill(1)"></span>
-        <span  class="trash fa fa-trash-o" @click="trashSkill"></span>
+        <span></span>
+        <span class="star" :class="getActive(3)" @click="saveSkill(3)"></span>
+        <span class="star" :class="getActive(2)" @click="saveSkill(2)"></span>
+        <span class="star" :class="getActive(1)" @click="saveSkill(1)"></span>
+        <span class="trash fa fa-trash-o" @click="saveSkill(0)"></span>
         </span>
     </li>
 
@@ -18,7 +19,7 @@
   import qs from 'qs'
 
   export default {
-    name: 'form-skills',
+    name: 'form-skill',
     props: ['skill'],
     created: function () {
       this.entity = this.skill
@@ -28,7 +29,8 @@
         entity: {
           id: "",
           name: "",
-          lvl: 0
+          lvl: 0,
+          status: ""
         },
         h: {
           loading: false,
@@ -36,7 +38,7 @@
           submitInProgress: false
         },
         url: {
-          save: '/pi/cv-skill/save'
+          save: '/pi/cv-skill/save-skill'
         }
       }
     },
@@ -46,35 +48,34 @@
         this.entity.name = data.name
         this.entity.lvl = data.lvl
       },
-      getActive : function (lvl){
-        if(this.entity.lvl == lvl){
+      getActive: function (lvl) {
+        if (this.entity.lvl == lvl) {
           return "active"
         }
         return null
       },
-      trashSkill: function (){
-
-      },
       saveSkill: function (lvl) {
+        var prelvl = this.entity.lvl
         this.entity.lvl = lvl
         this.errors = []
         this.h.submitInProgress = true
         axios.post(
           this.url.save,
           qs.stringify(this.postParams)
-        )
-          .then((response) => {
-            if (response.data.status) {
-              this.populate(response.data.data)
-            } else {
-              this.errors = response.data.errors
-            }
-            this.h.submitInProgress = false
-          })
-          .catch((error) => {
-            this.errors = error.response.data.errors
-            this.h.submitInProgress = false
-          })
+        ).then((response) => {
+          if (response.data.status) {
+            this.entity.cvSkillId = response.data.cvSkillId
+            this.$emit('skillUpdate', this.entity)
+          } else {
+            this.entity.lvl = prelvl
+            this.errors = response.data.errors
+          }
+          this.h.submitInProgress = false
+        }).catch((error) => {
+          this.errors = error.response.data.errors
+          this.entity.lvl = prelvl
+          this.h.submitInProgress = false
+        })
       }
     },
     computed: {

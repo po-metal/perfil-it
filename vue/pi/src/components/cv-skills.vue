@@ -13,7 +13,25 @@
             </div>
 
             <modal :modalId="mp.id" :title="mp.title" :modalSize="'modal-lg'">
-                <FormSkills></FormSkills>
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 ">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                            <input id="searchinput" class="form-control" autocomplete="off" type="search"
+                                   placeholder="Buscar..."/>
+                        </div>
+                    </div>
+                    <div id="searchlist" class="skill-panel">
+                        <div v-if="skillList" v-for="category in skillList">
+                            <FormSkill v-if="category" v-for="skill in category" :skill="skill"
+                                       v-on:skillUpdate="refreshSkill"/>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
             </modal>
         </div>
     </div>
@@ -25,27 +43,81 @@
   import skill from './skill.vue'
   import view from './utils/view'
   import modal from './utils/modal.vue'
-  import FormSkills from "./form/form-skills.vue";
+  import FormSkill from "./form/form-skill.vue";
+  import axios from 'axios'
+  import bslf from 'bootstrap-list-filter'
 
   export default {
     name: 'cv-skills',
     mixins: [view],
     components: {
-      FormSkills,
-      skill, modal},
+      FormSkill,
+      skill, modal
+    },
     data() {
       return {
         mp: {
           id: 'modal-cv-skill',
           title: 'Habilidades'
         },
-        entity: []
+        url: {
+          skillList: '/pi/cv-skill/list'
+        },
+        entity: [],
+        skillList: []
       }
+    },
+    created: function () {
+      this.loadSkills()
+      //console.log(this.$refs.searchlist)
+      $('#searchlist').btsListFilter('#searchinput', {itemChild: 'span'})
     },
     methods: {
       showSkillModal: function () {
         $('#' + this.mp.id).modal("show");
       },
+      refreshSkill: function (skill) {
+        if (this.entity[skill.cvSkillId]) {
+          if (skill.lvl == 0) {
+            this.deleteSkill(skill.cvSkillId)
+          } else {
+            this.updateLvl(skill)
+          }
+        } else {
+          this.addSkill(skill)
+        }
+      }
+      ,
+      deleteSkill: function (index) {
+        this.$delete(this.entity, index)
+      }
+      ,
+      updateLvl: function (sk) {
+        this.entity[sk.cvSkillId].lvl = sk.lvl
+      }
+      ,
+      addSkill: function (skill) {
+        this.$set(this.entity, skill.cvSkillId, {
+          id: skill.cvSkillId,
+          lvl: skill.lvl,
+          skill: {id: skill.id, name: skill.name}
+        })
+      }
+      ,
+      loadSkills: function () {
+        axios.get(
+          this.url.skillList,
+          {
+            headers: {
+              accept: 'application/json'
+            }
+          }).then(
+          (response) => {
+            this.skillList = response.data
+          }).catch((error) => {
+          this.errors = error.response.data.errors
+        })
+      }
     }
   }
 </script>

@@ -297,6 +297,17 @@ return [
                                     ],
                                 ],
                             ],
+                            'SaveSkill' => [
+                                'type' => 'Segment',
+                                'mayTerminate' => true,
+                                'options' => [
+                                    'route' => '/save-skill',
+                                    'defaults' => [
+                                        'controller' => \PI\Controller\CvSkillController::CLASS,
+                                        'action' => 'saveSkill',
+                                    ],
+                                ],
+                            ],
                         ],
                     ],
                     'SkillCategory' => [

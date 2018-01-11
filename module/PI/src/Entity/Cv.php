@@ -207,7 +207,7 @@ class Cv
         $a["cvSkills"] = array();
         if ($this->getSkills()) {
                 foreach ($this->getSkills() as $skill) {
-                    $a["cvSkills"][] = $skill->toArray();
+                    $a["cvSkills"][$skill->getId()] = $skill->toArray();
                 }
 
         }

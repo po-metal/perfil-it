@@ -6,9 +6,9 @@ use Zend\Mvc\Controller\AbstractActionController;
 
 /**
  * CvSkillController
- * 
- * 
- * 
+ *
+ *
+ *
  * @author Cristian Incarnato
  * @license -
  * @link -
@@ -68,8 +68,8 @@ class CvSkillController extends AbstractActionController
     {
         $skills = $this->getEm()->getRepository('PI\Entity\CvSkill')->findByCv($this->pICv());
         $r = array();
-        foreach($skills as $s){
-            $r[] = ['id' => $s->getSkill()->getId(),'name' =>$s->getSkill()->getName(),'lvl' =>$s->getLvl()];
+        foreach ($skills as $s) {
+            $r[] = ['id' => $s->getSkill()->getId(), 'name' => $s->getSkill()->getName(), 'lvl' => $s->getLvl()];
         }
         $response = $this->getResponse();
         $view = new \Zend\View\Model\JsonModel($r);
@@ -120,20 +120,19 @@ class CvSkillController extends AbstractActionController
 
     public function listAction()
     {
-
         $skills = $this->getEm()->getRepository('PI\Entity\CvSkill')->findByCv($this->pICv());
         $r = array();
-        foreach($skills as $s){
+        foreach ($skills as $s) {
             $r[$s->getSkill()->getId()] = $s->getLvl();
         }
 
-       $skillCategories = $this->getEm()->getRepository('PI\Entity\SkillCategory')->list();
+        $skillCategories = $this->getEm()->getRepository('PI\Entity\SkillCategory')->list();
 
-        foreach($skillCategories as $sk){
-            foreach($sk->getSkills() as $skill){
+        foreach ($skillCategories as $sk) {
+            foreach ($sk->getSkills() as $skill) {
                 $a[$sk->getName()][$skill->getId()]["id"] = $skill->getId();
                 $a[$sk->getName()][$skill->getId()]["name"] = $skill->getName();
-                if( $r[$skill->getId()]){
+                if ($r[$skill->getId()]) {
                     $a[$sk->getName()][$skill->getId()]["lvl"] = $r[$skill->getId()];
                 } else {
                     $a[$sk->getName()][$skill->getId()]["lvl"] = 0;
@@ -142,6 +141,45 @@ class CvSkillController extends AbstractActionController
         }
 
         return new \Zend\View\Model\JsonModel($a);
+    }
+
+    public function saveSkillAction()
+    {
+
+        try {
+            $id = $this->getRequest()->getPost("id");
+            $skill = $this->getEm()->getRepository("\PI\Entity\Skill")->find($id);
+
+            $lvl = $this->getRequest()->getPost("lvl");
+
+            $cv = $this->pICv();
+            $cvSkill = $this->getEm()->getRepository('PI\Entity\CvSkill')->findBySkillAndCv($cv, $skill);
+            if ($cvSkill) {
+                $cvSkillId = $cvSkill->getId();
+                if ($lvl == 0) {
+                    $this->getEm()->remove($cvSkill);
+                } else {
+                    $cvSkill->setLvl($lvl);
+                    $this->getEm()->persist($cvSkill);
+                }
+            } else {
+                $cvSkill = new \PI\Entity\CvSkill();
+                $cvSkill->setCv($cv);
+                $cvSkill->setSkill($skill);
+                $cvSkill->setLvl($lvl);
+                $this->getEm()->persist($cvSkill);
+            }
+            $this->getEm()->flush();
+
+            $r["cvSkillId"] = ($cvSkillId)?$cvSkillId:$cvSkill->getId();
+            $r["lvl"] = $cvSkill->getLvl();
+            $r["status"] = true;
+        } catch (Exception $ex) {
+            $r["status"] = false;
+        }
+
+
+        return new \Zend\View\Model\JsonModel($r);
     }
 
 
