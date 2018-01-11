@@ -118,8 +118,7 @@ class CvSkillController extends AbstractActionController
         return new \Zend\View\Model\JsonModel($r);
     }
 
-    public function listAction()
-    {
+    public function listAction(){
         $skills = $this->getEm()->getRepository('PI\Entity\CvSkill')->findByCv($this->pICv());
         $r = array();
         foreach ($skills as $s) {
@@ -128,15 +127,25 @@ class CvSkillController extends AbstractActionController
 
         $skillCategories = $this->getEm()->getRepository('PI\Entity\SkillCategory')->list();
 
-        foreach ($skillCategories as $sk) {
-            foreach ($sk->getSkills() as $skill) {
-                $a[$sk->getName()][$skill->getId()]["id"] = $skill->getId();
-                $a[$sk->getName()][$skill->getId()]["name"] = $skill->getName();
+        $a = array();
+
+        foreach ($skillCategories as $category) {
+
+            foreach ($category->getSkills() as $skill) {
+
                 if ($r[$skill->getId()]) {
-                    $a[$sk->getName()][$skill->getId()]["lvl"] = $r[$skill->getId()];
+                    $lvl = $r[$skill->getId()];
                 } else {
-                    $a[$sk->getName()][$skill->getId()]["lvl"] = 0;
+                    $lvl = 0;
                 }
+
+
+                $a[] = [
+                    "id"=>$skill->getId(),
+                    "name" => $skill->getName(),
+                    "category" => $category->getName(),
+                    "lvl" => $lvl
+                ];
             }
         }
 
