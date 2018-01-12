@@ -23,9 +23,10 @@
                     </div>
                     <div id="searchlist" class="skill-panel">
                         <div>
-                            <FormSkill v-if="filteredByKeyword" v-for="skill in filteredByKeyword" :skill="skill"
+                            <FormSkill  v-for="skill in filteredByKeyword" :skill="skill"
                                        v-on:skillUpdate="refreshSkill"/>
 
+                            <div v-for="item in filteredByKeyword">{{ item.name }}</div>
                         </div>
 
                     </div>
@@ -137,7 +138,7 @@
   }
 
   function getByKeyword(list, keyword) {
-    const search = keyword.trim()
+    const search = keyword.trim().toLowerCase()
     if (!search.length) return list
     return list.filter(item => item.name.toLowerCase().indexOf(search) > -1)
   }
