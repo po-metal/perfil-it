@@ -4,7 +4,7 @@ return[
     'zf-metal-security.options' => [
         'public_register' => true,
         'email_confirmation_require' => true,
-        'role_default' => 'invitado',
+        'role_default' => 'usuario',
         'user_state_default' => true,
         'password_recovery' => true,
         'bcrypt_cost'=> 12,
