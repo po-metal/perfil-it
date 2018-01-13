@@ -207,10 +207,15 @@ class Cv
         $a["cvSkills"] = array();
         if ($this->getSkills()) {
                 foreach ($this->getSkills() as $skill) {
-                    $a["cvSkills"][$skill->getId()] = $skill->toArray();
+                    $a["cvSkills"][] = $skill->toArray();
                 }
 
         }
+
+        usort($a["cvSkills"], function($a, $b) {
+            return $b['lvl'] - $a['lvl'];
+        });
+
         return $a;
     }
 

@@ -8,7 +8,7 @@
                 </button>
                 <div class="clearfix"></div>
 
-                <skill v-if="entity" v-for="skill in entity" :skill="skill"/>
+                <skill v-if="entity" v-for="skill in entity" :skill="skill" :key="skill.id"/>
 
             </div>
 
@@ -24,9 +24,8 @@
                     <div id="searchlist" class="skill-panel">
                         <div>
                             <FormSkill v-for="skill in skillList" :skill="skill" :keyword="keyword"
-                                       v-on:skillUpdate="refreshSkill"/>
+                                       v-on:skillUpdate="skillUpdate"/>
 
-                            <div v-for="item in filteredByKeyword">{{ item.name }}</div>
                         </div>
 
                     </div>
@@ -34,35 +33,7 @@
 
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4 col-sx-12">
-                    <div>
-                        <li class="list-group-item">
-                            <label class="col-xs-6 text-right">Junior</label>
-                            <span class="rating">
-                            <span></span>
-                            <span class="star"></span>
-                            <span class="star"></span>
-                            <span class="star active"></span>
-                        </span>
-                        </li>
-                        <li class="list-group-item">
-                            <label class="col-xs-6 text-right">SemiSr</label>
-                            <span class="rating">
-                            <span></span>
-                            <span class="star"></span>
-                            <span class="star active"></span>
-                            <span class="star "></span>
-                        </span>
-                        </li>
-                        <li class="list-group-item">
-                            <label class="col-xs-6 text-right">Senior</label>
-                            <span class="rating">
-                            <span></span>
-                            <span class="star active"></span>
-                            <span class="star"></span>
-                            <span class="star"></span>
-                        </span>
-                        </li>
-                    </div>
+                    <skillLegend></skillLegend>
                 </div>
             </modal>
         </div>
@@ -72,16 +43,18 @@
 </template>
 
 <script>
+  import skillLegend from './cv-skills-legend.vue'
   import skill from './skill.vue'
-  import view from './utils/view'
   import modal from './utils/modal.vue'
   import FormSkill from "./form/form-skill.vue";
   import axios from 'axios'
+  import _ from 'lodash'
 
   export default {
     name: 'cv-skills',
-    mixins: [view],
+    props: ['propEntity'],
     components: {
+      skillLegend,
       FormSkill,
       skill, modal
     },
@@ -100,21 +73,33 @@
       }
     },
     created: function () {
+      this.entity = this.propEntity
       this.loadSkills()
-      //console.log(this.$refs.searchlist)
-      // $('#searchlist').btsListFilter('#searchinput', {itemChild: 'span'})
     },
-    computed: {},
+    computed: {
+      sortedEntity() {
+        return _.orderBy(this.entity, 'lvl', 'desc')
+      }
+    },
     methods: {
+      findSkill: function (cvSkillId) {
+        for (var i = 0; i < this.entity.length; i++) {
+          if (this.entity[i].id == cvSkillId) {
+            return i
+          }
+        }
+        return false
+      },
       showSkillModal: function () {
         $('#' + this.mp.id).modal("show");
       },
-      refreshSkill: function (skill) {
-        if (this.entity[skill.cvSkillId]) {
+      skillUpdate: function (skill) {
+        var index = this.findSkill(skill.cvSkillId)
+        if (index) {
           if (skill.lvl == 0) {
-            this.deleteSkill(skill.cvSkillId)
+            this.deleteSkill(index)
           } else {
-            this.updateLvl(skill)
+            this.updateLvl(index, skill)
           }
         } else {
           this.addSkill(skill)
@@ -122,15 +107,16 @@
       }
       ,
       deleteSkill: function (index) {
-        this.$delete(this.entity, index)
+        console.log(this.entity[index])
+        this.entity.splice(index, 1)
       }
       ,
-      updateLvl: function (sk) {
-        this.entity[sk.cvSkillId].lvl = sk.lvl
+      updateLvl: function (index, sk) {
+        this.entity[index].lvl = sk.lvl
       }
       ,
       addSkill: function (skill) {
-        this.$set(this.entity, skill.cvSkillId, {
+        this.entity.push({
           id: skill.cvSkillId,
           lvl: skill.lvl,
           skill: {id: skill.id, name: skill.name}

@@ -118,7 +118,8 @@ class CvSkillController extends AbstractActionController
         return new \Zend\View\Model\JsonModel($r);
     }
 
-    public function listAction(){
+    public function listAction()
+    {
         $skills = $this->getEm()->getRepository('PI\Entity\CvSkill')->findByCv($this->pICv());
         $r = array();
         foreach ($skills as $s) {
@@ -141,7 +142,7 @@ class CvSkillController extends AbstractActionController
 
 
                 $a[] = [
-                    "id"=>$skill->getId(),
+                    "id" => $skill->getId(),
                     "name" => $skill->getName(),
                     "category" => $category->getName(),
                     "lvl" => $lvl
@@ -154,37 +155,53 @@ class CvSkillController extends AbstractActionController
 
     public function saveSkillAction()
     {
+        $r = array();
+        $r["status"] = false;
 
         try {
-            $id = $this->getRequest()->getPost("id");
-            $skill = $this->getEm()->getRepository("\PI\Entity\Skill")->find($id);
 
+            $id = $this->getRequest()->getPost("id");
             $lvl = $this->getRequest()->getPost("lvl");
+
+            $skill = $this->getEm()->getRepository("\PI\Entity\Skill")->find($id);
 
             $cv = $this->pICv();
             $cvSkill = $this->getEm()->getRepository('PI\Entity\CvSkill')->findBySkillAndCv($cv, $skill);
-            if ($cvSkill) {
-                $cvSkillId = $cvSkill->getId();
-                if ($lvl == 0) {
-                    $this->getEm()->remove($cvSkill);
-                } else {
-                    $cvSkill->setLvl($lvl);
-                    $this->getEm()->persist($cvSkill);
-                }
-            } else {
+
+            //REMOVE
+            if ($lvl == 0 && $cvSkill) {
+                $r["cvSkillId"] = $cvSkill->getId();
+                $this->getEm()->remove($cvSkill);
+                $this->getEm()->flush();
+                $r["status"] = true;
+                $r["lvl"] = 0;
+            }
+
+            //EDIT
+            if ($cvSkill && $lvl > 0) {
+                $cvSkill->setLvl($lvl);
+                $this->getEm()->persist($cvSkill);
+                $this->getEm()->flush();
+                $r["status"] = true;
+                $r["cvSkillId"] = $cvSkill->getId();
+                $r["lvl"] = $cvSkill->getLvl();
+            }
+
+            //ADD
+            if (!$cvSkill && $lvl > 0) {
                 $cvSkill = new \PI\Entity\CvSkill();
                 $cvSkill->setCv($cv);
                 $cvSkill->setSkill($skill);
                 $cvSkill->setLvl($lvl);
                 $this->getEm()->persist($cvSkill);
+                $this->getEm()->flush();
+                $r["status"] = true;
+                $r["cvSkillId"] = $cvSkill->getId();
+                $r["lvl"] = $cvSkill->getLvl();
             }
-            $this->getEm()->flush();
 
-            $r["cvSkillId"] = ($cvSkillId)?$cvSkillId:$cvSkill->getId();
-            $r["lvl"] = $cvSkill->getLvl();
-            $r["status"] = true;
         } catch (Exception $ex) {
-            $r["status"] = false;
+            $r["error"] = $ex->getMessage();
         }
 
 
