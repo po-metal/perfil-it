@@ -27,7 +27,7 @@ class SkillCategoryRepository extends EntityRepository
     }
 
 
-    public function list(){
+    public function skillList(){
         $query = $this->getEntityManager()->createQueryBuilder()
             ->select('u')
             ->from('PI\Entity\SkillCategory', 'u')
