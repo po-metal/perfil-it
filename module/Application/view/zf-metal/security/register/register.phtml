@@ -8,7 +8,7 @@ $this->notyFlash(true);
   </div>
 
   <div class="register-box-body">
-    <p class="login-box-msg"><?= $this->translate('Register a new membership'); ?></p>
+    <p class="login-box-msg"><?= $this->translate('Registrarse como nuevo miembro'); ?></p>
 
     <?php echo $this->form()->openTag($form) ?>
       <div class="form-group has-feedback">
@@ -33,12 +33,12 @@ $this->notyFlash(true);
       </div>
       <div class="form-group has-feedback">
 
-         <?php echo $this->formElement($form->get('submit')->setAttribute('class','btn btn-primary btn-block btn-flat')->setAttribute('value', $this->translate('Register'))); ?>
+         <?php echo $this->formElement($form->get('submit')->setAttribute('class','btn btn-primary btn-block btn-flat')->setAttribute('value', $this->translate('Registrar'))); ?>
       
       </div>
 <?php echo $this->form()->closeTag($form); ?>
 
-    <a href="<?= $this->url('home'); ?>" class="text-center"><?= $this->translate('I already have a membership'); ?></a>
+    <a href="<?= $this->url('home'); ?>" class="text-center"><?= $this->translate('Ya estoy registrado'); ?></a>
   </div>
   <!-- /.form-box -->
 </div>

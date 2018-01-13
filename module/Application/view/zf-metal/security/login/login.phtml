@@ -9,7 +9,7 @@ $this->notyFlash(true);
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
-    <p class="login-box-msg"><?= $this->translate('Sign in to start your session')?></p>
+    <p class="login-box-msg"><?= $this->translate('Iniciar Sesión')?></p>
 
     <?php echo $this->form()->openTag($form) ?>
     <div class="form-group has-feedback">
@@ -39,22 +39,22 @@ $this->notyFlash(true);
               <?php $element = $form->get('_remember'); ?>
               <?php
               echo $this->formElement($element);
-              ?> <?= $this->translate('Remember Me');?>
+              ?> <?= $this->translate('Recordarme');?>
             </label>
           </div>
         <?php endif; ?>
       </div>
       <!-- /.col -->
       <div class="col-xs-4">
-       <?php echo $this->formElement($form->get('submit')->setAttribute('class','btn btn-primary btn-block btn-flat')->setAttribute('value',$this->translate('Sign In'))); ?>
+       <?php echo $this->formElement($form->get('submit')->setAttribute('class','btn btn-primary btn-block btn-flat')->setAttribute('value',$this->translate('Ingresar'))); ?>
      </div>
      <!-- /.col -->
    </div>
    <?php echo $this->form()->closeTag($form); ?>
 
-   <a href="<?php echo $this->basePath('/user/recovery'); ?>"><?= $this->translate('I forgot my password')?></a><br>
+   <a href="<?php echo $this->basePath('/user/recovery'); ?>"><?= $this->translate('Recuperar contraseña')?></a><br>
    <?php if ($this->getSecurityOptions()->getPublicRegister()) : ?>
-    <a href="<?php echo $this->basePath('/user/register'); ?>" class="text-center"><?= $this->translate('Register a new membership')?></a>
+    <a href="<?php echo $this->basePath('/user/register'); ?>" class="text-center"><?= $this->translate('Registrarse')?></a>
   <?php endif; ?>
 
   <!-- /.login-box-body -->
