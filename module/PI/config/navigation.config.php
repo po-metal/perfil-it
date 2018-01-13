@@ -76,7 +76,13 @@ return [
                 ],
             ],
             [
-                'label' => 'CV-VUE',
+                'label' => 'CV Digital',
+                'detail' => '',
+                'icon' => '',
+                'route' => 'PI/CvVue/Main',
+            ],
+            [
+                'label' => 'Busqueda Inteligente',
                 'detail' => '',
                 'icon' => '',
                 'route' => 'PI/CvVue/Main',

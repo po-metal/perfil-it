@@ -1,9 +1,10 @@
 <?php
-
+$date = new \DateTime();
 return[
     'zf-metal-security.options' => [
         'public_register' => true,
         'email_confirmation_require' => true,
+        'role_default' => 'invitado',
         'user_state_default' => true,
         'password_recovery' => true,
         'bcrypt_cost'=> 12,
@@ -17,5 +18,9 @@ return[
             'previous_uri_query_key' => 'redirect',
         ],
         'remember_me' => true, 
+    ],
+    'zf-metal-log.options' => [
+        'log_file' => 'logs/' . $date->format('Y-m-d') . 'log',
+        'filter' => \Zend\Log\Logger::INFO,
     ]
 ];

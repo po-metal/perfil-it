@@ -58,7 +58,8 @@ class Cv extends \Zend\Mvc\Controller\Plugin\AbstractPlugin {
             //CV
             $cv = new \PI\Entity\Cv();
             $cv->setUser($this->getUser());
-
+            //SAVE
+            $this->getCvRepository()->save($cv);
 
             $personalInformation = new \PI\Entity\CvPersonalInformation();
             $personalInformation->setCv($cv);
@@ -82,9 +83,8 @@ class Cv extends \Zend\Mvc\Controller\Plugin\AbstractPlugin {
             $contact->setCv($cv);
             $cv->setContact($contact);
             $this->getEm()->persist($contact);
+            $this->getEm()->flush();
 
-            //SAVE
-            $this->getCvRepository()->save($cv);
         }
         return $cv;
     }
