@@ -18,12 +18,12 @@
                         <div class="input-group">
                             <div class="input-group-addon"><i class="fa fa-search"></i></div>
                             <input id="searchinput" class="form-control" autocomplete="off" type="search"
-                                   placeholder="Buscar..." v-model="keyword" />
+                                   placeholder="Buscar..." v-model="keyword"/>
                         </div>
                     </div>
                     <div id="searchlist" class="skill-panel">
                         <div>
-                            <FormSkill  v-for="skill in filteredByKeyword" :skill="skill"
+                            <FormSkill v-for="skill in skillList" :skill="skill" :keyword="keyword"
                                        v-on:skillUpdate="refreshSkill"/>
 
                             <div v-for="item in filteredByKeyword">{{ item.name }}</div>
@@ -32,6 +32,37 @@
                     </div>
 
 
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-sx-12">
+                    <div>
+                        <li class="list-group-item">
+                            <label class="col-xs-6 text-right">Junior</label>
+                            <span class="rating">
+                            <span></span>
+                            <span class="star"></span>
+                            <span class="star"></span>
+                            <span class="star active"></span>
+                        </span>
+                        </li>
+                        <li class="list-group-item">
+                            <label class="col-xs-6 text-right">SemiSr</label>
+                            <span class="rating">
+                            <span></span>
+                            <span class="star"></span>
+                            <span class="star active"></span>
+                            <span class="star "></span>
+                        </span>
+                        </li>
+                        <li class="list-group-item">
+                            <label class="col-xs-6 text-right">Senior</label>
+                            <span class="rating">
+                            <span></span>
+                            <span class="star active"></span>
+                            <span class="star"></span>
+                            <span class="star"></span>
+                        </span>
+                        </li>
+                    </div>
                 </div>
             </modal>
         </div>
@@ -56,7 +87,7 @@
     },
     data() {
       return {
-        keyword : "",
+        keyword: "",
         mp: {
           id: 'modal-cv-skill',
           title: 'Habilidades'
@@ -71,23 +102,9 @@
     created: function () {
       this.loadSkills()
       //console.log(this.$refs.searchlist)
-     // $('#searchlist').btsListFilter('#searchinput', {itemChild: 'span'})
+      // $('#searchlist').btsListFilter('#searchinput', {itemChild: 'span'})
     },
-    computed: {
-      getAll(){
-        return this.skillList
-      },
-      filteredByAll() {
-        return getByCategory(getByKeyword(this.skillList, this.keyword), this.category)
-      },
-      filteredByKeyword() {
-        return getByKeyword(this.skillList, this.keyword)
-
-      },
-      filteredByCategory() {
-        return getByCategory(this.skillList, this.category)
-      }
-    },
+    computed: {},
     methods: {
       showSkillModal: function () {
         $('#' + this.mp.id).modal("show");
@@ -137,15 +154,5 @@
     }
   }
 
-  function getByKeyword(list, keyword) {
-    const search = keyword.trim().toLowerCase()
-    if (!search.length) return list
-    return list.filter(item => item.name.toLowerCase().indexOf(search) > -1)
-  }
-
-  function getByCategory(list, category) {
-    if (!category) return list
-    return list.filter(item => item.category === category)
-  }
 
 </script>

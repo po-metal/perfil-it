@@ -1,5 +1,5 @@
 <template>
-    <li :id="'skill_'+entity.id" class=" list-group-item">
+    <li :id="'skill_'+entity.id" class=" list-group-item" v-show="showByKeyword">
         <i v-if="submitInProgress" class="fa fa-circle-o-notch" aria-hidden="true"></i>
         <label class="col-xs-6 text-right">{{entity.name}}</label>
         <span class="rating">
@@ -20,7 +20,7 @@
 
   export default {
     name: 'form-skill',
-    props: ['skill'],
+    props: ['skill','keyword'],
     created: function () {
       this.entity = this.skill
     },
@@ -84,6 +84,9 @@
           id: this.entity.id,
           lvl: this.entity.lvl
         }
+      },
+      showByKeyword: function(){
+        return  this.entity.name.toLowerCase().indexOf(this.keyword.toLowerCase()) > -1
       }
     }
   }

@@ -5,7 +5,7 @@ return [
         'guest_role' => 'invitado',
         'guards' => [
             'ZfcRbac\Guard\RouteGuard' => [
-                'PI/CvVue/Main' => ['usuario'],
+                'PI/CvVue/Main' => ['usuario','admin'],
                 'Pi*' => ['admin', 'usuario'],
 
                // 'Pi*' => ['invitado'],
