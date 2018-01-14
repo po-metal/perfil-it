@@ -85,7 +85,7 @@ return [
                 'label' => 'Busqueda Inteligente',
                 'detail' => '',
                 'icon' => '',
-                'route' => 'PI/CvVue/Main',
+                'route' => 'home',
             ],
         ],
     ],

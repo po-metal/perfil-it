@@ -30796,6 +30796,7 @@ exports.default = {
           return i;
         }
       }
+      console.log("No se encontro id: " + cvSkillId);
       return false;
     },
     showSkillModal: function showSkillModal() {
@@ -30803,7 +30804,8 @@ exports.default = {
     },
     skillUpdate: function skillUpdate(skill) {
       var index = this.findSkill(skill.cvSkillId);
-      if (index) {
+      console.log("Indice Obtenido: " + index);
+      if (index === 0 || index >= 1) {
         if (skill.lvl == 0) {
           this.deleteSkill(index);
         } else {
@@ -30815,15 +30817,18 @@ exports.default = {
     },
 
     deleteSkill: function deleteSkill(index) {
+      console.log("Del");
       console.log(this.entity[index]);
       this.entity.splice(index, 1);
     },
 
     updateLvl: function updateLvl(index, sk) {
+      console.log("Update");
       this.entity[index].lvl = sk.lvl;
     },
 
     addSkill: function addSkill(skill) {
+      console.log("Add");
       this.entity.push({
         id: skill.cvSkillId,
         lvl: skill.lvl,
@@ -30850,7 +30855,7 @@ exports.default = {
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('div',{staticClass:"box box-primary",attrs:{"data-toggle":"modal","data-target":"#cv-skills-modal"}},[_c('div',{staticClass:"box-header"},[_vm._m(0),_vm._v(" "),_c('button',{staticClass:"btn btn-default fa fa-edit btn-xs pull-right",attrs:{"data-toggle":"modal","data-target":"#modal-cv-skill"}}),_vm._v(" "),_c('div',{staticClass:"clearfix"}),_vm._v(" "),_vm._l((_vm.entity),function(skill){return (_vm.entity)?_c('skill',{key:skill.id,attrs:{"skill":skill}}):_vm._e()})],2),_vm._v(" "),_c('modal',{attrs:{"modalId":_vm.mp.id,"title":_vm.mp.title,"modalSize":'modal-lg'}},[_c('div',{staticClass:"col-lg-8 col-md-8 col-sm-8 col-xs-12 "},[_c('div',{staticClass:"form-group"},[_c('div',{staticClass:"input-group"},[_c('div',{staticClass:"input-group-addon"},[_c('i',{staticClass:"fa fa-search"})]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.keyword),expression:"keyword"}],staticClass:"form-control",attrs:{"id":"searchinput","autocomplete":"off","type":"search","placeholder":"Buscar..."},domProps:{"value":(_vm.keyword)},on:{"input":function($event){if($event.target.composing){ return; }_vm.keyword=$event.target.value}}})])]),_vm._v(" "),_c('div',{staticClass:"skill-panel",attrs:{"id":"searchlist"}},[_c('div',_vm._l((_vm.skillList),function(skill){return _c('FormSkill',{attrs:{"skill":skill,"keyword":_vm.keyword},on:{"skillUpdate":_vm.skillUpdate}})}))])]),_vm._v(" "),_c('div',{staticClass:"col-lg-4 col-md-4 col-sm-4 col-sx-12"},[_c('skillLegend')],1)])],1)])}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('div',{staticClass:"box box-primary",attrs:{"data-toggle":"modal","data-target":"#cv-skills-modal"}},[_c('div',{staticClass:"box-header"},[_vm._m(0),_vm._v(" "),_c('button',{staticClass:"btn btn-default fa fa-edit btn-xs pull-right",attrs:{"data-toggle":"modal","data-target":"#modal-cv-skill"}}),_vm._v(" "),_c('div',{staticClass:"clearfix"}),_vm._v(" "),_vm._l((_vm.sortedEntity),function(skill){return (_vm.entity)?_c('skill',{key:skill.id,attrs:{"skill":skill}}):_vm._e()})],2),_vm._v(" "),_c('modal',{attrs:{"modalId":_vm.mp.id,"title":_vm.mp.title,"modalSize":'modal-lg'}},[_c('div',{staticClass:"col-lg-8 col-md-8 col-sm-8 col-xs-12 "},[_c('div',{staticClass:"form-group"},[_c('div',{staticClass:"input-group"},[_c('div',{staticClass:"input-group-addon"},[_c('i',{staticClass:"fa fa-search"})]),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.keyword),expression:"keyword"}],staticClass:"form-control",attrs:{"id":"searchinput","autocomplete":"off","type":"search","placeholder":"Buscar..."},domProps:{"value":(_vm.keyword)},on:{"input":function($event){if($event.target.composing){ return; }_vm.keyword=$event.target.value}}})])]),_vm._v(" "),_c('div',{staticClass:"skill-panel",attrs:{"id":"searchlist"}},[_c('div',_vm._l((_vm.skillList),function(skill){return _c('FormSkill',{attrs:{"skill":skill,"keyword":_vm.keyword},on:{"skillUpdate":_vm.skillUpdate}})}))])]),_vm._v(" "),_c('div',{staticClass:"col-lg-4 col-md-4 col-sm-4 col-sx-12"},[_c('skillLegend')],1)])],1)])}
 __vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('strong',[_c('i',{staticClass:"fa fa-star margin-r-5"}),_vm._v(" Habilidades Técnicas")])}]
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)

@@ -8,7 +8,7 @@
                 </button>
                 <div class="clearfix"></div>
 
-                <skill v-if="entity" v-for="skill in entity" :skill="skill" :key="skill.id"/>
+                <skill v-if="entity" v-for="skill in sortedEntity" :skill="skill" :key="skill.id"/>
 
             </div>
 
@@ -88,6 +88,7 @@
             return i
           }
         }
+        console.log("No se encontro id: " + cvSkillId)
         return false
       },
       showSkillModal: function () {
@@ -95,7 +96,8 @@
       },
       skillUpdate: function (skill) {
         var index = this.findSkill(skill.cvSkillId)
-        if (index) {
+        console.log("Indice Obtenido: " + index)
+        if (index === 0 || index >= 1) {
           if (skill.lvl == 0) {
             this.deleteSkill(index)
           } else {
@@ -107,15 +109,18 @@
       }
       ,
       deleteSkill: function (index) {
+        console.log("Del")
         console.log(this.entity[index])
         this.entity.splice(index, 1)
       }
       ,
       updateLvl: function (index, sk) {
+        console.log("Update")
         this.entity[index].lvl = sk.lvl
       }
       ,
       addSkill: function (skill) {
+        console.log("Add")
         this.entity.push({
           id: skill.cvSkillId,
           lvl: skill.lvl,
