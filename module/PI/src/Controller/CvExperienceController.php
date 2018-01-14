@@ -35,9 +35,14 @@ class CvExperienceController extends AbstractActionController
         $this->em = $em;
     }
 
-    public function getEntityRepository()
+    public function getCvExperienceRepository()
     {
         return $this->getEm()->getRepository(self::ENTITY);
+    }
+
+    public function getJobRepository()
+    {
+        return $this->getEm()->getRepository('\PI\Entity\Job');
     }
 
     public function __construct(\Doctrine\ORM\EntityManager $em, $renderer)
@@ -49,7 +54,7 @@ class CvExperienceController extends AbstractActionController
     protected function getExperience($id = null)
     {
         if ($id) {
-            $experience = $this->getEm()->getRepository(self::ENTITY)->find($id);
+            $experience = $this->getCvExperienceRepository()->find($id);
         } else {
             //Get Object
             $CV = $this->pICv();
@@ -141,6 +146,15 @@ class CvExperienceController extends AbstractActionController
     {
         if ($this->getRequest()->isPost()) {
             $id = $this->getRequest()->getPost("id");
+            $customJob = $this->getRequest()->getPost("customJob");
+            $job = $this->getJobRepository()->findOneByName($customJob);
+            if (!$job) {
+                $job = new \PI\Entity\Job();
+                $job->setName($customJob);
+                $this->getJobRepository()->save($job);
+
+            }
+            $jobId = $job->getId();
         }
 
 
@@ -149,6 +163,9 @@ class CvExperienceController extends AbstractActionController
         //Generate Form
         $form = $this->formBuilder($this->getEm(), 'PI\Entity\CvExperience');
         $form->bind($experience);
+
+        //JOB
+        $form->get('job')->setValue($jobId);
 
 
         //Remove CV
@@ -165,26 +182,35 @@ class CvExperienceController extends AbstractActionController
         $service = $this->formProcess($this->getEm(), $form);
         $rview = null;
         if ($service->getStatus()) {
+
+            if (is_a($job, "\PI\Entity\Job")) {
+                $experience->setJob($job);
+                $this->getCvExperienceRepository()->save($experience);
+            }
+
             $result = ["status" => $service->getStatus(), "data" => $experience->toArray()];
         } else {
             $result = ["status" => $service->getStatus(), "errors" => $form->getMessages(), "data" => $experience->toArray()];
             $this->getResponse()->setStatusCode(\Zend\Http\Response::STATUS_CODE_422);
         }
+
         return new \Zend\View\Model\JsonModel($result);
     }
 
-    public function loadAction()
+    public
+    function loadAction()
     {
         $a = $this->pICv()->toArray();
 
         return new \Zend\View\Model\JsonModel($a["CvExperiences"]);
     }
 
-    public function deleteAction()
+    public
+    function deleteAction()
     {
         try {
             $id = $this->getRequest()->getPost("id");
-            $exp = $this->getEntityRepository()->find($id);
+            $exp = $this->getCvExperienceRepository()->find($id);
             $this->getEm()->remove($exp);
             $this->getEm()->flush();
             $result = ["status" => true];

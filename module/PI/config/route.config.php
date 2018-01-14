@@ -710,6 +710,30 @@ return [
                             ],
                         ],
                     ],
+                    'JobAc' => [
+                        'type' => 'Literal',
+                        'mayTerminate' => false,
+                        'options' => [
+                            'route' => '/job-ac',
+                            'defaults' => [
+                                'controller' => \PI\Controller\JobAcController::CLASS,
+                                'action' => 'search',
+                            ],
+                        ],
+                        'child_routes' => [
+                            'Search' => [
+                                'type' => 'Segment',
+                                'mayTerminate' => true,
+                                'options' => [
+                                    'route' => '/search',
+                                    'defaults' => [
+                                        'controller' => \PI\Controller\JobAcController::CLASS,
+                                        'action' => 'search',
+                                    ],
+                                ],
+                            ],
+                        ],
+                    ],
                 ],
             ],
         ],

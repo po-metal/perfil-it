@@ -50,9 +50,7 @@ class CvExperience {
     public $company = null;
 
     /**
-     * @Annotation\Type("DoctrineModule\Form\Element\ObjectSelect")
-     * @Annotation\Options({"label":"Cargo (Normalizado por Perfil IT)","empty_option": "",
-     * "target_class":"\PI\Entity\Job", "description":""})
+     * @Annotation\Type("Zend\Form\Element\Hidden")
      * @ORM\ManyToOne(targetEntity="\PI\Entity\Job")
      * @ORM\JoinColumn(name="job_id", referencedColumnName="id", nullable=true)
      */
@@ -205,7 +203,9 @@ class CvExperience {
         }else{
             $a["job"] = ["id" => null, "name" => null];
         }
+
         $a["customJob"] = $this->getCustomJob();
+
         if($this->getDateFrom()) {
             $a["dateFrom"] = $this->getDateFrom()->format("Y-m-d");
         }

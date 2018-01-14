@@ -2,7 +2,7 @@
     <div :id="exp+this.id" @click="editExp" class="cursor-pointer">
         <div class="box box-default box-cv" >
             <div class="box-header">
-                <strong> {{ theJob }}</strong> en <a  target="blank">{{ entity.company }}</a>
+                <strong> {{ entity.customJob }}</strong> en <a  target="blank">{{ entity.company }}</a>
 
                 <span class="pull-right">{{ entity.time }}</span>
             </div>

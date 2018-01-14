@@ -1,5 +1,5 @@
 <template>
-    <div >
+    <div>
 
         <form method="POST" name="CvExperience" v-on:submit.prevent="save" class="form-vertical" id="CvExperience">
 
@@ -9,7 +9,7 @@
                 <input type="hidden" name="id" v-model="entity.id">
             </div>
 
-            <div class="col-lg-12 col-md-12 col-xs-12">
+            <div class="col-lg-6 col-md-6 col-xs-12">
                 <div class="form-group">
                     <label class="control-label">Compañia</label>
                     <saveStatus :isSaved="h.isSaved"></saveStatus>
@@ -18,28 +18,22 @@
                     <fe :errors="errors.company"/>
                 </div>
             </div>
-            <div class="clearfix"></div>
 
-            <div class="clearfix"></div>
             <div class="col-lg-6 col-md-6 col-xs-12">
                 <div class="form-group">
-                    <label class="control-label">Cargo (Normalizado por Perfil IT)</label>
-                    <select name="job" class=" form-control" v-model="entity.job.id" @change="unsaved">
-                        <option value=""></option>
-                        <option value="1">Operador de Soporte Tecnico</option>
-                        <option value="2">Implementador</option>
-                        <option value="3">Lider de Proyecto</option>
-                        <option value="4">Programador</option>
-                    </select>
-
-                    <fe :errors="errors.job"/>
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-xs-12">
-                <div class="form-group">
-                    <label class="control-label">Cargo (Personalizado)</label>
-                    <input type="text" name="customJob" class=" form-control" v-model="entity.customJob"
-                           @keydown="unsaved">
+                    <label class="control-label">Cargo/Posición</label>
+                    <Autocomplete :init-value="entity.customJob"
+                                  name="customJob"
+                                  id="customJob"
+                                  :min="3"
+                                  :debounce="250"
+                                  :classes="{ wrapper: 'form-wrapper', input: 'form-control', list: 'data-list', item: 'data-list-item' }"
+                                  url="/pi/job-ac/search"
+                                  anchor="name"
+                                  label=""
+                                  :on-select="onSelectJob"
+                                  :on-input="onInputtJob"
+                    ></Autocomplete>
                     <fe :errors="errors.customJob"/>
                 </div>
             </div>
@@ -109,8 +103,10 @@
 
             </div>
         </form>
-        <div class="pull-right"><button name="delete" class="btn text-danger fa fa-trash" @click="del" :disabled="h.submitInProgress">
-        </button></div>
+        <div class="pull-right">
+            <button name="delete" class="btn text-danger fa fa-trash" @click="del" :disabled="h.submitInProgress">
+            </button>
+        </div>
     </div>
 </template>
 
@@ -118,12 +114,13 @@
   import fe from '../utils/form-error.vue'
   import crud from '../utils/crud'
   import saveStatus from '../utils/save-status.vue'
+  import Autocomplete from 'vue2-autocomplete-js';
 
   export default {
     name: 'form-experience',
     mixins: [crud],
     components: {
-      saveStatus, fe
+      saveStatus, fe, Autocomplete
     },
     props: ['value', 'isSaved', 'index'],
     data() {
@@ -153,12 +150,18 @@
       }
     },
     methods: {
+      onSelectJob: function(obj){
+        this.entity.customJob = obj.name
+        this.unsaved()
+      },
+      onInputtJob: function(obj){
+        this.entity.customJob = obj
+        this.unsaved()
+      },
       populate: function (data) {
         this.entity.id = data.id
         this.entity.company = data.company
-        this.entity.job.id = data.job.id
-        this.entity.job.name = data.job.name
-        this.entity.customJob = data.customJob
+        this.entity.customJob = data.job.name
         this.entity.dateFrom = data.dateFrom
         this.entity.dateTo = data.dateTo
         this.entity.currentJob = data.currentJob
@@ -184,7 +187,6 @@
         return {
           id: this.entity.id,
           company: this.entity.company,
-          job: this.entity.job.id,
           customJob: this.entity.customJob,
           dateFrom: this.entity.dateFrom,
           dateTo: this.entity.dateTo,

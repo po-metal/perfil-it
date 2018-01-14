@@ -27,5 +27,17 @@ class JobRepository extends EntityRepository
     }
 
 
+    public function search($search){
+        $query = $this->getEntityManager()->createQueryBuilder()
+            ->select('u')
+            ->from('PI\Entity\Job', 'u')
+            ->where('u.name LIKE :search')
+            ->setParameter('search', '%'.$search.'%');
+
+        return $query->getQuery()->getArrayResult();
+    }
+
+
+
 }
 

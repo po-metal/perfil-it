@@ -11,7 +11,7 @@
             </div>
             <div class="panel-body ">
 
-                <experience v-if="entity" v-for="(exp, index) in entity" :exp="exp" :index="index"
+                <experience v-if="entity" v-for="(exp, index) in entity" :key="exp.id" :exp="exp" :index="index"
                             v-on:editExp="modExp"/>
 
             </div>
