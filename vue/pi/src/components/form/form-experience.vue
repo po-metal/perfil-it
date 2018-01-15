@@ -22,7 +22,8 @@
             <div class="col-lg-6 col-md-6 col-xs-12">
                 <div class="form-group">
                     <label class="control-label">Cargo/Posición</label>
-                    <Autocomplete :init-value="entity.customJob"
+                    <Autocomplete ref="cj"
+                                  :init-value="entity.customJob"
                                   name="customJob"
                                   id="customJob"
                                   :min="3"
@@ -140,7 +141,7 @@
           id: '',
           company: '',
           job: '',
-          customJob: '',
+          customJob: 'Initial',
           dateFrom: '',
           dateTo: '',
           currentJob: '',
@@ -176,10 +177,11 @@
     },
     created: function () {
       this.entity = this.value
-    },
+      },
     watch: {
       value: function (newVal, oldVal) { // watch it
         this.entity = newVal
+        this.$refs.cj.type = this.entity.customJob
       }
     },
     computed: {
