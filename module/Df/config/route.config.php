@@ -9,18 +9,18 @@ return [
                 'options' => [
                     'route' => '/df',
                     'defaults' => [
-                        'controller' => \Df\Controller\EncuestasControllerController::CLASS,
+                        'controller' => \Df\Controller\EncuestasController::CLASS,
                         'action' => 'main',
                     ],
                 ],
                 'child_routes' => [
-                    'EncuestasController' => [
+                    'Encuestas' => [
                         'type' => 'Literal',
                         'mayTerminate' => false,
                         'options' => [
-                            'route' => '/encuestas-controller',
+                            'route' => '/encuestas',
                             'defaults' => [
-                                'controller' => \Df\Controller\EncuestasControllerController::CLASS,
+                                'controller' => \Df\Controller\EncuestasController::CLASS,
                                 'action' => 'main',
                             ],
                         ],
@@ -31,20 +31,20 @@ return [
                                 'options' => [
                                     'route' => '/main',
                                     'defaults' => [
-                                        'controller' => \Df\Controller\EncuestasControllerController::CLASS,
+                                        'controller' => \Df\Controller\EncuestasController::CLASS,
                                         'action' => 'main',
                                     ],
                                 ],
                             ],
                         ],
                     ],
-                    'ExamenesController' => [
+                    'Examenes' => [
                         'type' => 'Literal',
                         'mayTerminate' => false,
                         'options' => [
-                            'route' => '/examenes-controller',
+                            'route' => '/examenes',
                             'defaults' => [
-                                'controller' => \Df\Controller\ExamenesControllerController::CLASS,
+                                'controller' => \Df\Controller\ExamenesController::CLASS,
                                 'action' => 'main',
                             ],
                         ],
@@ -55,7 +55,7 @@ return [
                                 'options' => [
                                     'route' => '/main',
                                     'defaults' => [
-                                        'controller' => \Df\Controller\ExamenesControllerController::CLASS,
+                                        'controller' => \Df\Controller\ExamenesController::CLASS,
                                         'action' => 'main',
                                     ],
                                 ],

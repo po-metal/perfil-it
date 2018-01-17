@@ -4,24 +4,16 @@ return [
     'navigation' => [
         'default' => [
             [
-                'label' => 'Form',
+                'label' => 'Encuestas',
                 'detail' => '',
                 'icon' => '',
-                'uri' => '',
-                'pages' => [
-                    [
-                        'label' => 'Encuestas',
-                        'detail' => '',
-                        'icon' => '',
-                        'route' => 'Df/EncuestasController/Main',
-                    ],
-                    [
-                        'label' => 'Examenes',
-                        'detail' => '',
-                        'icon' => '',
-                        'route' => 'Df/ExamenesController/Main',
-                    ],
-                ],
+                'route' => 'Df/Encuestas/Main',
+            ],
+            [
+                'label' => 'Examenes',
+                'detail' => '',
+                'icon' => '',
+                'route' => 'Df/Examenes/Main',
             ],
         ],
     ],

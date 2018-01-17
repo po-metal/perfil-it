@@ -5,7 +5,7 @@ namespace Df\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 
 /**
- * EncuestasControllerController
+ * ExamenesController
  *
  *
  *
@@ -13,7 +13,7 @@ use Zend\Mvc\Controller\AbstractActionController;
  * @license
  * @link
  */
-class EncuestasControllerController extends AbstractActionController
+class ExamenesController extends AbstractActionController
 {
 
     public function mainAction()
