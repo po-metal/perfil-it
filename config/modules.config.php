@@ -32,6 +32,6 @@ return [
     'ZfMetal\Generator',
     //MODULES
     'Application',
-    'PI'
-
+    'PI',
+    'Df'
 ];
