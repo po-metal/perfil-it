@@ -40674,7 +40674,7 @@ var _vue = require('vue');
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _App = require('./App.vue');
+var _App = require('./JobSearchApp.vue');
 
 var _App2 = _interopRequireDefault(_App);
 
