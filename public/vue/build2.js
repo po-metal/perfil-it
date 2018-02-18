@@ -11234,38 +11234,38 @@ module.exports = Vue$3;
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 
-var _Hello = require('./components/Hello.vue');
+var _Encuestas = require('./components/Encuestas.vue');
 
-var _Hello2 = _interopRequireDefault(_Hello);
+var _Encuestas2 = _interopRequireDefault(_Encuestas);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
-  name: 'app',
-  components: {
-    Hello: _Hello2.default
-  }
+    name: 'app',
+    components: {
+        Encuestas: _Encuestas2.default
+    }
 };
 })()
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"app"}},[_c('hello')],1)}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"app"}},[_c('encuestas')],1)}
 __vue__options__.staticRenderFns = []
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-5a569a3d", __vue__options__)
+    hotAPI.createRecord("data-v-e95a04f6", __vue__options__)
   } else {
-    hotAPI.reload("data-v-5a569a3d", __vue__options__)
+    hotAPI.reload("data-v-e95a04f6", __vue__options__)
   }
 })()}
-},{"./components/Hello.vue":5,"vue":3,"vue-hot-reload-api":2}],5:[function(require,module,exports){
+},{"./components/Encuestas.vue":5,"vue":3,"vue-hot-reload-api":2}],5:[function(require,module,exports){
 ;(function(){
 'use strict';
 
@@ -11273,10 +11273,19 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = {
-  name: 'hello',
+  name: 'encuestas',
   data: function data() {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      encuesta: {
+        titulo: 'Un Examen',
+        tiempo: 20,
+        version: 13,
+        preguntas: [{
+          id: 1,
+          pregunta: 'Una pregunta',
+          respuestas: [{ id: 1, respuesta: 'respuesta 1', value: false }, { id: 2, respuesta: 'respuesta 2', value: false }]
+        }]
+      }
     };
   }
 };
@@ -11284,17 +11293,16 @@ exports.default = {
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"hello"}},[_c('img',{attrs:{"src":"http://vuejs.org/images/logo.png"}}),_vm._v(" "),_c('h1',[_vm._v(_vm._s(_vm.msg))]),_vm._v(" "),_c('h2',[_vm._v("Essential Links")]),_vm._v(" "),_vm._m(0),_vm._v(" "),_c('h2',[_vm._v("Ecosystem")]),_vm._v(" "),_vm._m(1)])}
-__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('ul',[_c('li',[_c('a',{attrs:{"href":"https://vuejs.org","target":"_blank"}},[_vm._v("Core Docs")])]),_vm._v(" "),_c('li',[_c('a',{attrs:{"href":"https://forum.vuejs.org","target":"_blank"}},[_vm._v("Forum")])]),_vm._v(" "),_c('li',[_c('a',{attrs:{"href":"https://gitter.im/vuejs/vue","target":"_blank"}},[_vm._v("Gitter Chat")])]),_vm._v(" "),_c('li',[_c('a',{attrs:{"href":"https://twitter.com/vuejs","target":"_blank"}},[_vm._v("Twitter")])])])},function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('ul',[_c('li',[_c('a',{attrs:{"href":"http://router.vuejs.org/","target":"_blank"}},[_vm._v("vue-router")])]),_vm._v(" "),_c('li',[_c('a',{attrs:{"href":"http://vuex.vuejs.org/","target":"_blank"}},[_vm._v("vuex")])]),_vm._v(" "),_c('li',[_c('a',{attrs:{"href":"https://github.com/vuejs/vueify","target":"_blank"}},[_vm._v("vueify")])]),_vm._v(" "),_c('li',[_c('a',{attrs:{"href":"https://github.com/vuejs/awesome-vue","target":"_blank"}},[_vm._v("awesome-vue")])])])}]
-__vue__options__._scopeId = "data-v-263262ed"
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"box",attrs:{"id":"encuestas"}},[_c('div',{staticClass:"col-sm-12 col-xs-12 col-md-12 col-lg-12 box-body"},[_c('div',{staticClass:"col-sm-12 col-xs-12 col-md-4 col-lg-4"},[_vm._v("\n            Titulo = "+_vm._s(_vm.encuesta.titulo)+"\n        ")]),_vm._v(" "),_c('div',{staticClass:"col-sm-12 col-xs-12 col-md-4 col-lg-4"},[_vm._v("\n            Tiempo = "+_vm._s(_vm.encuesta.tiempo)+" minutos\n        ")]),_vm._v(" "),_c('div',{staticClass:"col-sm-12 col-xs-12 col-md-4 col-lg-4"},[_vm._v("\n            Version = "+_vm._s(_vm.encuesta.version)+"\n        ")])]),_vm._v(" "),_c('div',{staticClass:"col-sm-12 col-xs-12 col-md-12 col-lg-12"},[_c('div',{staticClass:"col-sm-12 col-xs-12 col-md-3 col-lg-3 pull-left"},[_c('ul',_vm._l((_vm.encuesta.preguntas),function(item){return _c('li',[_vm._v("\n                    "+_vm._s(item.pregunta)+"\n                ")])}))]),_vm._v(" "),_c('div',{staticClass:"col-sm-12 col-xs-12 col-md-6 col-lg-6 pull-right"})])])}
+__vue__options__.staticRenderFns = []
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-263262ed", __vue__options__)
+    hotAPI.createRecord("data-v-7122f9e0", __vue__options__)
   } else {
-    hotAPI.reload("data-v-263262ed", __vue__options__)
+    hotAPI.reload("data-v-7122f9e0", __vue__options__)
   }
 })()}
 },{"vue":3,"vue-hot-reload-api":2}],6:[function(require,module,exports){
