@@ -5,6 +5,11 @@
   "author": "crist <cristian.cdi@gmail.com>",
   "private": true,
   "scripts": {
+  //  "watchify": "watchify -vd -p browserify-hmr -e src/cv.js -o dist/build.js",
+  //  "serve": "http-server -o -c 1 -a localhost",
+  //  "devy": "npm-run-all --parallel watchify serve",
+  //  "lint": "eslint --ext .js,.vue src test/unit",
+  //  "test": "karma start karma.conf.js",
     "cv-build": "cross-env NODE_ENV=production browserify -g envify -p [ vueify/plugins/extract-css -o dist/build.css ] -e src/cv.js | uglifyjs -c warnings=false -m > C:/Users/crist/Documents/NetBeansProjects/perfil-it/public/vue/cv-build.js",
     "cv-dev": "cross-env NODE_ENV=debug browserify  -p [ vueify/plugins/extract-css -o dist/build.css ] -e src/cv.js  > ../../public/vue/cv-build.js"
   },
@@ -19,7 +24,7 @@
   },
   "dependencies": {
     "axios": "^0.17.1",
-    "vue2-autocomplete-js": "^0.2.2",
+    "bootstrap-list-filter": "^0.3.2",
     "lodash.debounce": "^4.0.8",
     "lodash.orderby": "^4.6.0",
     "lodash.sortby": "^4.7.0",

@@ -25,6 +25,8 @@ return array(
             \PI\Controller\JobAcController::class => \PI\Factory\Controller\JobAcControllerFactory::class,
             \PI\Controller\CompanyController::class => \PI\Factory\Controller\CompanyControllerFactory::class,
             \PI\Controller\UserCompanyController::class => \PI\Factory\Controller\UserCompanyControllerFactory::class,
+            \PI\Controller\JobTypeController::class => \PI\Factory\Controller\JobTypeControllerFactory::class,
+            \PI\Controller\JobSearchController::class => \PI\Factory\Controller\JobSearchControllerFactory::class,
         ),
     ),
 );

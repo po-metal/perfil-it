@@ -4,17 +4,11 @@ return [
     'navigation' => [
         'default' => [
             [
-                'label' => 'CV',
-                'detail' => '',
-                'icon' => 'fa fa-suitcase',
-                'permission' => 'general-ver',
-                'route' => 'PI/Cv/Index',
-            ],
-            [
                 'label' => 'Admin',
                 'detail' => '',
                 'icon' => '',
                 'permission' => 'general-admin',
+                'route' => 'PI/Cv/Index',
                 'uri' => '',
                 'pages' => [
                     [
@@ -87,19 +81,39 @@ return [
                         'permission' => 'general-admin',
                         'route' => 'PI/UserCompany/Grid',
                     ],
+                    [
+                        'label' => 'Job Type',
+                        'detail' => '',
+                        'icon' => '',
+                        'permission' => 'general-admin',
+                        'route' => 'PI/JobType/Grid',
+                    ],
+                    [
+                        'label' => 'Job Search',
+                        'detail' => '',
+                        'icon' => '',
+                        'permission' => 'general-admin',
+                        'route' => 'PI/JobSearch/Grid',
+                    ],
                 ],
             ],
             [
-                'label' => 'CV-VUE',
+                'label' => 'CV',
                 'detail' => '',
-                'icon' => '',
+                'icon' => 'fa fa-suitcase',
                 'route' => 'PI/CvVue/Main',
             ],
             [
-                'label' => 'Busqueda Inteligente',
+                'label' => 'Buscar Empleo',
                 'detail' => '',
-                'icon' => '',
-                'route' => 'home',
+                'icon' => 'fa fa-search',
+                'uri' => '',
+            ],
+            [
+                'label' => 'Gestionar Busquedas',
+                'detail' => '',
+                'icon' => 'fa fa-list',
+                'uri' => '',
             ],
         ],
     ],
