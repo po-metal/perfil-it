@@ -8,6 +8,7 @@ include "plugins.config.php",
 include "route.config.php",
 include "view-helper.config.php",
 include "view.config.php",
+include "zfm-datagrid.company.config.php",
 include "zfm-datagrid.country.config.php",
 include "zfm-datagrid.education-state.config.php",
 include "zfm-datagrid.education.config.php",
@@ -15,7 +16,8 @@ include "zfm-datagrid.job.config.php",
 include "zfm-datagrid.skill-category.config.php",
 include "zfm-datagrid.skill.config.php",
 include "zfm-datagrid.soft-skill-category.config.php",
-include "zfm-datagrid.soft-skill.config.php"
+include "zfm-datagrid.soft-skill.config.php",
+include "zfm-datagrid.user-company.config.php"
 );
 
 return $setting;

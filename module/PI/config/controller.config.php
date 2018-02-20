@@ -23,6 +23,8 @@ return array(
             \PI\Controller\CountryController::class => \PI\Factory\Controller\CountryControllerFactory::class,
             \PI\Controller\CountryApiController::class => \PI\Factory\Controller\CountryApiControllerFactory::class,
             \PI\Controller\JobAcController::class => \PI\Factory\Controller\JobAcControllerFactory::class,
+            \PI\Controller\CompanyController::class => \PI\Factory\Controller\CompanyControllerFactory::class,
+            \PI\Controller\UserCompanyController::class => \PI\Factory\Controller\UserCompanyControllerFactory::class,
         ),
     ),
 );
